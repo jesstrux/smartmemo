@@ -44,6 +44,12 @@ header #logo{
 main{
 	min-height: calc(100vh - 60px);
 	background: #f0f0f0;
+	padding-top: 70px;
+	padding-left: 280px;
+}
+
+#mainContent{
+	padding: 2em;
 }
 
 aside{
@@ -51,7 +57,8 @@ aside{
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding-top: 70px;
+	padding: 2em;
+	padding-top: calc(70px + 2em);
 	background: #e0e0e0;
 	height: 100vh;
 }
