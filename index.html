@@ -52,8 +52,13 @@
 	</footer>
 
 	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script>
-		
+		var socket = io.connect("http://localhost:3000");
+       socket.on("msgFromSever", function(data) {
+         var msgP = "<p> " + data.message + "</p>";
+         console.log("Message: " + data.message);
+       })
 	</script>
 </body>
 </html>
