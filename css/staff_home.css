@@ -1,8 +1,12 @@
+aside ul li:nth-child(n+3){
+	display: none;s
+}
+
 #mainContent > .section-wrapper:first-child{
 	padding-top: 1em;
 }
 
-section{
+section:first-child{
 	margin-bottom: 4em;
 }
 

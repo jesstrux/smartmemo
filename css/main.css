@@ -18,10 +18,10 @@ header{
     top: 0;
     left: 0;
 	background: #fff;
-	border-bottom: 1px solid #ddd;
 	padding: 0 1em;
 	z-index: 2;
-	width: 100%;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
 }
 
 nav {
@@ -204,6 +204,9 @@ aside ul li.active a{
     font-family: Bold, sans-serif;
 }
 
+
+/* BUTTONS */
+
 .rounded-btn{
     background: none;
     text-decoration: none;
@@ -220,19 +223,32 @@ aside ul li.active a{
     vertical-align: middle;
     z-index: 3;
     overflow: hidden;
+    outline: none;
+}
+
+.rounded-btn:focus {
+    box-shadow: 1px 3px 10px rgba(6, 5, 48, 0.34);
+}
+
+.btn.btn-success {
+    background: #003a75 !important;
+    color: #fff;
+    border-color: #003a75;
 }
 
 /* INPUT */
 .input-box {
     position: relative;
+}
+
+.input-box:not(:last-child){
     margin-bottom: 1.6em;
 }
 
-.input-box input,
-.input-box select {
+.input-box .input-control{
     position: relative;
     display: block;
-    background: #f0f0f0;
+    background-color: #f0f0f0;
     width: 100%;
     font-size: 1em;
     padding: 0.6em 0.5em;
@@ -244,6 +260,7 @@ aside ul li.active a{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    resize: none;
 }
 
 .input-box select {
@@ -253,11 +270,9 @@ aside ul li.active a{
     background-size: 12px;
 }
 
-.input-box input:focus,
-.input-box input:valid,
-.input-box select:focus,
-.input-box select:valid {
-    border-bottom-color: #072644;
+.input-box .input-control:focus,
+.input-control:valid {
+    border-color: #072644;
 }
 
 .input-box label {
@@ -269,10 +284,17 @@ aside ul li.active a{
     height: 16px;
     transition: transform 0.15s ease-out;
     pointer-events: none;
+    opacity: 0.6;
 }
 
-.input-box input:focus+label,
-.input-box input:valid+label {
+.input-box textarea + label {
+    top: 1.1em;
+    bottom: auto;
+}
+
+.input-control:focus+label,
+.input-control:valid+label {
+    opacity: 1;
     transform: scale(0.7) translate3d(-1em, -1em, 0)
 }
 
@@ -281,28 +303,114 @@ aside ul li.active a{
     transform: scale(0.7) translate3d(-1.3em, -1em, 0)
 }
 
+.input-box textarea:focus+label,
+.input-box textarea:valid+label {
+    transform: scale(0.7) translate3d(-1.5em, -1em, 0)
+}
+
+/* TOAST */
+.toast{
+    background: #333;
+    color: #fff;
+    display: inline-block;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+    padding: 1.1em 2em;
+    border-radius: 3px;
+    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(50%);
+    transition: all 0.15s ease-out;
+}
+
+.toast.fade-in{
+    transform: none;
+    opacity: 1;
+}
+
 /* MODAL */
-#authBox {
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    perspective: 1000px;
+}
+
+.modal:not(.open){
+    pointer-events: none;
+    background: transparent;
+}
+
+.modal .modal-content{    
     background: #fff;
     position: relative;
     z-index: 2;
-    min-width: 420px;
-    padding: 4.5em 3em;
-    border-radius: 10px;
+    min-width: 500px;
+    padding: 1.5em 0;
+    border-radius: 12px;
     box-shadow: 5px 10px 30px rgba(6, 5, 48, 0.14);
+
+    opacity: 0;
+    transform: translateY(-20%) rotateX(5deg);
+
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 }
 
-#authBox h1 {
-    font-size: 1.6em;
-    margin-top: 0.8em;
-    margin-bottom: 1.5em;
+.modal.open .modal-content{
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.05s ease-out, transform 0.1s ease-out;
+}
+
+.modal .modal-title{
+    padding: 0.8em 1em;
+    padding-top: 1.1em;
+    font-size: 1.7em;
+    text-align: center;
+    font-family: Light, sans-serif;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal .modal-body {
+    padding: 2em 2.2em;
+    padding-bottom: 2.5em;
+}
+
+.modal .input-control{
+    /* background-color: #f5f5f5; */
+    box-shadow: inset 1px -1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    border: none;
+}
+
+.modal .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #ddd;
+    padding: 1.8em 2.2em;
+    padding-bottom: 1em;
+}
+
+.modal .modal-buttons button{
+    min-width: 160px;
+    border-radius: 10px;
+}
+
+.modal .modal-buttons button:not(:last-child){
+    margin-right: 0.8em;
 }
 
 footer{
-	padding-top: 5em;
-	padding-bottom: 2em;
-	background: #012142;
-	color: #9aaabb;
+	padding: 2em 0;
+	color: #555;
 }
 
 footer .footer-section h5{

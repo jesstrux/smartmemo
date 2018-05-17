@@ -38,7 +38,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="#" onclick="showToast('You don\'t have any drafts saved!')">
 						<i class="zmdi zmdi-edit"></i>
 				
 						Memo Drafts
@@ -71,7 +71,7 @@
 							<i class="zmdi zmdi-notifications"></i>
 						</a> -->
 						
-						<a href="#" class="rounded-btn">Create A Memo</a>
+						<a href="#" class="rounded-btn" onclick="openModal('createMemo');">Create A Memo</a>
 
 						<a id="userAcc" href="login.html" class="layout center-center">
 							<span class="dp layout center-center">
@@ -131,15 +131,15 @@
 
 						<div>
 							<a href="#" class="memo-item">
-								<h4>Unencumbered Masijonist &nbsp;
-									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Barikieli Chamikye</h4>
 								<span class="date">May 15</span>
-									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+								<h4>Request drive folder access &nbsp;
+									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Barikieli Chamikye</h4>
+								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
 							</a>
 
 							<a href="#" class="memo-item">
-								<h4>Unencumbered Masijonist &nbsp; <i class="zmdi zmdi-chevron-right"></i> &nbsp; Accounting Department</h4>
-								<span class="date">May 15</span>
+								<span class="date">May 3</span>
+								<h4>Fund Re-Embursment &nbsp; <i class="zmdi zmdi-chevron-right"></i> &nbsp; Accounting Department</h4>
 								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
 
 								<div class="attachments">
@@ -156,14 +156,14 @@
 							</a>
 
 							<a href="#" class="memo-item">
-								<h4>Unencumbered Masijonist &nbsp;
+								<span class="date">April 17</span>
+								<h4>Last Year Notes &nbsp;
 									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Feston Chambili</h4>
-								<span class="date">May 15</span>
 									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
 							</a>
 
 							<a href="#" class="memo-item">
-								<h4>Unencumbered Masijonist &nbsp;
+								<h4>Socialist Test One First Draft &nbsp;
 									<i class="zmdi zmdi-chevron-right"></i> &nbsp; HOD Social Protection</h4>
 								<span class="date">May 15</span>
 									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
@@ -177,7 +177,7 @@
 							</a>
 
 							<a href="#" class="memo-item">
-								<h4>Unencumbered Masijonist &nbsp;
+								<h4>Unqualified Student Removal &nbsp;
 									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Dean of School</h4>
 								<span class="date">May 15</span>
 									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
@@ -186,20 +186,76 @@
 					</section>
 				 </div>
 
-				<footer>
-				
+				<footer class="layout center-justified">
+					Coyright &copy; Smart Memo 2018
 				</footer>
 			</div>
 		</div>
 	</main>
+
+	<div id="createMemo" class="modal">
+		<div class="modal-content">
+			<div class="modal-title">Create A Memo</div>
+			<div class="modal-body">
+				<div class="input-box">
+					<input type="text" required class="input-control" id="title" name"title">
+					<label for="title">Memo title</label>
+				</div>
+				<div class="input-box">
+					<select required class="input-control" id="department" name="department">
+						<option value=""></option>
+						<option value="staff">Staff</option>
+						<option value="registrar">Registrar</option>
+						<option value="department">Department Head</option>
+					</select>
+					<label for="department">Choose Department</label>
+				</div>
+				<div class="input-box">
+					<textarea rows="7" type="text" required class="input-control" id="body" name="body"></textarea>
+					<label for="body">Memo Content</label>
+				</div>
+			</div>
+			<div class="modal-buttons">
+				<button class="rounded-btn" onclick="closeModal('createMemo')">Cancel</button>
+				<button class="rounded-btn btn btn-success" onclick="saveMemo()">Submit</button>
+			</div>
+		</div>
+	</div>
+
 	<script src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script>
-		var socket = io.connect("http://localhost:3000");
-       socket.on("msgFromSever", function(data) {
-         var msgP = "<p> " + data.message + "</p>";
-         console.log("Message: " + data.message);
-       })
+		function saveMemo(){
+			closeModal('createMemo');
+			showToast("Memo successfully saved!");
+		}
+
+		function openModal(id){
+			document.getElementById(id).classList.add('open');
+		}
+
+		function closeModal(id){
+			document.getElementById(id).classList.remove('open');
+		}
+
+		function closeToast(msg){
+			setTimeout(() => {
+				document.body.removeChild(toast);
+			}, 2000);
+		}
+
+		function showToast(msg){
+			var toast = document.createElement('div');
+			toast.classList.add('toast');
+			toast.innerText = msg;
+
+			document.body.appendChild(toast);
+
+			toast.classList.add("fade-in");
+
+			setTimeout(() => {
+				toast.classList.remove("fade-in");
+			}, 2000);
+		}
 	</script>
 </body>
 </html>

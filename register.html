@@ -19,14 +19,14 @@
 		<div id="authBox" style="min-width: 480px;">
 			<h1>Register for <em class="text-light">Smart Memo</em></h1>
 
-			<form action="login.html">
+			<form action="login.html" method="POST">
 				<div class="input-box">
-					<input type="text" required id="full_name">
+					<input type="text" required id="full_name" name"full_name">
 					<label for="full_name">Full Name</label>
 				</div>
 
 				<div class="input-box">
-					<select required id="position">
+					<select required id="position" name="position">
 						<option value=""></option>
 						<option value="staff">Staff</option>
 						<option value="registrar">Registrar</option>
@@ -36,12 +36,12 @@
 				</div>
 
 				<div class="input-box">
-					<input type="text" required id="username">
+					<input type="text" required id="username" name="username">
 					<label for="username">Username</label>
 				</div>
 
 				<div class="input-box">
-					<input type="password" required id="password">
+					<input type="password" required id="password" name="password">
 					<label for="password">Password</label>
 				</div>
 
