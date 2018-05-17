@@ -5,7 +5,7 @@ body{
 main{
     position: relative;
     height: 100vh;
-    background: #f0f0f0;
+    background: #2b4054;
 }
 
 main:before{
@@ -51,6 +51,10 @@ main.loaded:before{
     margin-top: 0.5em;
     margin-bottom: 1em;
     outline: none;
+}
+
+.rounded-btn:focus{
+    box-shadow: 1px 3px 10px rgba(6, 5, 48, 0.34);
 }
 
 .text-normal {
@@ -103,6 +107,17 @@ main.loaded:before{
     outline: none;
     border-bottom: 2px solid #999;
     transition: all 0.35s ease-out;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-box select{
+    border-radius: 0;
+    background: #f0f0f0 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
+    ;
+    background-size: 12px;
 }
 
 .input-box input:focus,
@@ -126,6 +141,11 @@ main.loaded:before{
 .input-box input:focus + label,
 .input-box input:valid + label{
     transform: scale(0.7) translate3d(-1em, -1em, 0)
+}
+
+.input-box select:focus+label,
+.input-box select:valid+label {
+    transform: scale(0.7) translate3d(-1.3em, -1em, 0)
 }
 
 #authBox p:last-child{

@@ -19,10 +19,10 @@
 </head>
 <body onload="onLoad()">
 	<main class="layout center-center">
-		<div id="authBox">
+		<div id="authBox" style="min-width: 480px;">
 			<h1>Register for <em class="text-light">Smart Memo</em></h1>
 
-			<form action="index.html">
+			<form action="login.html">
 				<div class="input-box">
 					<input type="text" required id="full_name">
 					<label for="full_name">Full Name</label>
@@ -30,12 +30,12 @@
 
 				<div class="input-box">
 					<select required id="position">
-						<option value="">Choose position</option>
-						<option value="">Staff</option>
-						<option value="">Registrar</option>
-						<option value="">Department Head</option>
+						<option value=""></option>
+						<option value="staff">Staff</option>
+						<option value="registrar">Registrar</option>
+						<option value="department">Department Head</option>
 					</select>
-					<label for="position">Position</label>
+					<label for="position">Choose Position</label>
 				</div>
 
 				<div class="input-box">
@@ -50,7 +50,7 @@
 
 				<div class="layout end-justified">
 					<button class="rounded-btn" tupe="submit" onclick="close()">
-						LOGIN
+						REGISTER
 					</button>
 				</div>
 
