@@ -23,8 +23,18 @@ section{
 	margin-bottom: 24px;
 }
 
+#departmentsRow .col-md-4:nth-child(2) .memo-count {
+	background: #4b9035;
+	color: #fff;
+}
+
+#departmentsRow .col-md-4:nth-child(3) .memo-count {
+	background: #012242;
+	color: #fff;
+}
+
 .memo-department > span{
-	letter-spacing: 0.5px;
+	letter-spacing: 0.3px;
 }
 
 .memo-department .memo-count span{
@@ -96,6 +106,11 @@ section{
 .memo-item .attachment.docx i:before {
 	content: '\f222';
 	color: #55f;
+}
+
+.memo-item .attachment.xls i:before {
+	content: '\f222';
+	color: #383;
 }
 
 /*MEDIA QUERIES*/
