@@ -19,38 +19,66 @@
 	<link rel="icon" href="logo.png">
 </head>
 <body class="show-na">
-	<header class="for-lg">
-		<div class="layout center justified">
-			<a id="logo" href="/" class="layout vertica center">
-				<img src="img/logo.png" alt="" width="35px;" height="35px">
+	<main class="layout">
+		<aside>
+			<a id="logo" href="/" class="layout vertical center">
+				<div id="logoImage">
+					<img src="img/logo.png" alt="">
+				</div>
 				<span id="logoText" href="/" class="layout center">
 					IFM Smart Memo
 				</span>
 			</a>
+			
+			<ul>
+				<li class="active">
+					<a href="#">
+						<i class="zmdi zmdi-home"></i>
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="zmdi zmdi-time"></i>
 
-			<nav class="layout center">
-				<a id="userAcc" href="#" class="layout center-center">
-					Walter Kimaro <i class="zmdi zmdi-chevron-down"></i>
-					<span class="dp"></span>
-				</a>
-			</nav>
-		</div>
-	</header>
-
-	<main class="layout">
-		<aside>
-			Some aside content
+						Old Memos
+					</a>
+				</li>
+			</ul>
 		</aside>
 
-		<div id="mainContent">
-			Some main content
+		<div id="siteContent" class="flex">
+			<header class="for-lg">
+				<div class="layout center justified">
+					<div></div>
+			
+					<nav class="layout center">
+						<a href="#" class="nav-icon layout center-center">
+							<i class="zmdi zmdi-notifications"></i>
+						</a>
+						<a id="userAcc" href="#" class="layout center-center">
+							Walter Kimaro
+							<i class="zmdi zmdi-chevron-down"></i>
+							<span class="dp layout center-center">
+								<i class="zmdi zmdi-account"></i>
+							</span>
+						</a>
+					</nav>
+				</div>
+			</header>
+
+			<div id="mainContent">
+				 <div class="section-wrapper">
+					 Some main content
+					
+				 </div>
+
+				<footer>
+				
+				</footer>
+			</div>
 		</div>
 	</main>
-
-	<footer>
-		
-	</footer>
-
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script>
