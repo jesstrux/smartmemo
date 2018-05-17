@@ -38,7 +38,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onclick="showToast('You don\'t have any drafts saved!')">
+					<a href="#" onclick="showToast('You don\'t have any drafts saved!', 'top-center')">
 						<i class="zmdi zmdi-edit"></i>
 				
 						Memo Drafts
@@ -221,12 +221,12 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script src="js/jquery.min.js"></script>
 	<script>
 		function saveMemo(){
 			closeModal('createMemo');
-			showToast("Memo successfully saved!");
+			showToast("Memo successfully saved!", 'top-center');
 		}
 
 		function openModal(id){
@@ -243,14 +243,16 @@
 			}, 2000);
 		}
 
-		function showToast(msg){
+		function showToast(msg, pos){
+			var position = pos || 'left-bottom';
 			var toast = document.createElement('div');
 			toast.classList.add('toast');
+			toast.classList.add(position);
+			toast.classList.add("fade-in");
+
 			toast.innerText = msg;
 
 			document.body.appendChild(toast);
-
-			toast.classList.add("fade-in");
 
 			setTimeout(() => {
 				toast.classList.remove("fade-in");

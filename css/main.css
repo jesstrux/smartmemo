@@ -1,5 +1,7 @@
 body{
     overflow: hidden;
+     --vertical-transform: 0;
+     --horizontal-transform: 0;
 }
 
 body.show-nav,
@@ -320,12 +322,22 @@ aside ul li.active a{
     border-radius: 3px;
     box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.35);
     opacity: 0;
-    transform: translateY(50%);
+    transform: translateY(var(--vertical-transform)) translateX(var(--horizontal-transform));
     transition: all 0.15s ease-out;
+    z-index: 20;
 }
 
-.toast.fade-in{
-    transform: none;
+.toast.top-center {
+    --vertical-transform: -50%;
+    --horizontal-transform: calc(50vw - 50%);
+    top: 2em;
+    bottom: auto;
+    left: 0;
+    margin: auto;
+}
+
+.toast.fade-in {
+    --vertical-transform: 0;
     opacity: 1;
 }
 
