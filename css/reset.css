@@ -1,5 +1,5 @@
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -23,14 +23,13 @@ q:before, q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
 *{-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;list-style:none;position:relative}
 
-h1:not(.unbold),
-h2:not(.unbold),
-h3:not(.unbold),
-h4:not(.unbold),
-h5:not(.unbold),
-h6:not(.unbold) {
+h1, h2, h3, h4, h5, h6{
+	padding: 0;
+	margin: 0;
+	font-weight: normal;
 	font-family:SemiBold, sans-serif;
 }
+
 @font-face{font-family:"Light";src:url("../fonts/Light.ttf");}
 @font-face{font-family:"Regular";src:url("../fonts/Regular.ttf");}
 @font-face{font-family:"SemiBold";src:url("../fonts/SemiBold.ttf");}
