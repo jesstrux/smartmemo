@@ -159,7 +159,7 @@ aside ul li a i{
 
 aside ul li a:hover,
 aside ul li.active a{
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 aside ul li.active a{
@@ -220,6 +220,82 @@ aside ul li.active a{
     vertical-align: middle;
     z-index: 3;
     overflow: hidden;
+}
+
+/* INPUT */
+.input-box {
+    position: relative;
+    margin-bottom: 1.6em;
+}
+
+.input-box input,
+.input-box select {
+    position: relative;
+    display: block;
+    background: #f0f0f0;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.6em 0.5em;
+    padding-top: 1.6em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #999;
+    transition: all 0.35s ease-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-box select {
+    border-radius: 0;
+    background: #f0f0f0 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
+    ;
+    background-size: 12px;
+}
+
+.input-box input:focus,
+.input-box input:valid,
+.input-box select:focus,
+.input-box select:valid {
+    border-bottom-color: #072644;
+}
+
+.input-box label {
+    position: absolute;
+    left: 0.5em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 16px;
+    transition: transform 0.15s ease-out;
+    pointer-events: none;
+}
+
+.input-box input:focus+label,
+.input-box input:valid+label {
+    transform: scale(0.7) translate3d(-1em, -1em, 0)
+}
+
+.input-box select:focus+label,
+.input-box select:valid+label {
+    transform: scale(0.7) translate3d(-1.3em, -1em, 0)
+}
+
+/* MODAL */
+#authBox {
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    min-width: 420px;
+    padding: 4.5em 3em;
+    border-radius: 10px;
+    box-shadow: 5px 10px 30px rgba(6, 5, 48, 0.14);
+}
+
+#authBox h1 {
+    font-size: 1.6em;
+    margin-top: 0.8em;
+    margin-bottom: 1.5em;
 }
 
 footer{
