@@ -19,7 +19,7 @@
 		<div id="authBox">
 			<h1>Login to <em class="text-light">Smart Memo</em></h1>
 
-			<form action="staff.html" method="POST">
+			<form>
 				<div class="input-box">
 					<input type="text" required id="username" name="username">
 					<label for="username">Username</label>
@@ -31,7 +31,7 @@
 				</div>
 
 				<div class="layout end-justified">
-					<button class="rounded-btn" tupe="submit" onclick="close()">
+					<button class="rounded-btn" type="button" onclick="login()">
 						LOGIN
 					</button>
 				</div>
@@ -51,6 +51,11 @@
 
 		function close() {
 			document.getElementsByTagName('main')[0].classList.remove('loaded');
+		}
+
+		function login() {
+			close();
+			window.location.href = "staff.html";
 		}
 	</script>
 </body>
