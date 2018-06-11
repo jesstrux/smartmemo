@@ -85,13 +85,22 @@
 							<i class="zmdi zmdi-notifications"></i>
 						</a>
 
-						<a id="userAcc" href="login.html" class="layout center-center">
-							<span class="dp layout center-center">
-								<i class="zmdi zmdi-account"></i>
-							</span>
-							Staff Member
-							<i class="zmdi zmdi-chevron-down"></i>
-						</a>
+						<div id="user-dropdown">
+							<a id="userAcc" href="#" class="layout center-center">
+								<span class="dp layout center-center">
+									<i class="zmdi zmdi-account"></i>
+								</span>
+								Staff Member
+								<i class="zmdi zmdi-chevron-down"></i>
+							</a>
+
+							<div id="dropdown">
+								<div id="dropdownContent">
+									<a href="#">Profile</a>
+									<a href="login.html">Logout</a>
+								</div>
+							</div>
+						</div>
 					</nav>
 				</div>
 			</header>
@@ -99,12 +108,46 @@
 			<div id="mainContent">
 				<section class="page-title layout vertical center-center">
 					<i class="zmdi zmdi-edit"></i>
-					<h1 class="text-normal">Create Memo</h1>
+					<h1 class="text-light">Create Memo</h1>
 					<small class="text-light">Fill in the fields then click a button to create a memo or save a draft.</small>
 				</section>
 				 <div class="section-wrapper">
 					<section>
+						<form class="classic-form">
+							<div class="input-group">
+								<label>Memo Title</label>
+								<input type="text" placeholder="Memo title">
+							</div>
 
+							<div class="input-group">
+								<label>Send To</label>
+								<input type="text" placeholder="Click to choose recepient">
+							</div>
+
+							<div class="input-group">
+								<label class="start">Memo Content</label>
+								<textarea rows="10"></textarea>
+							</div>
+
+							<div class="input-group">
+								<label class="start">
+									Memo Attachments
+									<small>(If you have attachments to add click the button)</small>
+								</label>
+
+								<div class="flex layout vertical center-center" style="border: 2px dashed #555;background: #f5f5f5; height: 200px;">
+									Drop files here to attach to memo
+									<br> <span style="margin: 0.5em 0">OR</span>
+									<label style="padding: 0.7em 1em; background: #ddd;" for="pickAttachments">Pick Attachments</label>
+									<input type="file" id="pickAttachments" style="display: none;">
+								</div>
+							</div>
+
+							<div class="input-group layout end-justified">
+								<button class="rounded-btn imperfect">Save Draft</button>
+								<button class="rounded-btn btn-success imperfect">Send Memo</button>
+							</div>
+						</form>
 					</section>
 				 </div>
 
