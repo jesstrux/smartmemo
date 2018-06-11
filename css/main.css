@@ -168,6 +168,73 @@ aside ul li.active a{
     border-left-color: #003a75;
 }
 
+aside .dropdown .dropdown-menu{
+    margin-top: 0;
+    padding-left: calc(1.8em + 24px);
+    transform-origin: top;
+    transition: transform 0.1s ease-out;
+}
+
+aside .dropdown:not(.active) .dropdown-menu:not(.open) {
+    overflow: hidden;
+    height: 0;
+    transform: scaleY(0);
+}
+
+aside .dropdown .dropdown-menu a{
+    margin-bottom: 0;
+    color: #777;
+    transition: opacity 0.25s ease-out 0.05s;
+    border: none;
+    background: transparent;
+}
+
+aside .dropdown:not(.active) .dropdown-menu:not(.open) a {
+    opacity: 0;
+}
+
+aside .dropdown .dropdown-menu li a{
+    padding: 0.9em 1em;
+    font-size: 0.95em;
+}
+
+aside .dropdown .dropdown-menu li.active a {
+    color: #333;
+}
+
+.page-title{
+    margin-top: -2em;
+    min-height: 220px;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.page-title h1{
+    font-size: 2.2em;
+}
+
+.page-title i{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 0.35em;
+}
+
+.page-title small{
+    /* font-size: 0.95em; */
+    line-height: 1.4;
+    display: block;
+    margin-top: 0.35em;
+    max-width: 580px;
+}
+
 .section-title{
 	margin-bottom: 1em;
 }

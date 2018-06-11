@@ -1,5 +1,5 @@
 aside ul li:nth-child(n+3){
-	display: none;s
+	/* display: none; */
 }
 
 #mainContent > .section-wrapper:first-child{
