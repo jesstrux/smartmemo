@@ -1,0 +1,149 @@
+<?php include("includes/connection.php");?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Memo IFM</title>
+    <meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="icon" href="logo.png">
+</head>
+<body >
+<main>
+    <div id="authBox" style="min-width: 480px;">
+        <h1>Register for <em class="text-light">Smart Memo</em></h1>
+
+        <form action="process_register.php" method="POST" autocomplete="off">
+            <div class="input-box">
+                <input type="text" required id="fname" name="fname">
+                <label for="fname">First Name</label>
+            </div>
+            <div class="input-box">
+                <input type="text" required id="lname" name="lname">
+                <label for="full_name">Last Name</label>
+            </div>
+            <div class="input-box">
+                <input type="text" required id="surname" name="surname">
+                <label for="surname">Surname</label>
+            </div>
+
+            <div class="input-box">
+                <select required id="department" name="department">
+                    <option value=""></option>
+                    <?php
+                    $query = "SELECT * FROM department";
+                    $result =	mysqli_query($con, $query); //execute the query
+                    while($data	=	mysqli_fetch_assoc($result)){ ?>
+                        <option value="<?php echo $data['id']?>"><?php echo $data['name']; ?></option>
+                    <?php } ?>
+                </select>
+                <label for="department">Choose Department</label>
+            </div>
+
+            <div class="input-box">
+                <select required id="job_title" name="job_title">
+                    <option value=""></option>
+                    <?php
+                    $query = "SELECT * FROM job";
+                    $result =	mysqli_query($con, $query); //execute the query
+                    while($data	=	mysqli_fetch_assoc($result)){ ?>
+                        <option value="<?php echo $data['id']?>"><?php echo $data['name']; ?></option>
+                    <?php } ?>
+                </select>
+                <label for="job_title">Choose Job title</label>
+            </div>
+            <div class="input-box">
+                <input type="number" required id="mobile" name="mobile">
+                <label for="mobile">Phone number</label>
+            </div>
+            <div class="input-box">
+                <input type="email" required id="email" name="email">
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" required id="password" name="password">
+                <label for="password">Password</label>
+            </div>
+            <div>
+                <meter max="4" id="password-strength-meter" style="width: 100%;max-width: 390px;"></meter>
+                <p id="password-strength-text" style="max-width: 348px;color: #f44336;font-size: 11px;margin: 5px;"></p>
+            </div>
+
+            <div class="input-box">
+                <input type="password" required id="confirm" name="confirm">
+                <label for="confirm">Confirm Password</label>
+
+            </div>
+            <div id="divCheckPasswordMatch"></div>
+
+
+
+            <div class="layout end-justified">
+                <button class="btn btn-primary" tupe="submit" id="register" name="register" disabled>
+                    REGISTER
+                </button>
+            </div>
+
+            <p>
+                Already have an account? <a href="login.php">Login</a>
+            </p>
+        </form>
+    </div>
+</main>
+
+<?php include ("partials/js.php"); ?>
+<script src="bootstrap/js/plugins/passwordcheck.js"></script>
+<script src="js/password.js"></script>
+<script>
+    function disable_register() {
+        $("#register").attr("disabled", "disabled");
+    }
+    function enable_register() {
+        $("#register").removeAttr("disabled");
+    }
+    function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirm").val();
+
+         if(password != '' && confirmPassword != ''){
+             if (password != confirmPassword){
+                     $("#divCheckPasswordMatch").html("<p style='color: red;margin: 5px;'>Passwords do not match!</p>");
+                     disable_register();
+                 }
+                 else{
+                     $("#divCheckPasswordMatch").html("<p style='color: green;margin: 5px;'>Click register to continue</p>");
+                     enable_register();
+                 }
+
+         }
+
+    }
+
+    $(document).ready(function(){
+        //check password strength
+        $('#password').on('keyup',function () {
+            var checker =$('#password-strength-meter').val();
+            if(checker < 3){
+                disable_register();
+            }else{
+                enable_register();
+            }
+        });
+        $("#password, #confirm").keyup(checkPasswordMatch);
+    });
+
+</script>
+
+</body>
+
+</body>
+</html>

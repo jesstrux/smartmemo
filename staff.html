@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Smart Memo IFM</title>
+	<meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" href="css/flexboxgrid.min.css">
+	<link rel="stylesheet" href="css/flex.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/staff_home.css">
+	<link rel="icon" href="logo.png">
+</head>
+<body class="show-na">
+	<main class="layout">
+		<aside>
+			<a id="logo" href="/" class="layout vertical center">
+				<div id="logoImage">
+					<img src="img/logo.png" alt="">
+				</div>
+				<span id="logoText" href="/" class="layout center">
+					IFM Smart Memo
+				</span>
+			</a>
+			
+			<ul>
+				<li class="active">
+					<a href="#">
+						<i class="zmdi zmdi-home"></i>
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="#" onclick="showToast('You don\'t have any drafts saved!', 'top-center')">
+						<i class="zmdi zmdi-edit"></i>
+				
+						Memo Drafts
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="zmdi zmdi-mail-send"></i>
+
+						Sent Memos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="zmdi zmdi-redo"></i>
+				
+						Memo Replies
+					</a>
+				</li>
+			</ul>
+		</aside>
+
+		<div id="siteContent" class="flex">
+			<header class="for-lg">
+				<div class="layout center justified">
+					<div></div>
+			
+					<nav class="layout center">
+						<!-- <a href="#" class="nav-icon">
+							<i class="zmdi zmdi-notifications"></i>
+						</a> -->
+						
+						<a href="#" class="rounded-btn" onclick="openModal('createMemo');">Create A Memo</a>
+
+						<a id="userAcc" href="login.html" class="layout center-center">
+							<span class="dp layout center-center">
+								<i class="zmdi zmdi-account"></i>
+							</span>
+							Staff Member
+							<i class="zmdi zmdi-chevron-down"></i>
+						</a>
+					</nav>
+				</div>
+			</header>
+
+			<div id="mainContent">
+				 <div class="section-wrapper">
+					<section>
+						<h3 class="section-title text-light">
+							Office Wide Memos
+						</h3>
+						
+						<div class="row" id="departmentsRow">
+							<div class="col-md-4">
+								<div class="memo-department">
+									<div class="memo-count">
+										<em class="text-light">No</em>
+										<span>Memos Found</span>
+									</div>
+									<span>Registrar's Office</span>
+								</div>
+							</div>
+						
+							<div class="col-md-4">
+								<div class="memo-department">
+									<div class="memo-count">
+										<em class="text-light">5</em>
+										<span>Memos Found</span>
+									</div>
+									<span>Accounting / Finance Department</span>
+								</div>
+							</div>
+						
+							<div class="col-md-4">
+								<div class="memo-department">
+									<div class="memo-count">
+										<em class="text-light">1</em>
+										<span>Memo Found</span>
+									</div>
+									<span>Dean of Subjects Office</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h3 class="section-title text-light">
+							Unanswered Memos
+						</h3>
+
+						<div>
+							<a href="#" class="memo-item">
+								<span class="date">May 15</span>
+								<h4>Request drive folder access &nbsp;
+									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Barikieli Chamikye</h4>
+								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+							</a>
+
+							<a href="#" class="memo-item">
+								<span class="date">May 3</span>
+								<h4>Fund Re-Embursment &nbsp; <i class="zmdi zmdi-chevron-right"></i> &nbsp; Accounting Department</h4>
+								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+
+								<div class="attachments">
+									<div class="attachment pdf" title="Financial Report for the educated.">
+										<i class="zmdi"></i>
+										<span class="trim-text">Financial Report for the educated.</span>
+									</div>
+
+									<div class="attachment xls" title="Financial Report for the educated.">
+										<i class="zmdi"></i>
+										<span class="trim-text">Item cost breakdown.</span>
+									</div>
+								</div>
+							</a>
+
+							<a href="#" class="memo-item">
+								<span class="date">April 17</span>
+								<h4>Last Year Notes &nbsp;
+									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Feston Chambili</h4>
+									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+							</a>
+
+							<a href="#" class="memo-item">
+								<h4>Socialist Test One First Draft &nbsp;
+									<i class="zmdi zmdi-chevron-right"></i> &nbsp; HOD Social Protection</h4>
+								<span class="date">May 15</span>
+									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+
+								<div class="attachments">
+									<div class="attachment docx" title="Math Test 1 first Draft">
+										<i class="zmdi"></i>
+										<span class="trim-text">Math Test 1 first Draft.</span>
+									</div>
+								</div>
+							</a>
+
+							<a href="#" class="memo-item">
+								<h4>Unqualified Student Removal &nbsp;
+									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Dean of School</h4>
+								<span class="date">May 15</span>
+									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+							</a>
+						</div>
+					</section>
+				 </div>
+
+				<footer class="layout center-justified">
+					Coyright &copy; Smart Memo 2018
+				</footer>
+			</div>
+		</div>
+	</main>
+
+	<div id="createMemo" class="modal">
+		<div class="modal-content">
+			<div class="modal-title">Create A Memo</div>
+			<div class="modal-body">
+				<div class="input-box">
+					<input type="text" required class="input-control" id="title" name="title">
+					<label for="title">Memo title</label>
+				</div>
+				<div class="input-box">
+					<select required class="input-control" id="department" name="department">
+						<option value=""></option>
+						<option value="staff">Staff</option>
+						<option value="registrar">Registrar</option>
+						<option value="department">Department Head</option>
+					</select>
+					<label for="department">Choose Department</label>
+				</div>
+				<div class="input-box">
+					<textarea rows="7" type="text" required class="input-control" id="body" name="body"></textarea>
+					<label for="body">Memo Content</label>
+				</div>
+			</div>
+			<div class="modal-buttons">
+				<button class="rounded-btn" onclick="closeModal('createMemo')">Cancel</button>
+				<button class="rounded-btn btn btn-success" onclick="saveMemo()">Submit</button>
+			</div>
+		</div>
+	</div>
+	
+	<script src="js/jquery.min.js"></script>
+	<script>
+		function saveMemo(){
+			closeModal('createMemo');
+			showToast("Memo successfully saved!", 'top-center');
+		}
+
+		function openModal(id){
+			document.getElementById(id).classList.add('open');
+		}
+
+		function closeModal(id){
+			document.getElementById(id).classList.remove('open');
+		}
+
+		function closeToast(msg){
+			setTimeout(() => {
+				document.body.removeChild(toast);
+			}, 2000);
+		}
+
+		function showToast(msg, pos){
+			var position = pos || 'left-bottom';
+			var toast = document.createElement('div');
+			toast.classList.add('toast');
+			toast.classList.add(position);
+			toast.classList.add("fade-in");
+
+			toast.innerText = msg;
+
+			document.body.appendChild(toast);
+
+			setTimeout(() => {
+				toast.classList.remove("fade-in");
+			}, 2000);
+		}
+	</script>
+</body>
+</html>

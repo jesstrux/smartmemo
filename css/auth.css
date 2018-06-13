@@ -1,0 +1,172 @@
+
+
+main{
+    position: relative;
+    height: auto;
+    background: #2b4054;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* main:before{
+    content: "";
+    position: fixed;
+    top: -50vh;
+    left: -50vw;
+    transform: rotate(20deg) scale(0.5);
+    background: #072644;
+    width: 100vw;
+    height: 100vh;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-image: url(../img/people.jpg);
+    transition: all 0.35s ease-out;
+} */
+
+main.loaded:before{
+    border-radius: 30vw;
+    transform: translate3d(5vw, 15vh, 0) rotate(20deg) scale(1);
+}
+
+.rounded-btn{
+    background: none;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.95em;
+    line-height: 1.2;
+    padding: 0.575em 1.555em;
+    border-radius: 1.25em;
+    min-width: 1.25em;
+    text-align: center;
+    font-weight: normal;
+    border: 1px solid #012142;
+    background: #072644;
+    color: #fff;
+    position: relative;
+    vertical-align: middle;
+    z-index: 3;
+    overflow: hidden;
+    min-width: 130px;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    outline: none;
+}
+
+.rounded-btn:focus{
+    box-shadow: 1px 3px 10px rgba(6, 5, 48, 0.34);
+}
+
+.text-normal {
+    font-family: Regular, sans-serif;
+}
+
+.text-light {
+    font-family: Light, sans-serif;
+}
+
+.text-bold {
+    font-family: SemiBold, sans-serif;
+}
+
+.text-bolder {
+    font-family: Bold, sans-serif;
+}
+
+#authBox{
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    min-width: auto;
+    padding: 1em 3em;
+    border-radius: 10px;
+    box-shadow: 5px 10px 30px rgba(6, 5, 48, 0.14);
+    margin: 10px;
+}
+
+#authBox h1{
+    font-size: 1.6em;
+    margin-top: 0.8em;
+    margin-bottom: 1.5em;
+}
+
+.input-box{
+    position: relative;
+    margin-bottom: 1.2em;
+ }
+
+.input-box input,
+.input-box select{
+    position: relative;
+    display: block;
+    background: #f0f0f0;
+    width: 100%;
+    font-size: 1em;
+    padding-top: 1.6em;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #444444;
+    transition: all 0.35s ease-out;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-box select{
+    border-radius: 0;
+    background: #f0f0f0 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
+    ;
+    background-size: 12px;
+}
+
+.input-box input:focus,
+.input-box input:valid,
+.input-box select:focus,
+.input-box select:valid {
+    border-bottom-color: #072644;
+}
+
+.input-box label {
+    position: absolute;
+    left: 0.5em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 16px;
+    transition: transform 0.15s ease-out;
+    pointer-events: none;
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label{
+    transform: scale(0.7) translate3d(-1em, -1em, 0)
+}
+
+.input-box select:focus+label,
+.input-box select:valid+label {
+    transform: scale(0.7) translate3d(-1.3em, -1em, 0)
+}
+
+#authBox p:last-child{
+    margin-top: 2em;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 521px){
+    .for-mob{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .section-wrapper{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .for-lg, .for-md{
+        display: none !important;
+    }
+}
