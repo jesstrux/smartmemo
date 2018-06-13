@@ -20,6 +20,7 @@ for (let i = 0; i < dropdownTriggers.length; i++) {
 
     element.onclick = function(){
         var dropdown = element.parentElement;
+        dropdown.classList.toggle('open');
         dropdown.querySelector('.dropdown-menu').classList.toggle('open');
     }
 }

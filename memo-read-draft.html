@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/flexboxgrid.min.css">
 	<link rel="stylesheet" href="css/flex.css">
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/staff_home.css">
+	<link rel="stylesheet" href="css/memo_read.css">
 	<link rel="icon" href="logo.png">
 </head>
 <body class="show-na">
@@ -32,20 +32,20 @@
 			
 			<ul>
 				<li>
-					<a href="#">
+					<a href="staff.html">
 						<i class="zmdi zmdi-home"></i>
 						Home
 					</a>
 				</li>
-				<li class="dropdown active">
+				<li class="dropdown">
 					<a href="#">
 						<i class="zmdi zmdi-file"></i>
 						My Memos
 					</a>
 
 					<ul class="dropdown-menu">
-						<li><a href="create-memo.html">Create Memo</a></li>
-						<li class="active"><a href="#">Memo Drafts</a></li>
+						<li><a href="#">Create Memo</a></li>
+						<li><a href="memo-drafts.html">Memo Drafts</a></li>
 						<li><a href="#">Private Memos</a></li>
 					</ul>
 				</li>
@@ -107,65 +107,54 @@
 
 			<div id="mainContent">
 				<section class="page-title layout vertical center-center">
-					<i class="zmdi zmdi-border-color"></i>
-					<h1 class="text-light">Memo Drafts</h1>
-				</section>
+					<h1 class="text-light">
+						Request Drive Folder Access<br>
+						<span>(DRAFT)</span>
+					</h1>
+					<small class="text-light">
+						Recepients <a href="#" class="link user-link">James Hose</a>, <a href="#" class="link user-link user-group">Upper Management</a>
+					</small>
 
+					<div class="buttons layout center-justified">
+						<a href="memo-read.html" class="rounded-btn btn-sm imperfec">Continue Editting</a>
+						<button class="rounded-btn btn-sm btn-success imperfec">Send Memo</button>
+					</div>
+				</section>
 				 <div class="section-wrapper">
 					<section>
-						<div>
-							<a href="memo-read-draft.html" class="memo-item">
-								<span class="date">May 15</span>
-								<h4>Request drive folder access &nbsp;
-									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Barikieli Chamikye</h4>
-								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-							</a>
+						<div id="memoContent">
+							<div id="memoBody">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis enim eaque suscipit, labore, repellat inventore quos repudiandae totam animi ab voluptate libero, consequatur modi quibusdam ullam? Enim incidunt cupiditate odit. <br><br>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis enim eaque suscipit, labore, repellat inventore quos repudiandae totam animi ab voluptate libero, consequatur modi quibusdam ullam? Enim incidunt cupiditate odit. <br><br>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis enim eaque suscipit, labore, repellat inventore quos repudiandae totam animi ab voluptate libero, consequatur modi quibusdam ullam? Enim incidunt cupiditate odit.
+							</div>
 
-							<a href="memo-read-draft.html" class="memo-item">
-								<span class="date">May 3</span>
-								<h4>Fund Re-Embursment &nbsp; <i class="zmdi zmdi-chevron-right"></i> &nbsp; Accounting Department</h4>
-								<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+							<div id="attachments">
+								<a href="#" class="attachment docx">
+									<i class="zmdi"></i>
+									<span class="trim-text">Math Test 1 first Draft.</span>
+								</a>
 
-								<div class="attachments">
-									<div class="attachment pdf" title="Financial Report for the educated.">
-										<i class="zmdi"></i>
-										<span class="trim-text">Financial Report for the educated.</span>
-									</div>
+								<a href="#" class="attachment xls">
+									<i class="zmdi"></i>
+									<span class="trim-text">Item Cost Breakdown</span>
+								</a>
 
-									<div class="attachment xls" title="Financial Report for the educated.">
-										<i class="zmdi"></i>
-										<span class="trim-text">Item cost breakdown.</span>
-									</div>
-								</div>
-							</a>
+								<a href="#" class="attachment pdf">
+									<i class="zmdi"></i>
+									<span class="trim-text">Financial Report for the educated.</span>
+								</a>
 
-							<a href="memo-read-draft.html" class="memo-item">
-								<span class="date">April 17</span>
-								<h4>Last Year Notes &nbsp;
-									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Feston Chambili</h4>
-									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-							</a>
+								<a href="#" class="attachment image">
+									<i class="zmdi"></i>
+									<span class="trim-text">Receipt Screenshots</span>
+								</a>
+							</div>
 
-							<a href="memo-read-draft.html" class="memo-item">
-								<h4>Socialist Test One First Draft &nbsp;
-									<i class="zmdi zmdi-chevron-right"></i> &nbsp; HOD Social Protection</h4>
-								<span class="date">May 15</span>
-									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-
-								<div class="attachments">
-									<div class="attachment docx" title="Math Test 1 first Draft">
-										<i class="zmdi"></i>
-										<span class="trim-text">Math Test 1 first Draft.</span>
-									</div>
-								</div>
-							</a>
-
-							<a href="memo-read-draft.html" class="memo-item">
-								<h4>Unqualified Student Removal &nbsp;
-									<i class="zmdi zmdi-chevron-right"></i> &nbsp; Dean of School</h4>
-								<span class="date">May 15</span>
-									<p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-							</a>
+							<div class="buttons layout center-justified">
+								<a href="memo-read.html" class="rounded-btn">Continue Editting</a>&nbsp;&nbsp;
+								<button class="rounded-btn btn-sm btn-success">&emsp;Send Memo&emsp;</button>
+							</div>
 						</div>
 					</section>
 				 </div>
