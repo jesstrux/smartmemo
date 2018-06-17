@@ -4,12 +4,12 @@
     function notify_user($token, $title, $message){
         $msg = array(
             'title' => $title,
-            'body' => $message
+            'message' => $message
         );
 
         $fields = array(
             'to' => $token,
-            'notification' => $msg
+            'data' => $msg
         );
 
         send_notification($fields);
@@ -18,7 +18,7 @@
     function notify_users($tokens, $title, $message){
         $msg = array(
             'title' => $title,
-            'body' => $message
+            'message' => $message
         );
         $fields = array(
             'registration_ids' => $tokens,
@@ -31,12 +31,13 @@
     function notify_topic($topic, $title, $message){
         $msg = array(
             'title' => $title,
-            'body' => $message
+            'message' => $message
         );
 
         $fields = array(
             "condition" => "'$topic' in topics",
-            "notification" => $msg
+            "data" => $msg,
+            "ttl" => 3600
         );
 
         send_notification($fields);

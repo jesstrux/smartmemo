@@ -1,5 +1,7 @@
 <?php
 include ("includes/connection.php");
+include("includes/send_notification.php");
+
 session_start();
 
 if(isset($_POST['register'])){
@@ -13,6 +15,8 @@ if(isset($_POST['register'])){
     $password	    =	$_POST['password'];
     $confirm    	=	$_POST['confirm'];
     $mobile 	    =	$_POST['mobile'];
+
+    $full_name = ucwords($fname . ' ' . $mname . ' ' . $surname);
 
     //check if password match
     if($password != $confirm){
@@ -39,6 +43,11 @@ if(isset($_POST['register'])){
         $_SESSION['job_id']=$job_id;
         $_SESSION['phonenumber']=$mobile;
         $_SESSION['activation']=0;
+
+        $topic = "Admin";
+        $title = "New User Registered!";
+        $message = "$full_name has registered to Smart Memo, please confirm them.";
+        notify_topic($topic, $title, $message);
 
         header("location: index.php");
     } else {

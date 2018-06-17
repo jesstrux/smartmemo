@@ -1,5 +1,7 @@
 <?php
 include ("connection.php");
+include("send_notification.php");
+
 if(isset($_POST['save']) || isset($_POST['draft'])){
 
     $title=$_POST['title'];
@@ -18,7 +20,31 @@ if(isset($_POST['save']) || isset($_POST['draft'])){
 
     if ($con->query($sql) === TRUE) {
         $memo_id=mysqli_insert_id($con);
-        header("location: ../view_mymemo.php?ref=$memo_id&success");
+
+        $query_token = "SELECT device_token FROM users WHERE id = $to";
+        $result_token = mysqli_query($con, $query_token);
+
+        if (mysqli_num_rows($result_token) > 0) {
+            $row = mysqli_fetch_array($result_token, MYSQLI_ASSOC);
+            $token = $row["device_token"];
+
+
+            $name_sql = "SELECT fname FROM users WHERE id = $from";
+            $result_name = mysqli_query($con, $name_sql);
+
+            $name_row = mysqli_fetch_array($result_name, MYSQLI_ASSOC);
+
+            if (mysqli_num_rows($result_name) > 0) {
+                $message = $name_row['fname'] . "sent you a memo: " . $title;
+                notify_user($token, $title, $message);
+
+                header("location: ../view_mymemo.php?ref=$memo_id&success");
+            } else {
+                header("location: ../view_mymemo.php?ref=$memo_id&success");
+            }
+        }else{
+            header("location: ../view_mymemo.php?ref=$memo_id&success");
+        }
     } else {
         header("location: ../create_memo.php?error");
     }
