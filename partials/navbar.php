@@ -9,12 +9,22 @@
 
             <a href="create_memo.php" class="rounded-btn">Create A Memo</a>
 
-            <a id="userAcc" href="profile.php" class="layout center-center">
-                <span class="dp layout center-center">
-                    <i class="zmdi zmdi-account"></i>
-                </span>
-                <?php echo $_SESSION['fullname']?>
-            </a>
+            <div id="user-dropdown">
+                <a id="userAcc" href="#" class="layout center-center">
+                    <span class="dp layout center-center">
+                        <i class="zmdi zmdi-account"></i>
+                    </span>
+                    <?php echo $_SESSION['fullname']?>
+                    <i class="zmdi zmdi-chevron-down"></i>
+                </a>
+
+                <div id="dropdown">
+                    <div id="dropdownContent">
+                        <a href="profile.php">Profile</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
 </header>

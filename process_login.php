@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $active         =   $row['activation'];
     $fname			=	$row['fname'];
-    $lname		    =	$row['lname'];
+    $mname		    =	$row['mname'];
     $surname		=	$row['surname'];
     $dept_id	    =	$row['dept_id'];
     $job_id	        =	$row['job_id'];
@@ -26,9 +26,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // If result matched $username and $password, table row must be 1 row
     if($count == 1) {
         $_SESSION['user_id']=$user_id;
-        $_SESSION['fullname']=ucwords($fname.' '.$lname.' '.$surname);
+        $_SESSION['fullname']=ucwords($fname.' '.$mname.' '.$surname);
         $_SESSION['fname']=$fname;
-        $_SESSION['lname']=$lname;
+        $_SESSION['mname']=$mname;
+        $_SESSION['surname']=$surname;
         $_SESSION['email']=$email;
         $_SESSION['dept_id']=$dept_id;
         $_SESSION['job_id']=$job_id;

@@ -3,6 +3,27 @@ include("partials/header.php");
 include('includes/getDepartment.php');
 include('includes/getJob.php');
 include('includes/getRole.php');
+
+$show_alert=0;
+if(isset($_POST['update_user'])){
+    $edit_user_id=$_POST['edit_user_id'];
+  $fname=$_POST['firstname'];
+  $mname=$_POST['middlename'];
+  $surname=$_POST['surname'];
+  $email=$_POST['email'];
+  $phonenumber=$_POST['phonenumber'];
+  $department=$_POST['department'];
+  $job_title=$_POST['job_title'];
+
+  //updated user details sql
+  $sql="UPDATE users SET fname='$fname',mname='$mname',surname='$surname', email='$email',phoneNumber='$phonenumber',dept_id='$department',
+         job_id='$job_title' WHERE id='$edit_user_id'";
+
+  if ($con->query($sql) === TRUE) {
+      //set alert true
+     $show_alert=1;
+}
+}
 ?>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
@@ -15,6 +36,14 @@ include('includes/getRole.php');
             <div class="section-wrapper">
                 <!-- Page content goes here-->
                 <section>
+                    <?php if($show_alert ==1){?>
+                        <section>
+                            <div class="alert alert-success">
+                                <a class="close" data-dismiss="alert">×</a>
+                                <strong>Success!</strong> User details is updated successfully.
+                            </div>
+                        </section>
+                    <?php } ?>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
@@ -43,7 +72,7 @@ include('includes/getRole.php');
                                                 <tr>
                                                     <td>
                                                         <a href="#" class="user-link">
-                                                            <?php echo ucwords($data['fname'].' '.$data['lname'].' '.$data['surname'])?>
+                                                            <?php echo ucwords($data['fname'].' '.$data['mname'].' '.$data['surname'])?>
                                                         </a>
                                                         <span class="user-subhead">
                                                     <?php echo getJob::getjobs($con,$data['job_id']); ?>
@@ -101,27 +130,27 @@ include('includes/getRole.php');
                                                                 echo $rolename;
                                                             }else{ ?>
                                                                 <span class="label label-warning">Assing Role</span>
-                                                           <?php } ?>
+                                                            <?php } ?>
                                                         </a>
                                                     </td>
                                                     <td >
                                                         <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
+                                                            <span class="fa-stack">
+                                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                                            </span>
                                                         </a>
-                                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
+                                                        <a href="edit_user.php?id=<?php echo $data['id']; ?>" class="table-link">
+                                                            <span class="fa-stack">
+                                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                            </span>
                                                         </a>
                                                         <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
+                                                        <span class="fa-stack">
+                                                            <i class="fa fa-square fa-stack-2x"></i>
+                                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                        </span>
                                                         </a>
                                                     </td>
                                                 </tr>

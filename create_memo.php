@@ -1,5 +1,10 @@
-<?php include("partials/header.php");?>
+<?php
+    // $no_bootstrap = true;
+    include("partials/header.php");
+?>
 <?php include("includes/getUsers.php");?>
+<link rel="stylesheet" href="css/staff_home.css">
+
 <script src="ckeditor/ckeditor.js"></script>
 <body class="show-na">
 <main class="layout">
@@ -7,6 +12,11 @@
     <div id="siteContent" class="flex">
         <?php include("partials/navbar.php");?>
         <div id="mainContent">
+            <section class="page-title layout vertical center-center">
+                <i class="zmdi zmdi-edit"></i>
+                <h1 class="text-light">Create Memo</h1>
+                <small class="text-light">Fill in the fields then click a button to create a memo or save a draft.</small>
+            </section>
             <div class="section-wrapper">
                 <!-- Page content goes here-->
                 <section>
@@ -92,8 +102,6 @@
     </div>
 </main>
 <?php include ("partials/js.php"); ?>
-<script>
-    CKEDITOR.replace( 'memoeditor' );
-</script>
+<!-- <script> CKEDITOR.replace( 'memoeditor' )</script> -->
 </body>
 </html>

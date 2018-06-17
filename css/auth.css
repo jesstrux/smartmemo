@@ -1,15 +1,18 @@
-
+body{
+    overflow: hidden;
+}
 
 main{
     position: relative;
-    height: auto;
+    height: 100vh;
+    overflow: auto;
     background: #2b4054;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* main:before{
+main:before{
     content: "";
     position: fixed;
     top: -50vh;
@@ -23,7 +26,8 @@ main{
     background-position: right;
     background-image: url(../img/people.jpg);
     transition: all 0.35s ease-out;
-} */
+    display: none;
+}
 
 main.loaded:before{
     border-radius: 30vw;
@@ -78,11 +82,10 @@ main.loaded:before{
     background: #fff;
     position: relative;
     z-index: 2;
-    min-width: auto;
-    padding: 1em 3em;
+    min-width: 420px;
+    padding: 4.5em 3em;
     border-radius: 10px;
     box-shadow: 5px 10px 30px rgba(6, 5, 48, 0.14);
-    margin: 10px;
 }
 
 #authBox h1{
@@ -93,7 +96,7 @@ main.loaded:before{
 
 .input-box{
     position: relative;
-    margin-bottom: 1.2em;
+    margin-bottom: 1.6em;
  }
 
 .input-box input,
@@ -103,10 +106,11 @@ main.loaded:before{
     background: #f0f0f0;
     width: 100%;
     font-size: 1em;
+    padding: 0.6em 0.5em;
     padding-top: 1.6em;
     border: none;
     outline: none;
-    border-bottom: 2px solid #444444;
+    border-bottom: 2px solid #999;
     transition: all 0.35s ease-out;
 
     -webkit-appearance: none;
@@ -147,6 +151,10 @@ main.loaded:before{
 .input-box select:focus+label,
 .input-box select:valid+label {
     transform: scale(0.7) translate3d(-1.3em, -1em, 0)
+}
+
+.layout .input-box:first-child{
+    margin-right: 0.6em;
 }
 
 #authBox p:last-child{

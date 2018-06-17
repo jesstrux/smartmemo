@@ -1,7 +1,11 @@
 <?php
-include("includes/session.php");
-include("includes/connection.php");
-
+    include("includes/session.php");
+    include("includes/connection.php");
+    include("includes/functions.php");
+    
+    $cur_file_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
+    $cur_file = $cur_file_array[count($cur_file_array) - 1];
+    set_page(substr($cur_file, 0, strlen($cur_file) - 4));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +23,14 @@ include("includes/connection.php");
     <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="css/flexboxgrid.min.css">
     <link rel="stylesheet" href="css/flex.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/custom.css">
+    
+    <?php if(!isset($no_bootstrap))
+        echo '
+            <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" href="css/custom.css">
+        ';
+    ?>
+
     <link rel="stylesheet" href="css/staff_home.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="logo.png">
