@@ -23,7 +23,7 @@ class getUsers
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
         $fname			=	$row['fname'];
-        $lname		    =	$row['lname'];
+        $lname		    =	$row['mname'];
         $surname		=	$row['surname'];
 
         if($result){

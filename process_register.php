@@ -42,7 +42,7 @@ if(isset($_POST['register'])){
 
         header("location: index.php");
     } else {
-        header("location: register.php?error");
+        header("location: register.php?error=". $con->error);
     }
 }
 

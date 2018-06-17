@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: index.php");
     }
     else {
-        header("location: login.php?error");
+        header("location: login.php?error=" . $con->error);
     }
 }
 ?>

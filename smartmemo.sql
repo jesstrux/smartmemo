@@ -154,7 +154,7 @@ CREATE TABLE `memo_ufs` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `fname` varchar(30) NOT NULL,
-  `lname` varchar(30) NOT NULL,
+  `mname` varchar(30) NOT NULL,
   `surname` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `phoneNumber` varchar(20) NOT NULL,
