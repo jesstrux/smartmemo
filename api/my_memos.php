@@ -9,7 +9,7 @@
     $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS recepientName";
     $sql .= " FROM memo m";
     $sql .= " JOIN users u ON m.to_userid = u.id";
-    $sql .= " WHERE from_userid = $get_id";
+    $sql .= " WHERE from_userid = $get_id OR to_userid = $get_id";
 
     $result = mysqli_query($con, $sql);
     $memos = [];
