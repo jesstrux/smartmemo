@@ -20,7 +20,7 @@
                         $query = "SELECT * FROM users";
                         $result =	mysqli_query($con, $query); //execute the query
                         while($data	=	mysqli_fetch_assoc($result)){
-                            if($_SESSION['user_id'] !=$data['id']){ ?>
+                            if($_SESSION['user_id'] ==$data['id']){ ?>
                         <div class="memo-item">
                             <span class="date"><?php echo $data['created_at']?></span>
                             <h4>
@@ -42,7 +42,10 @@
                                     <span class="trim-text"><?php echo $data['email']; ?></span>
                                 </div>
 
-                                    <button class="attachment" style="background: #ff8b90;color:#fff" >Action</button>
+                                <a class="btn-sm btn-rounded" href="activate_user.php?user_id=<?php echo $data['id']; ?>">
+                                    Activate
+                                </a>
+                                    <!-- <button class="attachment" style="background: #ff8b90;color:#fff" >Action</button> -->
 
                             </div>
 
