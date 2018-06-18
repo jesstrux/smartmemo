@@ -25,29 +25,30 @@
             </a>
 
             <ul class="dropdown-menu">
-                <li>
-                    <a href="create_memo.php" class="<?php is_active_page(['create_memo']); ?>">Create Memo</a>
+                <li class="<?php is_active_page(['create_memo']); ?>">
+                    <a href="create_memo.php">Create Memo</a>
                 </li>
-                <li>
-                    <a href="view_mymemo.php" class="<?php is_active_page(['view_mymemo']); ?>">View Memo</a>
+                <li class="<?php is_active_page(['view_mymemo']); ?>">
+                    <a href="view_mymemo.php">View Memo</a>
                 </li>
                 <!-- <li><a href="memo-drafts.html">Memo Drafts</a></li> -->
             </ul>
         </li>
 
-        <li>
-            <a href="view_dept.php" class="<?php is_active_page(['departments']); ?>">
+        <li class="<?php is_active_page(['departments', 'view_dept']); ?>">
+            <a href="view_dept.php">
                 <i class="zmdi zmdi-accounts-list-alt"></i> Departments
             </a>
         </li>
-        <li>
-            <a href="view_jobs.php" class="<?php is_active_page(['view_jobs']); ?>">
+
+        <li class="<?php is_active_page(['view_jobs']); ?>">
+            <a href="view_jobs.php">
                 <i class="zmdi zmdi-case"></i> Job Titles
             </a>
         </li>
 
-        <li>
-            <a href="staff.php" class="<?php is_active_page(['staffs']); ?>">
+        <li class="<?php is_active_page(['staff']); ?>">
+            <a href="staff.php">
                 <i class="zmdi zmdi-accounts"></i> Staff List
             </a>
         </li>

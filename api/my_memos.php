@@ -6,10 +6,11 @@
 
     $get_id = $_GET['user_id'];
 
-    $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS recepientName";
+    $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, IF(m.to_userid = $get_id, 'You', CONCAT(u.fname, ' ', u.mname, ' ', u.surname)) AS recepientName, IF(m.to_userid = $get_id, 'Inbox', 'Sent') AS type";
     $sql .= " FROM memo m";
     $sql .= " JOIN users u ON m.to_userid = u.id";
     $sql .= " WHERE from_userid = $get_id OR to_userid = $get_id";
+    $sql .= " ORDER BY type";
 
     $result = mysqli_query($con, $sql);
     $memos = [];

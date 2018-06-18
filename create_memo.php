@@ -20,78 +20,87 @@
             <div class="section-wrapper">
                 <!-- Page content goes here-->
                 <section>
-                    <form class="plvr" method="post" action="includes/memo_sd.php" autocomplete="off">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="title">Memo Reference #</label>
-                                <?php
+                    <form class="classic-form plvr" method="post" action="includes/memo_sd.php" autocomplete="off">
+                        <div class="form-group hidden">
+                            <label for="title">Memo Reference #</label>
+                            <?php
                                 date_default_timezone_set('Africa/Dar_es_Salaam');
-                                $ref_id="MEMO".date('Ymdhis')?>
-                                <input class="form-control" value="<?php echo $ref_id; ?>" type="text" disabled>
-                                <input name="ref_id" value="<?php echo $ref_id; ?>" type="hidden">
-                            </div>
+                                $ref_id = "MEMO" . date('Ymdhis')
+                            ?>
+                            <input class="form-control" value="<?php echo $ref_id; ?>" type="text" disabled>
+                            <input name="ref_id" value="<?php echo $ref_id; ?>" type="hidden">
+                        </div>
 
-                            <fieldset class="form-group">
+                        <div class="form-group hidden">
+                            <label for="title">From</label>
+                            <input name="from" class="form-control" value="<?php echo $_SESSION['fullname']; ?>" type="text" disabled>
+                            <input name="fromid" value="<?php echo $_SESSION['user_id']; ?>" type="hidden">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Memo Type</label>
+
+                            <div class="flex layout">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
-                                        Internal memo
+                                        <input class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" type="radio"> &nbsp;Internal memo
                                     </label>
                                 </div>
+                                &emsp;
+
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"  type="radio" required>
+                                        <input class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"  type="radio" required>&nbsp;
                                         Private memo
                                     </label>
                                 </div>
-
-                            </fieldset>
-                            <div class="form-group">
-                                <label for="title">From</label>
-                                <input name="from" class="form-control" value="<?php echo $_SESSION['fullname']; ?>" type="text" disabled>
-                                <input name="fromid" value="<?php echo $_SESSION['user_id']; ?>" type="hidden">
                             </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="memoto">Memo Recepient</label>
+                            <select name="to" id="memoto" required>
+                                <option value="">Select receiver</option>
+                                <?php
+                                        $query = "SELECT * FROM users";
+                                        $result = mysqli_query($con, $query); //execute the query
+                                        while ($data = mysqli_fetch_assoc($result)) {
+                                            if ($_SESSION['user_id'] != $data['id']) {
+                                                ?>
+                                            <option value="<?php echo $data['id'] ?>">
+                                                <?php echo ucwords($data['fname'] . ' ' . $data['lname'] . ' ' . $data['surname']) ?>
+                                            </option>
+                                        <?php 
+                                    }
+                                } ?>
+                            </select>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="memoto">To</label>
-                                <select name="to"  class="form-control" id="memoto" required>
-                                    <option value="">Select receiver</option>
-                                    <?php
-                                    $query = "SELECT * FROM users";
-                                    $result =	mysqli_query($con, $query); //execute the query
-                                    while($data	=	mysqli_fetch_assoc($result)){
-                                        if($_SESSION['user_id'] !=$data['id']){
-                                        ?>
-                                        <option value="<?php echo $data['id']?>">
-                                            <?php echo ucwords($data['fname'].' '.$data['lname'].' '.$data['surname'])?>
-                                        </option>
-                                    <?php } }?>
+                        <div class="input-group">
+                            <label for="title" classs="start">
+                                Memo UFS
+                                <small><strong>TIP:</strong> Delivery will be follow order</small>
+                            </label>
+                            
+                            <input name="title" placeholder="Type to add UFS" type="text" required>
+                        </div>
 
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <div class="controls">
-                                    <label for="title">Memo UFS</label>
-                                    <button class="btn btn-small btn-success ufs-btn" title="Click to Add UFS">Add UFS</button>
-                                </div>
-                            </div>
+                        <div class="input-group">
+                            <label for="title">Memo Subject</label>
+                            <input name="title" placeholder="Enter memo subject here" type="text" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="title">Memo Subject</label>
-                                <input name="title" class="form-control"  placeholder="write memo subject" type="text" required>
-                            </div>
+                        <div class="input-group">
+                            <label for="body" class="start">Memo Content</label>
+                            <textarea name="body" placeholder="Enter memo content here"  rows="10" required></textarea>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="body">Memo Message</label>
-                                <textarea name="body" id="memoeditor" class="form-control" placeholder="Enter memo message"  rows="3" required></textarea>
-                            </div>
+                        <br>
 
-
-
-
-                            <button type="submit" class="btn btn-warning btn-lg" name="draft">Save Draft</button>
-                            <button type="submit" class="btn btn-primary btn-lg" name="save">Save & Send</button>
-                        </fieldset>
+                        <div class="input-group layout center-justified">
+                            <button type="submit" class="rounded-btn imperfect" name="draft">Save Draft</button>
+                            <button type="submit" class="rounded-btn btn-success imperfect" name="save">Send Memo</button>
+                        </div>
                     </form>
                 </section>
             </div>

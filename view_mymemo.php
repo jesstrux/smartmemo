@@ -29,7 +29,10 @@ include("includes/getUsers.php");?>
                         $result=getMemo::myMemo($con,$user_id);
                         while($data	=	mysqli_fetch_assoc($result)){ ?>
                             <a href="#" class="memo-item">
-                                <span class="date"><?php echo $data['created_at']; ?></span>
+                                <span class="date">
+                                    <?php echo date("d  M \'y", mktime($data['created_at'])); ?>
+                                </span>
+
                                 <h4><?php echo $data['title']?> &nbsp;<i class="zmdi zmdi-chevron-right"></i> &nbsp; <?php echo getUsers::getFullname($con,$data['to_userid'])?></h4>
                                 <p class="trim-text"><?php echo $data['body']?> </p>
                             </a>

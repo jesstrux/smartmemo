@@ -284,9 +284,15 @@ aside .dropdown .dropdown-menu li.active a {
 .input-group label small {
     display: block;
     margin-top: 0.3em;
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-family: Light, sans-serif;
     max-width: 80%;
+    color: #555;
+}
+
+.input-group label small strong{
+    font-family: Bold, sans-serif;
+    letter-spacing: 1px;
 }
 
 .input-group input:not([type="file"]),
@@ -301,6 +307,20 @@ aside .dropdown .dropdown-menu li.active a {
 
 .input-group textarea {
     resize: none
+}
+
+.input-group select {
+    border-radius: 0;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
+    ;
+    background-size: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-group select:not(:valid){
+    color: #666;
 }
 
 .input-group button:not(:last-child) {
@@ -411,13 +431,6 @@ aside .dropdown .dropdown-menu li.active a {
     -moz-appearance: none;
     appearance: none;
     resize: none;
-}
-
-.input-box select {
-    border-radius: 0;
-    background: #f0f0f0 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
-    ;
-    background-size: 12px;
 }
 
 .input-box .input-control:focus,

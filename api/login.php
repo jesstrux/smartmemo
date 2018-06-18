@@ -4,13 +4,13 @@
     $rest_json = file_get_contents("php://input");
     $_POST = json_decode($rest_json, true);
 
-    // $post_token = $_POST['token'];
-    // $post_email = $_POST['email'];
-    // $post_password = $_POST['password'];
+    $post_token = $_POST['token'];
+    $post_email = $_POST['email'];
+    $post_password = $_POST['password'];
 
-    $post_token = "b3a02d7552f5c7d0adaa52fafbbc58f4";
-    $post_email = "wakyj07@gmail.com";
-    $post_password = "@ttss;86%";
+    // $post_token = "b3a02d7552f5c7d0adaa52fafbbc58f4";
+    // $post_email = "wakyj07@gmail.com";
+    // $post_password = "@ttss;86%";
     
     $myusername = mysqli_real_escape_string($con, $post_email);
     $mypassword = md5(mysqli_real_escape_string($con, $post_password));
@@ -27,8 +27,8 @@
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
     if (mysqli_num_rows($result) == 1) {
-        // $id = $row['id'];
-        // mysqli_query($con, "UPDATE users SET device_token = '$post_token' WHERE id = $id");
+        $id = $row['id'];
+        mysqli_query($con, "UPDATE users SET device_token = '$post_token' WHERE id = $id");
         
         header('Content-Type: application/json');
         echo json_encode($row);

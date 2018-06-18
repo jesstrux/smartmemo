@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Memo IFM</title>
+    <meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="theme-color" content="#003a75">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003a75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/flexboxgrid.min.css">
+    <link rel="stylesheet" href="css/flex.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/staff_home.css">
+    <link rel="icon" href="logo.png">
+</head>
+
+<body class="show-na">
+    <main class="layout">
+        <aside>
+            <a id="logo" href="/" class="layout vertical center">
+                <div id="logoImage">
+                    <img src="img/logo.png" alt="">
+                </div>
+                <span id="logoText" href="/" class="layout center">
+                    IFM Smart Memo
+                </span>
+            </a>
+
+            <ul>
+                <li>
+                    <a href="staff.html">
+                        <i class="zmdi zmdi-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="dropdown active">
+                    <a href="#">
+                        <i class="zmdi zmdi-file"></i>
+                        My Memos
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li class="active">
+                            <a href="#">Create Memo</a>
+                        </li>
+                        <li>
+                            <a href="memo-drafts.html">Memo Drafts</a>
+                        </li>
+                        <li>
+                            <a href="#">Private Memos</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">
+                        <i class="zmdi zmdi-email"></i>
+                        Inbox
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Received Memos</a>
+                        </li>
+                        <li>
+                            <a href="#">Approved Memos</a>
+                        </li>
+                        <li>
+                            <a href="#">Declined Memos</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">
+                        <i class="zmdi zmdi-settings"></i>
+                        Settings
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Change Password</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <div id="siteContent" class="flex">
+            <header class="for-lg">
+                <div class="layout center justified">
+                    <div></div>
+
+                    <nav class="layout center">
+                        <a href="#" class="nav-icon">
+                            <i class="zmdi zmdi-notifications"></i>
+                        </a>
+
+                        <div id="user-dropdown">
+                            <a id="userAcc" href="#" class="layout center-center">
+                                <span class="dp layout center-center">
+                                    <i class="zmdi zmdi-account"></i>
+                                </span>
+                                Staff Member
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </a>
+
+                            <div id="dropdown">
+                                <div id="dropdownContent">
+                                    <a href="#">Profile</a>
+                                    <a href="login.html">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <div id="mainContent">
+                <section class="page-title layout vertical center-center">
+                    <i class="zmdi zmdi-edit"></i>
+                    <h1 class="text-light">Create Memo</h1>
+                    <small class="text-light">Fill in the fields then click a button to create a memo or save a draft.</small>
+                </section>
+                <div class="section-wrapper">
+                    <section>
+                        <form class="classic-form">
+                            <div class="input-group">
+                                <label>Memo Title</label>
+                                <input type="text" placeholder="Memo title">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Send To</label>
+                                <input type="text" placeholder="Click to choose recepient">
+                            </div>
+
+                            <div class="input-group">
+                                <label class="start">Memo Content</label>
+                                <textarea rows="10"></textarea>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="start">
+                                    Memo Attachments
+                                    <small>(If you have attachments to add click the button)</small>
+                                </label>
+
+                                <div class="flex layout vertical center-center" style="border: 2px dashed #555;background: #f5f5f5; height: 200px;">
+                                    Drop files here to attach to memo
+                                    <br>
+                                    <span style="margin: 0.5em 0">OR</span>
+                                    <label style="padding: 0.7em 1em; background: #ddd;" for="pickAttachments">Pick Attachments</label>
+                                    <input type="file" id="pickAttachments" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="input-group layout end-justified">
+                                <button class="rounded-btn imperfect">Save Draft</button>
+                                <button class="rounded-btn btn-success imperfect">Send Memo</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <footer class="layout center-justified">
+                    Coyright &copy; Smart Memo 2018
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
