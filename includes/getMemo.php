@@ -15,4 +15,27 @@ class getMemo
 
      return $result;
  }
+
+ public static function receivedMemos($con,$user_id){
+     $query = "SELECT * FROM memo where to_userid=$user_id";
+     $result =	mysqli_query($con, $query); //execute the query
+
+
+     return $result;
+ }
+
+    public static function byId($con, $id, $user_id){
+        $query = "SELECT m.*, ";
+        $query .= "IF(m.from_userid = $user_id, true, false) AS sent, ";
+        $query .= "IF(m.from_userid = $user_id, r.id, s.id) AS other_user_id ";
+        $query .= "FROM memo m ";
+        $query .= "JOIN users s on s.id = m.from_userid ";
+        $query .= "JOIN users r on r.id = m.to_userid ";
+        $query .= "WHERE m.id=$id ";
+
+        $result =	mysqli_query($con, $query); //execute the query
+
+
+        return $result;
+    }
 }

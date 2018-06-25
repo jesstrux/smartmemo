@@ -59,7 +59,7 @@ function closeToast(msg){
     }, 2000);
 }
 
-function showToast(msg, pos){
+function oldShowToast(msg, pos){
     var position = pos || 'left-bottom';
     var toast = document.createElement('div');
     toast.classList.add('toast');

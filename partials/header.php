@@ -1,5 +1,6 @@
 <?php
     include("includes/session.php");
+    include("includes/notify.php");
     include("includes/connection.php");
     include("includes/functions.php");
     
@@ -29,6 +30,10 @@
             <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
             <link rel="stylesheet" href="css/custom.css">
         ';
+
+        if(isset($css_file)){
+            echo '<link rel="stylesheet" href="css/'.$css_file.'">';
+        }
     ?>
 
     <link rel="stylesheet" href="css/staff_home.css">
