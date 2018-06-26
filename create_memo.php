@@ -1,8 +1,18 @@
 <?php
     $no_bootstrap = true;
     include("partials/header.php");
+    
+    include("includes/getUsers.php");
+
+    $user_query = "SELECT * FROM users";
+    $user_result = mysqli_query($con, $user_query); //execute the query
+
+    $users = [];
+    while ($user = mysqli_fetch_assoc($user_result)) {
+        if ($_SESSION['user_id'] != $user['id'])
+            $users[] = ["id" => $user['id'], "name" => ucwords($user['fname'] . ' ' . $user['mname'] . ' ' . $user['surname'])];
+    }
 ?>
-<?php include("includes/getUsers.php");?>
 <body class="show-na">
     <main class="layout">
         <?php include("partials/aside.php");?>
@@ -48,19 +58,13 @@
                             <div class="input-group">
                                 <label for="memoto">Memo Recepient</label>
                                 <select name="to" id="memoto" required>
-                                    <option value="">Select receiver</option>
+                                    <option value="">Select recepient</option>
                                     <?php
-                                            $query = "SELECT * FROM users";
-                                            $result = mysqli_query($con, $query); //execute the query
-                                            while ($data = mysqli_fetch_assoc($result)) {
-                                                if ($_SESSION['user_id'] != $data['id']) {
-                                                    ?>
-                                                <option value="<?php echo $data['id'] ?>">
-                                                    <?php echo ucwords($data['fname'] . ' ' . $data['lname'] . ' ' . $data['surname']) ?>
-                                                </option>
-                                            <?php 
-                                        }
-                                    } ?>
+                                        foreach ($users as $user) {
+                                            echo '<option value = "'.$user['id'].'">';
+                                            echo $user['name'] . '</option>';
+                                        };
+                                    ?>
                                 </select>
                             </div>
 
@@ -73,41 +77,110 @@
                                 </label>
                                 
                                 <div id="ufsList" class="flex layout center wrap">
-                                    <div class="chip" data-id="1">
-                                        <img src="">
-                                        <em>Baltazaar Manyulisyo</em>
-                                        <span class="closebtn" onclick="removeUfs(this.parentElement)">&times;</span>
-                                    </div>
+                                    <div id="ufsChips" class="layout inline wrap center"></div>
 
-                                    <div class="chip" data-id="3">
-                                        <img src="">
-                                        <em>Baltazaar Manyulisyo</em>
-                                        <span class="closebtn" onclick="removeUfs(this.parentElement)">&times;</span>
-                                    </div>
-
-                                    <div class="chip" data-id="5">
-                                        <img src="">
-                                        <em>John Doe</em>
-                                        <span class="closebtn" onclick="removeUfs(this.parentElement)">&times;</span>
+                                    <div id="ufsAdder">
+                                        <input class="unstyled" type="text" id="ufsFilter" placeholder="Type to add user">
+                                        <div id="ufsDropdown"></div>
                                     </div>
 
                                     <button class="chip-btn"><i class="zmdi zmdi-plus"></i>&nbsp;&nbsp;&nbsp;Add User&nbsp;&nbsp;</button>
                                 </div>
 
                                 <script>
-                                    function removeUfs(el){
-                                        var id = el.getAttribute("data-id");
+                                    var users = JSON.parse('<?php echo json_encode($users)?>');
+                                    var chosen_users = [];
+                                    function chip_tpl(user){
+                                        return `
+                                            <div class="chip" data-id="${user.id}">
+                                                <img src="">
+                                                <em>${user.name}</em>
+                                                <span class="closebtn" onclick="removeUserFromUfs(this.parentElement)">&times;</span>
+                                            </div>
+                                        `;
+                                    }
+
+                                    function chip_tpl(user){
+                                        return `
+                                            <div class="chip" data-id="${user.id}">
+                                                <img src="">
+                                                <em>${user.name}</em>
+                                                <span class="closebtn" onclick="removeUserFromUfs(this.parentElement)">&times;</span>
+                                            </div>
+                                        `;
+                                    }
+
+                                    function addUserToUfs(user){
+                                        var template = document.createElement('template');
+                                        var chip = chip_tpl(user).trim();
+                                        template.innerHTML = chip;
+
+                                        chosen_users.push(user.id);
+
+                                        document.querySelector('#ufsChips').appendChild(template.content.firstChild);
+
+                                        setUfsDropdownUsers();
+                                    }
+
+                                    function user_item_tpl(user){
+                                        return `
+                                            <div class="ufs-item">
+                                                <img src="" class="for-user">
+                                                ${user.name}
+                                            </div>
+                                        `;
+                                    }
+
+                                    function addUserToDropdown(user){
+                                        var template = document.createElement('template');
+                                        var user_item = user_item_tpl(user).trim();
+                                        template.innerHTML = user_item;
+                                        var el = template.content.firstChild;
+                                        el.onclick = function(){
+                                            addUserToUfs(user);
+                                        }
+
+                                        document.querySelector('#ufsDropdown').appendChild(el);
+                                    }
+
+                                    function setUfsDropdownUsers(){
+                                        console.log(users.length == chosen_users.length);
+
+                                        if(users.length === chosen_users.length){
+                                            document.querySelector("#ufsAdder").style.display = "none";
+                                            return;
+                                        }
+
+                                        document.querySelector("#ufsAdder").style.display = "flex";
+                                        document.querySelector('#ufsDropdown').innerHTML = "";
+                                        var d_users = users.filter(user => chosen_users.indexOf(user.id) == -1);
+                                        d_users.forEach(user => {
+                                            addUserToDropdown(user);
+                                        });
 
                                         var ufs = document.getElementById("ufs");
-                                        var ufs_users = ufs.value.split(", ");
-                                        var new_ufs_users = ufs_users.filter(u => {
-                                            return u != id;
-                                        });
-                                        console.log(id, new_ufs_users);
+                                        ufs.value = chosen_users.join(", ");
+                                    }
 
-                                        ufs.value = new_ufs_users.join(", ");
+                                    // users.forEach(user => {
+                                    //     addUserToUfs(user);
+                                    // });
+                                    setUfsDropdownUsers();
 
-                                        document.querySelector('#ufsList').removeChild(el);
+                                    function removeUserFromUfs(el){
+                                        var id = el.getAttribute("data-id");
+                                        chosen_users.splice(chosen_users.indexOf(id), 1);
+                                        setUfsDropdownUsers();
+
+                                        var no_prev_sibling = (el.previousSibling == null || el.previousSibling.nodeName == "#text");
+                                        var no_next_sibling = (el.nextSibling == null || el.nextSibling.nodeName == "#text");
+
+                                        var last_one = (no_prev_sibling && no_next_sibling) ? true : false;
+
+                                        document.querySelector('#ufsChips').removeChild(el);
+
+                                        if(last_one)
+                                            document.querySelector('#ufsChips').innerHTML = "";
                                     }
                                 </script>
                             </div>
@@ -120,6 +193,22 @@
                             <div class="input-group">
                                 <label for="body" class="start">Memo Content</label>
                                 <textarea name="body" placeholder="Enter memo content here"  rows="10" required></textarea>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="start">
+                                    Memo Attachments
+                                    <small>
+                                        <strong>TIP:</strong>  If you don't have attachments, ignore this part</small>
+                                </label>
+
+                                <div class="flex layout vertical center-center" style="border: 2px dashed #555;background: #fdfdfd; height: 200px;">
+                                    Drop files here to attach to memo
+                                    <br>
+                                    <span style="margin: 0.5em 0">OR</span>
+                                    <label style="padding: 0.7em 1em; background: #ddd;" for="pickAttachments">Pick Attachments</label>
+                                    <input type="file" id="pickAttachments" style="display: none;">
+                                </div>
                             </div>
 
                             <br>

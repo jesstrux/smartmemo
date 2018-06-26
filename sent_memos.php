@@ -14,7 +14,7 @@
         <?php include("partials/navbar.php");?>
         <div id="mainContent">
             <section class="page-title layout vertical center-center">
-                <i class="zmdi zmdi-email"></i>
+                <i class="zmdi zmdi-mail-send"></i>
                 <h1 class="text-light">Sent Memos</h1>
             </section>
             <div class="section-wrapper">

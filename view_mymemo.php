@@ -11,7 +11,7 @@
         <?php include("partials/navbar.php");?>
         <div id="mainContent">
             <section class="page-title layout vertical center-center">
-                <i class="zmdi zmdi-border-color"></i>
+                <i class="zmdi zmdi-email-open"></i>
                 <h1 class="text-light">Inbox Memos</h1>
             </section>
             <div class="section-wrapper">

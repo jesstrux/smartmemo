@@ -38,5 +38,47 @@
 
     <link rel="stylesheet" href="css/staff_home.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        aside{
+            background: #1e4771;
+            color: #fff;
+        }
+
+        aside ul{
+            color: #b3c8de;
+        }
+
+        aside ul li.active a {
+            background: #1c4269;
+            border-left-color: #4c87c3;
+            color: #7db1e4;
+        }
+
+        aside ul li.active a i{
+            color: #78a9da;
+        }
+
+        aside .dropdown .dropdown-menu {
+            position: relative;
+            margin-top: -0.5em;
+            background: #2a4e73;
+            padding-top: 0.8em;
+            padding-bottom: 0.8em;
+        }
+
+        aside .dropdown .dropdown-menu a{
+            color: #7591ad;
+        }
+
+        aside .dropdown .dropdown-menu li.active a {
+            color: #b2cce6;
+        }
+
+        .page-title i {
+            background: #1f4770;
+            color: #fff;
+        }
+    </style>
     <link rel="icon" href="logo.png">
 </head>
