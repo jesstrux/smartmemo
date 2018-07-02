@@ -18,7 +18,7 @@
             </a>
         </li>
 
-        <li class="<?php is_active_page(['create_memo', 'view_mymemo']); ?> dropdown">
+        <li class="<?php is_active_page(['create_memo', 'view_mymemo', 'memo-drafts', 'sent_memos']); ?> dropdown">
             <a href="#">
                 <i class="zmdi zmdi-file"></i>
                 My Memos
@@ -29,9 +29,14 @@
                     <a href="create_memo.php">Create Memo</a>
                 </li>
                 <li class="<?php is_active_page(['view_mymemo']); ?>">
-                    <a href="view_mymemo.php">View Memo</a>
+                    <a href="view_mymemo.php">Inbox Memos</a>
                 </li>
-                <!-- <li><a href="memo-drafts.html">Memo Drafts</a></li> -->
+                <li class="<?php is_active_page(['memo-drafts']); ?>">
+                    <a href="memo-drafts.php">Memo Drafts</a>
+                </li>
+                <li class="<?php is_active_page(['sent_memos']); ?>">
+                    <a href="sent_memos.php">Sent Memos</a>
+                </li>
             </ul>
         </li>
 

@@ -32,13 +32,24 @@ nav {
 }
 
 nav .nav-icon{
-    width: 35px;
-    height: 35px;
+    width: 37px;
+    height: 37px;
     border-radius: 50%;
-    background: #f0f0f0;
+    background: #e4e4e4;
+    color: #999;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 1em;
+    font-size: 1.04em;
+}
+
+
+nav .rounded-btn{
+    height: 35px;
+    line-height: 20px;
+    font-size: 0.9em;
+    min-width: 150px;
 }
 
 nav .nav-icon .zmdi {
@@ -78,6 +89,22 @@ nav .nav-icon .zmdi {
     margin-right: 0.5em;
     border-radius: 50%;
     background: #eee;
+    border: none;
+    background: #e1eaf5;
+    overflow: hidden;
+}
+
+#userAcc .dp:before {
+    content: '\f207';
+    font-family: Material-Design-Iconic-Font;
+    font-size: 25px;
+    height: 36px;
+    width: 38px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8ba0b5;
 }
 
 #userAcc .dp .zmdi {
@@ -166,6 +193,11 @@ aside ul li.active a{
 
 aside ul li.active a{
     border-left-color: #003a75;
+}
+
+aside .dropdown:not(.open):not(.active){
+    max-height: 53.19px;
+    overflow: hidden;
 }
 
 aside .dropdown .dropdown-menu{
@@ -271,6 +303,7 @@ aside .dropdown .dropdown-menu li.active a {
 
 .input-group > label{
     width: 35%;
+    min-width: 35%;
     padding-right: 2%;
     font-size: 1.1em;
     display: inline-flex;
@@ -295,7 +328,7 @@ aside .dropdown .dropdown-menu li.active a {
     letter-spacing: 1px;
 }
 
-.input-group input:not([type="file"]),
+.input-group input:not([type="file"]):not(.unstyled),
 .input-group select,
 .input-group textarea{
     flex: 1;
@@ -310,7 +343,6 @@ aside .dropdown .dropdown-menu li.active a {
 }
 
 .input-group select {
-    border-radius: 0;
     background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23999'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat scroll 96.5% 60%;
     ;
     background-size: 12px;
@@ -472,7 +504,7 @@ aside .dropdown .dropdown-menu li.active a {
 }
 
 /* TOAST */
-.toast{
+.toast {
     background: #333;
     color: #fff;
     display: inline-block;
@@ -485,7 +517,39 @@ aside .dropdown .dropdown-menu li.active a {
     opacity: 0;
     transform: translateY(var(--vertical-transform)) translateX(var(--horizontal-transform));
     transition: all 0.15s ease-out;
-    z-index: 20;
+    z-index: 10000;
+    font-size: 1.05em;
+    display: flex;
+    line-height: 1.3;
+    font-family: Verdana;
+    max-width: 435px;
+    align-items: center;
+}
+
+.toast i {
+    display: inline-block;
+    margin-left: -0.5em;
+    margin-right: 0.8em;
+    margin-top: 0.2em;
+    text-align: center;
+    line-height: 30px;
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background: #666;
+    border-radius: 50%;
+    align-self: flex-start;
+    font-size: 1.2em;
+}
+
+.toast.success i {
+    color: #67c3ac;
+    background: rgb(225, 236, 232);
+}
+
+.toast.error i {
+    color: #e24b4b;
+    background: #ebd8d8;
 }
 
 .toast.top-center {
@@ -500,6 +564,179 @@ aside .dropdown .dropdown-menu li.active a {
 .toast.fade-in {
     --vertical-transform: 0;
     opacity: 1;
+}
+
+#ufsList {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 1em 0.5em;
+}
+
+#ufsChips{
+    position: relative;
+}
+
+#ufsChips:not(:empty){
+    margin-right: -1.5em
+}
+
+#ufsChips:empty + #ufsAdder{
+    margin-bottom: -0.5em;
+    margin-top: -0.5em;
+}
+
+/* CHIP */
+.chip {
+    display: inline-flex;
+    padding: 0 15px;
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 15px;
+    background-color: #f1f1f1;
+    margin-right: 0.7em;
+    margin-bottom: 0.8em;
+    max-width: 33.33%;
+    min-width: 150px;
+}
+
+.chip em{
+    flex: 1;
+    display: inline-block;
+    margin-right: 4px;
+    /* max-width: 75px; */
+    /* max-width: 90%; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chip img{
+    box-shadow: 1px 1px 12px rgba(226, 167, 46, 0.52);
+}
+
+.chip img,
+img.for-user {
+    float: left;
+    margin: 0 10px 0 -15px;
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    /* line-height: 35px; */
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    background: #ff6589;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chip img:before,
+img.for-user:before{
+    content: '\f207';
+    font-family: Material-Design-Iconic-Font;
+    font-size: 19px;
+    color: #ffeecf;
+    padding-right: 1px
+}
+
+.chip .closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chip .closebtn:hover {
+    color: #000;
+}
+
+.chip-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 25px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 26px;
+    border-radius: 15px;
+    color: #555;
+    border: 1px dashed #333;
+    display: none;
+}
+
+#ufsAdder{
+    width: 260px;
+    min-width: 260px;
+    background: #fefefe;
+    position: relative;
+    margin-bottom: 0.7em;
+}
+
+#ufsAdder input,
+#ufsAdder::before {
+    /* padding: 0.45em 0.65em; */
+    /* line-height: 1.5; */
+    padding: 0.15em 0.25em;
+    width: 260px;
+    font-size: 1em;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1.3em;
+}
+
+#ufsAdder::before {
+    content: 'No users found';
+    background: #eee;
+    z-index: 1;
+    color: #a5a5a5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    line-height: 1.9;
+    text-align: center;
+    display: none;
+}
+
+#ufsDropdown{
+    position: absolute;
+    left: 0;
+    top: 110%;
+    width: 100%;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 250px;
+    overflow: auto;
+}
+
+#ufsAdder input:not(:focus) + #ufsDropdown:not(:hover){
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ufs-item{
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0.65em 1.6em;
+    font-size: 0.95em;
+}
+
+.ufs-item img{
+    min-width: 25px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.ufs-item img::before{
+    font-size: 18px;
 }
 
 /* MODAL */
@@ -770,6 +1007,11 @@ body:not(.show-nav) #mobNav #mainNavLinks{
     transition: all 0.35s ease-out;
 }
 
+.attachment span{
+    position: relative;
+    z-index: 3;
+}
+
 .attachment i{
     font-family: Material-Design-Iconic-Font;
 }
@@ -794,7 +1036,8 @@ body:not(.show-nav) #mobNav #mainNavLinks{
     color: #383;
 }
 
-#memoContent .attachment{
+#memoContent .attachment,
+#memoForm .attachment{
     background: #f5f5f5;
     width: calc(25% - 0.5em);
     padding: 1.5em 1.3em;
@@ -804,15 +1047,51 @@ body:not(.show-nav) #mobNav #mainNavLinks{
     align-items: center;
     border-radius: 5px;
     margin-bottom: 0.5em;
+    position: relative;
+    padding-bottom: 10px;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    --progress: 0%;
 }
 
-#memoContent .attachment i{
+#memoContent .attachment i,
+#memoForm .attachment i{
     font-size: 2em;
     height: 1em;
     margin-bottom: 0.5em;
 }
 
-#memoContent #attachments{
+#memoForm .attachment:before,
+#memoForm .attachment:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    transition: all 0.25s ease-out;
+    background: #fff;
+    z-index: 5;
+}
+
+#memoForm .attachment:after{
+    background: orange;
+    transform: translateX(var(--progress));
+}
+
+#memoForm .attachment img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% - 10px);
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+#memoContent #attachments,
+#memoForm #attachments{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -822,11 +1101,13 @@ body:not(.show-nav) #mobNav #mainNavLinks{
     position: relative;
 }
 
-#memoContent #attachments:empty{
+#memoContent #attachments:empty,
+#memoForm #attachments:empty{
     display: none;
 }
 
-#memoContent #attachments:before{
+#memoContent #attachments:before,
+#memoForm #attachments:before{
     content: 'Attachments';
     position: absolute;
     top: 1.3em;

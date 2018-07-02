@@ -18,5 +18,4 @@ if ( is_session_started() === FALSE ){
         header("location: login.php");
     }
 }
-
 ?>

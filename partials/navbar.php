@@ -3,17 +3,18 @@
         <div></div>
 
         <nav class="layout center">
-            <!-- <a href="#" class="nav-icon">
+            <a href="#" class="nav-icon">
                 <i class="zmdi zmdi-notifications"></i>
-            </a> -->
+            </a>
 
             <a href="create_memo.php" class="rounded-btn">Create A Memo</a>
 
             <div id="user-dropdown">
                 <a id="userAcc" href="#" class="layout center-center">
-                    <span class="dp layout center-center">
+                    <!-- <span class="dp layout center-center">
                         <i class="zmdi zmdi-account"></i>
-                    </span>
+                    </span> -->
+                    <img class="dp" src>
                     <?php echo $_SESSION['fullname']?>
                     <i class="zmdi zmdi-chevron-down"></i>
                 </a>
