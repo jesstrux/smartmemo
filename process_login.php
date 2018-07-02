@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
     $myusername = mysqli_real_escape_string($con,$_POST['email']);
     $mypassword = md5(mysqli_real_escape_string($con,$_POST['password']));
-    $sql = "SELECT * FROM users WHERE email = '$myusername' and password = '$mypassword' and status=0";
+    $sql = "SELECT * FROM users WHERE email = '$myusername' and password = '$mypassword' and status=0 LIMIT 1";
     $result = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 

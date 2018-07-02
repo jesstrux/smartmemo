@@ -68,7 +68,7 @@
                                             if ($_SESSION['user_id'] != $data['id']) {
                                                 ?>
                                             <option value="<?php echo $data['id'] ?>">
-                                                <?php echo ucwords($data['fname'] . ' ' . $data['lname'] . ' ' . $data['surname']) ?>
+                                                <?php echo ucwords($data['fname'] . ' ' . $data['mname'] . ' ' . $data['surname']) ?>
                                             </option>
                                         <?php 
                                     }
