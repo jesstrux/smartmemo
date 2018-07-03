@@ -49,6 +49,10 @@
             color: #b3c8de;
         }
 
+        aside ul li a {
+            border-left-width: 3px;
+        }
+
         aside ul li.active a {
             background: #1c4269;
             border-left-color: #4c87c3;

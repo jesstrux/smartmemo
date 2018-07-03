@@ -2,6 +2,46 @@
 <script src="js/scripts.js"></script>
 
 <script>
+    // getElementById
+	function $id(id) {
+		return document.getElementById(id);
+    }
+    
+    function parentUpTo(el, tagName) {
+        tagName = tagName.toLowerCase();
+
+        while (el && el.parentNode) {
+            el = el.parentNode;
+            if (el.tagName && el.tagName.toLowerCase() == tagName) {
+            return el;
+            }
+        }
+
+        return null;
+    }
+
+    function deleteFile(file) {
+        console.log("Deleting file...");
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(e) {
+                if (xhr.readyState == 4) {
+                    // console.log(xhr.responseText);
+                    if(xhr.status == 200){
+                        resolve();
+                    }else{
+                        reject();
+                    }
+                }
+            };
+
+            xhr.open("POST", "unlink.php", true);
+            // xhr.setRequestHeader("X-FILENAME", file);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(file);
+        })
+    }
+    
     function showToast(msg, type, pos){
         var position = pos || 'top-center';
         var toast = document.createElement('div');
@@ -10,6 +50,7 @@
         if(type){
             var icon = document.createElement('i');
             icon.classList.add('zmdi');
+            icon.classList.add('inline-flex');
             toast.appendChild(icon);
             if(type === "success"){
                 icon.classList.add('zmdi-check');

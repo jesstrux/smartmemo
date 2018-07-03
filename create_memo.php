@@ -41,14 +41,14 @@
                                 <div class="flex layout">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" type="radio"> &nbsp;Internal memo
+                                            <input class="form-check-input" name="memo_type" id="public" value="option2" type="radio"> &nbsp;Internal memo
                                         </label>
                                     </div>
                                     &emsp;
 
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"  type="radio" required>&nbsp;
+                                            <input class="form-check-input" name="memo_type" id="private" value="option1"  type="radio" required>&nbsp;
                                             Private memo
                                         </label>
                                     </div>
@@ -68,7 +68,7 @@
                                 </select>
                             </div>
 
-                            <input id="ufs" name="ufs" type="hidden" value="1, 3, 5">
+                            <input id="ufs" name="ufs" type="hidden">
 
                             <div class="input-group">
                                 <label class="start">
@@ -206,10 +206,53 @@
                                     #dropAttachments.hover{
                                         border-color: orange !important;
                                     }
+
+                                    .attachment-remover{
+                                        position: absolute;
+                                        top: 0.5em;
+                                        right: 0em;
+                                        text-align: center;
+                                        width: 20px;
+                                        height: 20px;
+                                        border-radius: 50%;
+                                        background: #ddd;
+                                        font-size: 0.7em;
+                                        cursor: pointer;
+                                    }
+
+                                    .attachment-remover:hover{
+                                        background: #ccc;
+                                    }
+
+                                    .attachment.loading .attachment-remover{
+                                        opacity: 0;
+                                        pointer-events: none;
+                                    }
                                 </style>
 
                                 <div class="flex">
+                                    <input id="savedAttachments" type="text" name="attachments" style="display: none;">
                                     <div id="attachments"></div>
+
+                                    <script>
+                                        function removeAttachment(e, file_name){
+                                            var parent = parentUpTo(e.target, "div");
+                                            deleteFile(file_name).then(function(){
+                                                $id('attachments').removeChild(parent);
+                                                var attachment_length = $id('attachments').querySelectorAll(".attachment").length;
+
+                                                if(!attachment_length)
+                                                    $id('attachments').innerHTML = "";
+
+                                                var attachments_input = $id("savedAttachments");
+                                                var savedAttachments = attachments_input.value.split(",");
+                                                savedAttachments = savedAttachments.filter(function(a){
+                                                    a != file_name
+                                                });
+                                                attachments_input.value = savedAttachments.join(",");
+                                            });
+                                        }
+                                    </script>
 
                                     <div id="dropAttachments" class="flex layout vertical center-center" style="border: 2px dashed #555;background: #fdfdfd; height: 200px;">
                                         

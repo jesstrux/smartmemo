@@ -1,6 +1,6 @@
 <?php
-// $con = mysqli_connect("127.0.0.1","root","","smartmemo");
-$con = mysqli_connect("localhost","root","","smartmemo");
+$con = mysqli_connect("127.0.0.1","root","","smartmemo");
+// $con = mysqli_connect("localhost","root","","smartmemo");
 
 // Check connection
 if (mysqli_connect_errno())

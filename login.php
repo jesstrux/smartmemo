@@ -1,4 +1,3 @@
-<?php echo md5("@ttss;86%");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

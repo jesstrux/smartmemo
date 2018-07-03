@@ -1,7 +1,16 @@
 <?php 
+    include("includes/connection.php");
     include("partials/header.php");
     include('includes/getDepartment.php');
     include('includes/getJob.php');
+    include('includes/getUsers.php');
+
+    if(isset($_GET['user_id'])){
+        $user = getUsers::byId($con, $_GET['user_id']);
+    }
+    else if(isset($_SESSION['user_id'])){
+        $user = getUsers::byId($con, $_SESSION['user_id']);
+    }
 ?>
 <body class="show-na">
 <main class="layout">
@@ -12,11 +21,11 @@
             <div class="section-wrapper">
                 <!-- Page content goes here-->
                 <div class="panel-body">
-                    <label>Fullname: <?php echo $_SESSION['fullname']; ?></label><br>
-                    <label>Email   : <?php echo $_SESSION['email']; ?></label><br>
-                    <label>Phone number: <?php echo $_SESSION['phonenumber']; ?></label><br>
-                    <label>Department: <?php echo getDepartment::getdept($con,$_SESSION['dept_id']); ?></label><br>
-                    <label>Job Title: <?php echo getJob::getjobs($con,$_SESSION['job_id']); ?></label><br>
+                    <label>Fullname: <?php echo $user['fullname']; ?></label><br>
+                    <label>Email   : <?php echo $user['email']; ?></label><br>
+                    <label>Phone number: <?php echo $user['phoneNumber']; ?></label><br>
+                    <label>Department: <?php echo getDepartment::getdept($con,$user['dept_id']); ?></label><br>
+                    <label>Job Title: <?php echo getJob::getjobs($con,$user['job_id']); ?></label><br>
                 </div>
             </div>
             <footer class="layout center-justified">

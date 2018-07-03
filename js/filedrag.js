@@ -1,9 +1,4 @@
 (function() {
-	// getElementById
-	function $id(id) {
-		return document.getElementById(id);
-	}
-
 	// file drag hover
 	function FileDragHover(e) {
 		e.stopPropagation();
@@ -17,7 +12,6 @@
 	var fileWorker = new Worker('js/process_file_worker.js');
 	// file selection
 	function FileSelectHandler(e) {
-
 		// cancel event and hover styling
 		FileDragHover(e);
 
@@ -26,8 +20,28 @@
 
 		// process all File objects
 		for (var i = 0, f; f = files[i]; i++) {
-			fileWorker.postMessage(f);
-			// ParseFile(f);
+			console.log(f.type);
+			var type;
+			var name = f.name.replace(/ /g, "_");
+			
+			if (f.type.indexOf("image") != -1)
+				type = "image";
+			else if (f.type.indexOf("application") != -1)
+				type = name.split(".").pop();
+			else{
+				showToast(`File format for <em>${name}</em> is not supported.`);
+				continue;
+			}
+
+			addToAttachments(f,
+				`<div class="attachment loading ${type}">
+					<button type="button" class="attachment-remover" onclick="removeAttachment(event, '${name}')">
+						<b class="zmdi zmdi-close"></b>
+					</button>
+					<i class="zmdi"></i>
+					<span class="trim-text">${name}</span>
+				</div>`
+			);
 		}
 	}
 
@@ -41,46 +55,36 @@
         UploadFile(f, attachment);
 	}
 
-
-	fileWorker.onmessage = function(e){
-		var res = e.data;
-		addToAttachments(res.file,
-			`<a href="#" class="attachment image">
-				<img src="${res.src}" />
-				<i class="zmdi"></i>
-	            <span class="trim-text">${res.file.name}</span>
-	        </a>`
-		);
-	};
-
-
 	// upload JPEG files
 	function UploadFile(file, el) {
 		var xhr = new XMLHttpRequest();
 		 // && file.size <= $id("MAX_FILE_SIZE").value
-		if (xhr.upload && file.type == "image/jpeg") {
-			
+		// if (xhr.upload && file.type == "image/jpeg") {
 			xhr.upload.addEventListener("progress", function(e) {
 				var pc = parseInt(100 - (e.loaded / e.total * 100));
 				el.setAttribute("progress", pc);
 				console.log("Progress: " + (pc - 100));
-				el.style.setProperty("--progress", pc - 100 + "%");
+				el.style.setProperty("--progress", (100 - pc) + "%");
 			}, false);
 
 			xhr.onreadystatechange = function(e) {
 				// console.log("Ready state changed to: " + xhr.readyState);
 				if (xhr.readyState == 4) {
-					// progress.className = (xhr.status == 200 ? "success" : "failure");
 					console.log(xhr.responseText);
+					// progress.className = (xhr.status == 200 ? "success" : "failure");
+					el.classList.remove("loading");
+					var attachments_value = $id("savedAttachments").value;
+					var savedAttachments = attachments_value.length ? attachments_value.split(",") : [];
+					savedAttachments.push(file.name.replace(/ /g, "_"));
+					$id("savedAttachments").value = savedAttachments.join(",");
 				}
 			};
 
 			// start upload
 			xhr.open("POST", "upload.php", true);
-			xhr.setRequestHeader("X-FILENAME", file.name);
+			xhr.setRequestHeader("X-FILENAME", file.name.replace(/ /g, "_"));
 			xhr.send(file);
-		}
-
+		// }
 	}
 
 
