@@ -1,6 +1,11 @@
-<?php include("partials/header.php");
-      include('includes/getDepartment.php');
-      include('includes/getJob.php');
+<?php 
+    include("partials/header.php");
+    include('includes/getDepartment.php');
+    include('includes/getJob.php');
+
+    include("includes/getMemo.php");
+    include("includes/getUsers.php");
+    include("includes/getAttachment.php");
 ?>
 <body class="show-na">
 <main class="layout">
@@ -93,58 +98,40 @@
                     </h3>
 
                     <div>
-                        <a href="#" class="memo-item">
-                            <span class="date">May 15</span>
-                            <h4>Request drive folder access &nbsp;
-                                <i class="zmdi zmdi-chevron-right"></i> &nbsp; Barikieli Chamikye</h4>
-                            <p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-                        </a>
+                        <?php
+                            $user_id = $_SESSION['user_id'];
+                            $result = getMemo::myMemo($con, $user_id);
+                            while ($data = mysqli_fetch_assoc($result)) { ?>
+                                    <a href="memo-read.php?memo_id=<?php echo $data['id']; ?>" class="memo-item">
+                                        <span class="date">
+                                            <?php echo date("d  M \'y", mktime($data['created_at'])); ?>
+                                        </span>
 
-                        <a href="#" class="memo-item">
-                            <span class="date">May 3</span>
-                            <h4>Fund Re-Embursment &nbsp; <i class="zmdi zmdi-chevron-right"></i> &nbsp; Accounting Department</h4>
-                            <p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
+                                        <h4><?php echo $data['title'] ?> &nbsp;<i class="zmdi zmdi-chevron-right"></i> &nbsp; <?php echo getUsers::getFullname($con, $data['to_userid']) ?></h4>
+                                        <p class="trim-text"><?php echo $data['body'] ?> </p>
 
-                            <div class="attachments">
-                                <div class="attachment pdf" title="Financial Report for the educated.">
-                                    <i class="zmdi"></i>
-                                    <span class="trim-text">Financial Report for the educated.</span>
-                                </div>
+                                        <?php $attachments_result = getAttachment::fromMemo($con, $data['id']);
+                                            if (mysqli_num_rows($attachments_result) > 0) {
+                                                echo '<div class="attachments">';
+                                                while ($attachment = mysqli_fetch_array($attachments_result)) {
+                                                    $ext = end(explode(".", $attachment['document']));
+                                                    $type = $ext;
+                                                    if (in_array($ext, ["jpg", "png", "gif", "jpeg"]))
+                                                        $type = "image";
 
-                                <div class="attachment xls" title="Financial Report for the educated.">
-                                    <i class="zmdi"></i>
-                                    <span class="trim-text">Item cost breakdown.</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="memo-item">
-                            <span class="date">April 17</span>
-                            <h4>Last Year Notes &nbsp;
-                                <i class="zmdi zmdi-chevron-right"></i> &nbsp; Feston Chambili</h4>
-                                <p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-                        </a>
-
-                        <a href="#" class="memo-item">
-                            <h4>Socialist Test One First Draft &nbsp;
-                                <i class="zmdi zmdi-chevron-right"></i> &nbsp; HOD Social Protection</h4>
-                            <span class="date">May 15</span>
-                                <p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-
-                            <div class="attachments">
-                                <div class="attachment docx" title="Math Test 1 first Draft">
-                                    <i class="zmdi"></i>
-                                    <span class="trim-text">Math Test 1 first Draft.</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="memo-item">
-                            <h4>Unqualified Student Removal &nbsp;
-                                <i class="zmdi zmdi-chevron-right"></i> &nbsp; Dean of School</h4>
-                            <span class="date">May 15</span>
-                                <p class="trim-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur ad delectus aperiam ipsum isnaf asljhlfas ajkfasflal asojktwpjklfas</p>
-                        </a>
+                                                    echo '
+                                                                <div class="attachment ' . $type . '" title="' . $attachment['document'] . '">
+                                                                    <i class="zmdi"></i>
+                                                                    <span class="trim-text">' . $attachment['document'] . '</span>
+                                                                </div>
+                                                            ';
+                                                }
+                                                echo '</div>';
+                                            };
+                                        ?>
+                                    </a>
+                            <?php 
+                        } ?>
                     </div>
                 </section>
                 </div>

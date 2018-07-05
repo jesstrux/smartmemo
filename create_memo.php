@@ -192,7 +192,7 @@
 
                             <div class="input-group">
                                 <label for="body" class="start">Memo Content</label>
-                                <textarea name="body" placeholder="Enter memo content here"  rows="10" required></textarea>
+                                <textarea id="textarea" style="height: 156px" name="body" placeholder="Enter memo content here" required></textarea>
                             </div>
 
                             <div class="input-group">

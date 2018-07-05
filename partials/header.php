@@ -66,7 +66,7 @@
         aside .dropdown .dropdown-menu {
             position: relative;
             margin-top: -0.5em;
-            background: #2a4e73;
+            background: #1b3a5a;
             padding-top: 0.8em;
             padding-bottom: 0.8em;
         }

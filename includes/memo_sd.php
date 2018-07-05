@@ -3,6 +3,9 @@ include ("connection.php");
 include("send_notification.php");
 include("notify.php");
 
+//to allow emoji
+// ALTER TABLE Tablename CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
+
 function getUfsValues($memo_id, $values){
     return implode(", ", array_map(function ($user_id, $level) use ($memo_id) {
 
@@ -71,8 +74,8 @@ if(isset($_POST['save']) || isset($_POST['draft'])){
             $name_row = mysqli_fetch_array($result_name, MYSQLI_ASSOC);
 
             if (mysqli_num_rows($result_name) > 0) {
-                $message = $name_row['fname'] . "sent you a memo: " . $title;
-                notify_user($token, $title, $message);
+                $message = $name_row['fname'] . " sent you a memo: " . $title;
+                notify_user($token, $title, $message, "MEMO_RECEIVED");
             }   
         }
         header("location: ../view_mymemo.php?ref=$memo_id");

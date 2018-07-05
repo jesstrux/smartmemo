@@ -65,24 +65,26 @@
 								<?php echo nl2br($memo['body']); ?>
 							</div>
 
-							<div id="attachments">
-								<?php 
-									$attachments_result = getAttachment::fromMemo($con, $memo['id']);
-									while ($attachment = mysqli_fetch_array($attachments_result)) {
-										$ext = end(explode(".",$attachment['document']));
-										$type = $ext;
-										if(in_array($ext, ["jpg", "png", "gif", "jpeg"]))
-											$type = "image";
+							<?php 
+								$attachments_result = getAttachment::fromMemo($con, $memo['id']);
+								
+								echo '<div id="attachments">';
+								while ($attachment = mysqli_fetch_array($attachments_result)) {
+									$ext = end(explode(".",$attachment['document']));
+									$type = $ext;
+									if(in_array($ext, ["jpg", "png", "gif", "jpeg"]))
+										$type = "image";
 
-										echo '
-											<a href="uploads/'. $attachment['document'] .'" class="attachment '.$type.'" target="blank">
-												<i class="zmdi"></i>
-												<span class="trim-text">'. $attachment['document'] .'</span>
-											</a>
-										';
-									};
-								?>
-							</div>
+									echo '
+										<a href="uploads/'. $attachment['document'] .'" class="attachment '.$type.'" target="blank">
+											<i class="zmdi"></i>
+											<span class="trim-text">'. $attachment['document'] .'</span>
+										</a>
+									';
+								};
+
+								echo '</div>';
+							?>
 						</div>
 					</section>
 				 </div>
