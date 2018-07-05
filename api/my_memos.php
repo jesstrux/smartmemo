@@ -6,10 +6,14 @@
 
     $get_id = $_GET['user_id'];
 
-    $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, IF(m.to_userid = $get_id, 'You', CONCAT(u.fname, ' ', u.mname, ' ', u.surname)) AS recepientName, IF(m.to_userid = $get_id, 'Inbox', 'Sent') AS type";
-    $sql .= ", att.document AS attachment";
+    $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, s.id as senderId, ";
+    $sql .= "IF(m.to_userid = $get_id, 'You', CONCAT(u.fname, ' ', u.mname, ' ', u.surname)) AS recepientName, ";
+    $sql .= "IF(m.from_userid = $get_id, 'You', CONCAT(s.fname, ' ', s.mname, ' ', s.surname)) AS senderName, ";
+    $sql .= "IF(m.to_userid = $get_id, 'Inbox', 'Sent') AS type, ";
+    $sql .= "att.document AS attachment";
     $sql .= " FROM memo m";
     $sql .= " JOIN users u ON m.to_userid = u.id";
+    $sql .= " JOIN users s ON m.from_userid = s.id";
     $sql .= " LEFT JOIN memo_attachment att ON att.memo_id = m.id";
     $sql .= " WHERE from_userid = $get_id OR to_userid = $get_id";
     $sql .= " ORDER BY type";
@@ -34,6 +38,8 @@
                 $newMemoInfo[$newKey]["body"] = $memoValue["body"];
                 $newMemoInfo[$newKey]["recepientId"] = $memoValue["recepientId"];
                 $newMemoInfo[$newKey]["recepientName"] = $memoValue["recepientName"];
+                $newMemoInfo[$newKey]["senderId"] = $memoValue["senderId"];
+                $newMemoInfo[$newKey]["senderName"] = $memoValue["senderName"];
                 $newMemoInfo[$newKey]["type"] = $memoValue["type"];
             }
 
