@@ -90,7 +90,7 @@ nav .nav-icon .zmdi {
     border-radius: 50%;
     background: #eee;
     border: none;
-    background: #e1eaf5;
+    background: #f9cbcb;
     overflow: hidden;
 }
 
@@ -104,7 +104,7 @@ nav .nav-icon .zmdi {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8ba0b5;
+    color: #ff7070;
 }
 
 #userAcc .dp .zmdi {
@@ -149,12 +149,13 @@ aside #logo {
 }
 
 #logoImage{
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.3em;
+    /*
     padding: 1.1em;
     border-radius: 50%;
-    margin-bottom: 1em;
-    background: #fff;
+    background: #fff; */
 }
 
 #logo img {
@@ -277,7 +278,9 @@ aside .dropdown .dropdown-menu li.active a {
     justify-content: center;
     font-size: 1.5em;
     display: block;
-    margin-bottom: 0.35em;
+    margin-bottom: 0.7em;
+    background: #003a75;
+    box-shadow: 2px 2px 8px 1px rgba(27, 62, 97, 0.3);
 }
 
 .page-title small{
@@ -430,8 +433,16 @@ aside .dropdown .dropdown-menu li.active a {
 .btn.btn-success,
 .rounded-btn.btn-success {
     background: #003a75 !important;
-    color: #fff;
     border-color: #003a75;
+    color: #fff;
+
+    background: #1f4770 !important;
+}
+
+.btn.btn-danger,
+.rounded-btn.btn-danger {
+    border-color: #d9534f;
+    color: #d9534f;
 }
 
 .link{
@@ -779,6 +790,136 @@ img.for-user:before{
     font-size: 18px;
 }
 
+/* LABEL */
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.label-default {
+    background-color: #777;
+}
+
+.label-primary {
+    background-color: #337ab7;
+}
+
+.label-success {
+    background-color: #5cb85c;
+}
+
+.label-success[href]:hover,
+.label-success[href]:focus {
+    background-color: #449d44;
+}
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+.label-info[href]:hover,
+.label-info[href]:focus {
+    background-color: #31b0d5;
+}
+
+.label-warning {
+    background-color: #f0ad4e;
+}
+
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+    background-color: #ec971f;
+}
+
+.label-danger {
+    background-color: #d9534f;
+}
+
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+    background-color: #c9302c;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+}
+
+th {
+    padding: 0.8em 0.5em;
+    border-bottom: 2px solid #ddd;
+    color: #999;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.88em;
+    letter-spacing: 0.06em;
+    text-align: left;
+}
+
+td {
+    padding: 1.2em 0.5em;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+td .label{
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+td:not(:first-child) {
+    color: #555;
+    font-size: 0.95em;
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+.table-action {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    align-content: center;
+    justify-content: center;
+    font-size: 1em;
+    transition: all 0.15s ease-out;
+}
+
+.table-action i {
+    line-height: inherit;
+}
+
+.table-action:hover {
+    background: #eee;
+}
+
+.table-action.warning{
+    color: #ffa01a;
+}
+
+.table-action.danger {
+    color: #d2615d;
+}
+
 /* MODAL */
 .modal {
     position: fixed;
@@ -861,7 +1002,21 @@ img.for-user:before{
 
 footer{
     padding: 2em 0;
+    padding-top: 5em;
     color: #555;
+}
+
+footer::before{
+    content: '';
+    position: absolute;
+    top: 2.6em;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../img/logo_mini.png);
 }
 
 footer .footer-section h5{
@@ -1165,6 +1320,36 @@ body:not(.show-nav) #mobNav #mainNavLinks{
     text-transform: uppercase;
     font-size: 0.85em;
     letter-spacing: 0.6px;
+}
+
+/* ADD BOX */
+.table-box{
+    padding: 1.7em 1.8em;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 5%;
+    margin-right: 3%;
+}
+.add-box {
+    margin-left: 3%;
+    padding: 2.7em 1.7em;
+    max-width: 35%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.add-box .input-group{
+    margin-bottom: 0.3em;
+}
+
+.add-box .rounded-btn{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    min-width: 150px !important;
+}
+
+.add-box h2 {
+    margin-bottom: 0.5em;
 }
 
 /*MEDIA QUERIES*/

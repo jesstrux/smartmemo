@@ -66,27 +66,29 @@
                                     <em class="text-light">No</em>
                                     <span>Memos Found</span>
                                 </div>
-                                <span>Registrar's Office</span>
+                                <span>Further Study Opportunities</span>
                             </div>
                         </div>
                     
                         <div class="col-md-4">
                             <div class="memo-department">
                                 <div class="memo-count">
-                                    <em class="text-light">5</em>
+                                    <em class="text-light">No</em>
                                     <span>Memos Found</span>
                                 </div>
-                                <span>Accounting / Finance Department</span>
+                                <span>
+                                    <?php echo getDepartment::getdept($con, $_SESSION['dept_id']); ?>
+                                </span>
                             </div>
                         </div>
                     
                         <div class="col-md-4">
                             <div class="memo-department">
                                 <div class="memo-count">
-                                    <em class="text-light">1</em>
-                                    <span>Memo Found</span>
+                                    <em class="text-light">No</em>
+                                    <span>Memos Found</span>
                                 </div>
-                                <span>Dean of Subjects Office</span>
+                                <span>Replies to Your Memos</span>
                             </div>
                         </div>
                     </div>
@@ -100,7 +102,7 @@
                     <div>
                         <?php
                             $user_id = $_SESSION['user_id'];
-                            $result = getMemo::myMemo($con, $user_id);
+                            $result = getMemo::receivedMemos($con, $user_id, 3);
                             while ($data = mysqli_fetch_assoc($result)) { ?>
                                     <a href="memo-read.php?memo_id=<?php echo $data['id']; ?>" class="memo-item">
                                         <span class="date">

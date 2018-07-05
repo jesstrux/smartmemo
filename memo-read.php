@@ -65,7 +65,7 @@
 								<?php echo nl2br($memo['body']); ?>
 							</div>
 
-							<?php 
+							<?php
 								$attachments_result = getAttachment::fromMemo($con, $memo['id']);
 								
 								echo '<div id="attachments">';

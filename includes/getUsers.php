@@ -17,10 +17,13 @@ class getUsers
 
     public static function byId($con, $user_id)
     {
-        //get the user moduled
         $query = "SELECT *, CONCAT(fname, mname, surname) AS fullname FROM users WHERE id=$user_id";
 
         $result = mysqli_query($con, $query); //execute the query
+
+        if(!$result)
+            echo mysqli_error($con);
+            
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         return $row;

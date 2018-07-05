@@ -1,4 +1,6 @@
 <?php
+$no_bootstrap = true;
+
 include("partials/header.php");
 include('includes/getDepartment.php');
 include('includes/getJob.php');
@@ -25,7 +27,6 @@ if(isset($_POST['update_user'])){
 }
 }
 ?>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <body class="show-na">
 <main class="layout">
@@ -33,136 +34,118 @@ if(isset($_POST['update_user'])){
     <div id="siteContent" class="flex">
         <?php include("partials/navbar.php");?>
         <div id="mainContent">
+            <section class="page-title layout vertical center-center">
+                <i class="zmdi zmdi-accounts"></i>
+                <h1 class="text-light">Staff Members</h1>
+            </section>
             <div class="section-wrapper">
                 <!-- Page content goes here-->
                 <section>
-                    <?php if($show_alert ==1){?>
-                        <section>
-                            <div class="alert alert-success">
-                                <a class="close" data-dismiss="alert">×</a>
-                                <strong>Success!</strong> User details is updated successfully.
-                            </div>
-                        </section>
-                    <?php } ?>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">All Staff List</div>
-                                <div class="panel-body">
-                                    <table class="table table-responsive table-striped table-bordered user-list">
-                                        <thead>
+                    <table style="margin-top: -1em;">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Department</th>
+                                <th>Postion</th>
+                                <th>Email</th>
+                                <th class="text-center">Activation</th>
+                                <th class="text-center">Status</th>
+
+                                <th class="text-center">Role</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $query = "SELECT * FROM users";
+                                $result = mysqli_query($con, $query); //execute the query
+                                while ($data = mysqli_fetch_assoc($result)) {
+                                    if ($_SESSION['user_id'] != $data['id']) { ?>
                                         <tr>
-                                            <th><span>User</span></th>
-                                            <th><span>Department</span></th>
-                                            <th><span>Email</span></th>
-                                            <th><span>Created</span></th>
-                                            <th class="text-center"><span>Activation</span></th>
-                                            <th class="text-center"><span>Status</span></th>
+                                            <td>
+                                                <a href="#" class="user-link">
+                                                    <?php echo ucwords($data['fname'] . ' ' . $data['mname'] . ' ' . $data['surname']) ?>
+                                                </a>
+                                            </td>
 
-                                            <th><span>Role</span></th>
-                                            <th>Action</th>
+                                            <td>
+                                                <?php echo getDepartment::getdept($con, $data['dept_id']) ?>
+                                            </td>
+
+                                            <td>
+                                                <?php echo getJob::getjobs($con, $data['job_id']); ?>
+                                            </td>
+
+                                            <td>
+                                                <a href="#"><?php echo $data['email']; ?></a>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <?php if ($data['activation'] == 0) { ?>
+                                                    <span class="label label-default"></span> Pending&nbsp;&nbsp;&nbsp;
+                                                <?php 
+                                            } ?>
+
+                                                <?php if ($data['activation'] == 1) { ?>
+                                                    <span class="label label-success"></span> Approved
+                                                <?php 
+                                            } ?>
+
+                                                <?php if ($data['activation'] == 2) { ?>
+                                                    <span class="label label-danger"></span> Declined
+                                                <?php 
+                                            } ?>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <?php if ($data['status'] == 0 && $data['activation'] == 0) { ?>
+                                                    <span class="label label-default"></span> InActive&nbsp;
+                                                <?php } ?>
+
+                                                <?php
+                                                    if ($data['activation'] == 2 || $data['activation'] == 1) {
+                                                        if ($data['status'] == 0) { ?>
+                                                            <span class="label label-success"></span> Active&nbsp;&nbsp;&nbsp;
+                                                        <?php 
+                                                        }
+                                                    if ($data['status'] == 1) { ?>
+                                                        <span class="label label-danger"></span> Blocked
+                                                    <?php 
+                                                    }
+                                                } ?>
+                                            </td>
+
+
+                                            <td class="text-center">
+                                                <a href="#">
+                                                    <?php
+                                                    $rolename = getRole::getUserRole($con, $data['user_role_id']);
+
+                                                    if ($rolename != '') {
+                                                        echo $rolename;
+                                                    } else { ?>
+                                                        --
+                                                    <?php 
+                                                } ?>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="#" class="table-action" style="display: none">
+                                                    <i class="zmdi zmdi-eye"></i>
+                                                </a>
+                                                <a href="edit_user.php?id=<?php echo $data['id']; ?>" class="table-action warning">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </a>
+                                                <a href="#" class="table-action danger">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </a>
+                                            </td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        $query = "SELECT * FROM users";
-                                        $result =	mysqli_query($con, $query); //execute the query
-                                        while($data	=	mysqli_fetch_assoc($result)){
-                                            if($_SESSION['user_id'] !=$data['id']){ ?>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="user-link">
-                                                            <?php echo ucwords($data['fname'].' '.$data['mname'].' '.$data['surname'])?>
-                                                        </a>
-                                                        <span class="user-subhead">
-                                                    <?php echo getJob::getjobs($con,$data['job_id']); ?>
-                                                </span>
-                                                    </td>
-
-                                                    <td>
-                                                        <?php echo getDepartment::getdept($con,$data['dept_id'])?>
-                                                    </td>
-
-                                                    <td>
-                                                        <a href="#"><?php echo $data['email']; ?></a>
-                                                    </td>
-
-                                                    <td><?php echo $data['created_at']?></td>
-                                                    <td class="text-center">
-                                                        <?php if($data['activation'] == 0){?>
-                                                            <span class="label label-default">Pending</span>
-                                                        <?php }?>
-
-                                                        <?php if($data['activation'] == 1){?>
-                                                            <span class="label label-success">Approved</span>
-                                                        <?php }?>
-
-                                                        <?php if($data['activation'] == 2){?>
-                                                            <span class="label label-danger">Declined</span>
-                                                        <?php }?>
-                                                    </td>
-
-                                                    <td class="text-center">
-
-                                                        <?php if($data['status'] == 0 && $data['activation'] == 0){?>
-                                                            <span class="label label-default">InActive</span>
-                                                        <?php }?>
-
-                                                        <?php
-                                                        if($data['activation'] == 2 || $data['activation'] == 1) {
-                                                            if($data['status'] == 0){ ?>
-                                                                <span class="label label-success">Active</span>
-                                                            <?php }   if($data['status'] == 1){ ?>
-                                                                <span class="label label-danger">Blocked</span>
-                                                            <?php }
-                                                        }?>
-
-
-                                                    </td>
-
-
-                                                    <td>
-                                                        <a href="#">
-                                                            <?php
-                                                            $rolename=getRole::getUserRole($con,$data['user_role_id']);
-
-                                                            if($rolename !=''){
-                                                                echo $rolename;
-                                                            }else{ ?>
-                                                                <span class="label label-warning">Assing Role</span>
-                                                            <?php } ?>
-                                                        </a>
-                                                    </td>
-                                                    <td >
-                                                        <a href="#" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <a href="edit_user.php?id=<?php echo $data['id']; ?>" class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
-                                                        <a href="#" class="table-link danger">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                            <?php } }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                                    <?php 
+                                }
+                            } ?>
+                        </tbody>
+                    </table>
                 </section>
 
             </div>

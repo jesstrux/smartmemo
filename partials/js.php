@@ -2,14 +2,6 @@
 <script src="js/scripts.js"></script>
 
 <script>
-    var textarea = document.getElementById("textarea");
-    var heightLimit = 500;
-
-    textarea.oninput = function() {
-        textarea.style.height = ""; /* Reset the height*/
-        textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
-    };
-
     // getElementById
 	function $id(id) {
 		return document.getElementById(id);

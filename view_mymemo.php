@@ -3,6 +3,7 @@
     include("partials/header.php");
     include("includes/getMemo.php");
     include("includes/getUsers.php");
+    include("includes/getAttachment.php");
 ?>
 <body class="show-na">
 <main class="layout">
@@ -32,7 +33,7 @@
                         while($data	=	mysqli_fetch_assoc($result)){ ?>
                             <a href="memo-read.php?memo_id=<?php echo $data['id'];?>" class="memo-item">
                                 <span class="date">
-                                    <?php echo $data['created_at']; ?>
+                                    <?php echo date("d  M \'y", mktime($data['created_at'])); ?>
                                 </span>
 
                                 <h4>
@@ -42,6 +43,26 @@
                                     ?>
                                 </h4>
                                 <p class="trim-text"><?php echo $data['body']?> </p>
+
+                                <?php $attachments_result = getAttachment::fromMemo($con, $data['id']);
+                                    if(mysqli_num_rows($attachments_result) > 0){
+                                        echo '<div class="attachments">';
+                                            while ($attachment = mysqli_fetch_array($attachments_result)) {
+                                                $ext = end(explode(".",$attachment['document']));
+                                                $type = $ext;
+                                                if(in_array($ext, ["jpg", "png", "gif", "jpeg"]))
+                                                    $type = "image";
+
+                                                echo '
+                                                    <div class="attachment ' . $type . '" title="' . $attachment['document'] . '">
+                                                        <i class="zmdi"></i>
+                                                        <span class="trim-text">' . $attachment['document'] .'</span>
+                                                    </div>
+                                                ';
+                                            }
+                                        echo '</div>';
+                                    };
+                                ?>
                             </a>
                             <?php } ?>
                     </div>

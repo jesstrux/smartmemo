@@ -1,4 +1,7 @@
-<?php include("partials/header.php");?>
+<?php 
+    $no_bootstrap = true;
+    include("partials/header.php");
+?>
 <body class="show-na">
 <main class="layout">
     <?php include("partials/aside.php");
@@ -22,10 +25,14 @@
     <div id="siteContent" class="flex">
         <?php include("partials/navbar.php");?>
         <div id="mainContent">
+            <section class="page-title layout vertical center-center">
+                <i class="zmdi zmdi-case"></i>
+                <h1 class="text-light">All Job Titles</h1>
+            </section>
             <div class="section-wrapper">
                 <!-- Page content goes here-->
 
-                <section>
+                <section style="margin-top: -1em">
                     <?php if($squery_status==1){?>
                         <div class="alert alert-success">
                             <a class="close" data-dismiss="alert">×</a>
@@ -38,58 +45,47 @@
                             <strong>Error!</strong> Job title is not Successfully Saved.
                         </div>
                     <?php }?>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Add new Job title</div>
-                                <div class="panel-body">
-                                    <form class="plvr" method="post" autocomplete="off">
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <label for="title">Job title</label>
-                                                <input name="dept" class="form-control" placeholder="Enter Job title" type="text" required>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary btn-lg" name="save">Save Job title</button>
-                                        </fieldset>
-                                    </form>
+                    <div class="layout justified start">
+                        <div class="flex add-box">
+                            <h2 class="text-light">Add Job Title</h2>
+                            
+                            <form method="post" autocomplete="off">
+                                <div class="input-group">
+                                    <!-- <label for="title">Job title</label> -->
+                                    <input id="title" name="dept" placeholder="Enter title here" type="text" required>
                                 </div>
-                                <div class="panel-footer"></div>
-                            </div>
 
+                                <button type="submit" class="rounded-btn imperfect btn-success" name="save">Save Job title</button>
+                            </form>
                         </div>
-                        <div class="col-md-8">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">Job titles list</div>
-                                <div class="panel-body">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                        <th>#</th>
-                                        <th>Job title</th>
-                                        <th>Action</th>
-                                        </thead>
-                                        <tbody>
 
-                                        <?php
-                                        $query = "SELECT * FROM job";
-                                        $i=1;
-                                        $result =	mysqli_query($con, $query); //execute the query
-                                        while($data	=	mysqli_fetch_assoc($result)){ ?>
-                                            <tr>
-                                                <td><?php echo $i; ?></td>
-                                                <td><?php echo $data['name']; ?></td>
-                                                <td>
-                                                    <button class="btn btn-danger btn-xs">DELETE</button>
-                                                </td>
-                                            </tr>
-                                            <?php $i++; } ?>
+                        <div class="flex table-box">
+                            <table>
+                                <thead>
+                                    <th class="text-center" style="width: 60px; padding: 1.5em 0.6em">S/N</th>
+                                    <th style="width:69%; padding-left: 2em">Job title</th>
+                                    <th class="text-center">Action</th>
+                                </thead>
+                                <tbody>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="panel-footer"></div>
-                            </div>
+                                <?php
+                                    $query = "SELECT * FROM job";
+                                    $i = 1;
+                                    $result = mysqli_query($con, $query);
 
-
+                                    while ($data = mysqli_fetch_assoc($result)) { ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo $i; ?>.</td>
+                                            <td style="padding-left: 2em"><?php echo $data['name']; ?></td>
+                                            <td class="text-center">
+                                                <button class="rounded-btn btn-sm imperfect btn-danger">Remove</button>
+                                            </td>
+                                        </tr>
+                                        <?php $i++;
+                                    } 
+                                ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 

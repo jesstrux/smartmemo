@@ -3,9 +3,9 @@
         <div></div>
 
         <nav class="layout center">
-            <a href="#" class="nav-icon">
+            <!-- <a href="#" class="nav-icon">
                 <i class="zmdi zmdi-notifications"></i>
-            </a>
+            </a> -->
 
             <a href="create_memo.php" class="rounded-btn">Create A Memo</a>
 

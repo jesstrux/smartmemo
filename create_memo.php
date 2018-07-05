@@ -261,7 +261,7 @@
                                         }
                                     </script>
 
-                                    <div id="dropAttachments" class="flex layout vertical center-center" style="border: 2px dashed #555;background: #fdfdfd; height: 200px;">
+                                    <div id="dropAttachments" class="flex layout vertical center-center" style="border: 2px dashed #555; border-radius: 4px; background: #fdfdfd; height: 200px;">
                                         
                                         Drop files here to attach to memo
                                         <br>
@@ -291,6 +291,15 @@
     </main>
     <?php include ("partials/js.php"); ?>
     <script src="js/filedrag.js"></script>
+    <script>
+        var textarea = document.getElementById("textarea");
+        var heightLimit = 500;
+
+        textarea.oninput = function() {
+            textarea.style.height = ""; /* Reset the height*/
+            textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
+        };
+    </script>
 <!-- <script> CKEDITOR.replace( 'memoeditor' )</script> -->
 </body>
 </html>

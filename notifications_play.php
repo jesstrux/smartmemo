@@ -1,6 +1,16 @@
 <?php
     include("includes/send_notification.php");
     include ("includes/connection.php");
+    include("includes/getMemo.php");
+
+    $result = getMemo::byId($con, 26, 11);
+
+    if(!$result)
+        echo mysqli_error($con);
+
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    print_r($row);
 
     // $token = 'dIe3ttm4244:APA91bFqmPNRXvGVilB_Cyd0Rrar34TJc_CJr_vVR1sSL_s2u31LgK8WQgIQ7l25Jv266MIRFhqjY957yZTjXyvHy3_CCIfkFbqhYCxC8bC0xLaQackFpSyRQTsRxBpNU5PGERKRfklz';
 
@@ -8,10 +18,10 @@
     // $message = "One Two, Mike Testing...";
     // notify_user($token, $title, $message);
 
-    $topic = "Departmentofcomputing";
-    $title = "Yo Departmentants!";
-    $message = "This is a departmentwide memo...";
-    notify_topic($topic, $title, $message);
+    // $topic = "Departmentofcomputing";
+    // $title = "Yo Departmentants!";
+    // $message = "This is a departmentwide memo...";
+    // notify_topic($topic, $title, $message);
 
     // $topic = "Admin";
     // $title = "To All Admins!";

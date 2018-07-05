@@ -1,7 +1,7 @@
 <aside>
     <a id="logo" href="/" class="layout vertical center">
         <div id="logoImage">
-            <img src="img/logo.png" alt="">
+            <img src="img/square_logo.png" alt="">
         </div>
         <span id="logoText" href="/" class="layout center">IFM Smart Memo</span>
     </a>
