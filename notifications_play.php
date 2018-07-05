@@ -8,10 +8,10 @@
     // $message = "One Two, Mike Testing...";
     // notify_user($token, $title, $message);
 
-    // $topic = "Departmentofcomputing";
-    // $title = "Yo Departmentants!";
-    // $message = "This is a departmentwide memo...";
-    // notify_topic($topic, $title, $message);
+    $topic = "Departmentofcomputing";
+    $title = "Yo Departmentants!";
+    $message = "This is a departmentwide memo...";
+    notify_topic($topic, $title, $message);
 
     // $topic = "Admin";
     // $title = "To All Admins!";

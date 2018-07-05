@@ -77,11 +77,9 @@
                                 </label>
                                 
                                 <div id="ufsList" class="flex layout center wrap">
-                                    <div id="ufsChips" class="layout inline wrap center"></div>
-
-                                    <div id="ufsAdder">
-                                        <input class="unstyled" type="text" id="ufsFilter" placeholder="Type to add user">
-                                        <div id="ufsDropdown"></div>
+                                    <div id="ufsAdder" class="flex">
+                                        <input class="unstyled" type="text" id="ufsFilter" placeholder="Type to add">
+                                        <div id="ufsDropdown" empty="No users found."></div>
                                     </div>
 
                                     <button class="chip-btn"><i class="zmdi zmdi-plus"></i>&nbsp;&nbsp;&nbsp;Add User&nbsp;&nbsp;</button>
@@ -110,15 +108,18 @@
                                         `;
                                     }
 
-                                    function addUserToUfs(user){
+                                    function createUfsItem(user){
                                         var template = document.createElement('template');
                                         var chip = chip_tpl(user).trim();
                                         template.innerHTML = chip;
 
+                                        return template.content.firstChild;
+                                    }
+
+                                    function addUserToUfs(user){
                                         chosen_users.push(user.id);
 
-                                        document.querySelector('#ufsChips').appendChild(template.content.firstChild);
-
+                                        setUfsChipUsers();
                                         setUfsDropdownUsers();
                                     }
 
@@ -143,15 +144,29 @@
                                         document.querySelector('#ufsDropdown').appendChild(el);
                                     }
 
+                                    function setUfsChipUsers(){
+                                        var ufsWrapper = document.querySelector('#ufsList');
+                                        var ufsAdder = ufsWrapper.querySelector("#ufsAdder");
+
+                                        ufsWrapper.innerHTML = "";
+                                        
+                                        var chosen_user_list = users.filter(user => chosen_users.indexOf(user.id) != -1);
+                                        chosen_user_list.forEach(user => {
+                                            ufsWrapper.appendChild(createUfsItem(user));
+                                        });
+                                        ufsWrapper.appendChild(ufsAdder);
+                                    }
+
                                     function setUfsDropdownUsers(){
                                         console.log(users.length == chosen_users.length);
 
                                         if(users.length === chosen_users.length){
-                                            document.querySelector("#ufsAdder").style.display = "none";
-                                            return;
+                                            document.querySelector("#ufsDropdown").setAttribute("empty", "No more users.");
+                                        //     document.querySelector("#ufsAdder").style.display = "none";
+                                        //     return;
                                         }
+                                        // document.querySelector("#ufsAdder").style.display = "flex";
 
-                                        document.querySelector("#ufsAdder").style.display = "flex";
                                         document.querySelector('#ufsDropdown').innerHTML = "";
                                         var d_users = users.filter(user => chosen_users.indexOf(user.id) == -1);
                                         d_users.forEach(user => {
@@ -170,17 +185,9 @@
                                     function removeUserFromUfs(el){
                                         var id = el.getAttribute("data-id");
                                         chosen_users.splice(chosen_users.indexOf(id), 1);
+
+                                        setUfsChipUsers();
                                         setUfsDropdownUsers();
-
-                                        var no_prev_sibling = (el.previousSibling == null || el.previousSibling.nodeName == "#text");
-                                        var no_next_sibling = (el.nextSibling == null || el.nextSibling.nodeName == "#text");
-
-                                        var last_one = (no_prev_sibling && no_next_sibling) ? true : false;
-
-                                        document.querySelector('#ufsChips').removeChild(el);
-
-                                        if(last_one)
-                                            document.querySelector('#ufsChips').innerHTML = "";
                                     }
                                 </script>
                             </div>

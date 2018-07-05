@@ -6,7 +6,7 @@
 
     $get_id = $_GET['user_id'];
 
-    $sql = "SELECT m.id, m.title, m.body, u.id as recepientId, s.id as senderId, ";
+    $sql = "SELECT m.id, m.title, m.body, m.updated_at, u.id as recepientId, s.id as senderId, ";
     $sql .= "IF(m.to_userid = $get_id, 'You', CONCAT(u.fname, ' ', u.mname, ' ', u.surname)) AS recepientName, ";
     $sql .= "IF(m.from_userid = $get_id, 'You', CONCAT(s.fname, ' ', s.mname, ' ', s.surname)) AS senderName, ";
     $sql .= "IF(m.to_userid = $get_id, 'Inbox', 'Sent') AS type, ";
@@ -16,7 +16,7 @@
     $sql .= " JOIN users s ON m.from_userid = s.id";
     $sql .= " LEFT JOIN memo_attachment att ON att.memo_id = m.id";
     $sql .= " WHERE from_userid = $get_id OR to_userid = $get_id";
-    $sql .= " ORDER BY type";
+    $sql .= " ORDER BY m.updated_at DESC";
 
     $result = mysqli_query($con, $sql);
     $memos = [];

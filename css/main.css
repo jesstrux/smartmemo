@@ -580,6 +580,7 @@ aside .dropdown .dropdown-menu li.active a {
     border: 1px solid #ddd;
     border-radius: 3px;
     padding: 1em 0.5em;
+    padding: 0.6em 0.6em;
 }
 
 #ufsChips{
@@ -605,9 +606,11 @@ aside .dropdown .dropdown-menu li.active a {
     border-radius: 15px;
     background-color: #f1f1f1;
     margin-right: 0.7em;
-    margin-bottom: 0.8em;
-    max-width: 33.33%;
-    min-width: 150px;
+    max-width: calc(33.333% - 0.7em);
+}
+
+.chip:nth-child(n + 4){
+    margin-top: 0.6em;
 }
 
 .chip em{
@@ -678,11 +681,24 @@ img.for-user:before{
 }
 
 #ufsAdder{
-    width: 260px;
-    min-width: 260px;
+    /* width: 260px; */
+    /* min-width: 260px; */
+    /* max-width: calc(33.333% - 0.7em); */
     background: #fefefe;
     position: relative;
-    margin-bottom: 0.7em;
+}
+
+.chip:nth-child(n + 3) ~ #ufsAdder{
+    margin-top: 0.6em;
+}
+
+.chip:first-child~#ufsAdder,
+.chip:nth-child(4n)~#ufsAdder {
+    max-width: calc(66.666% - 0.7em);
+}
+
+.chip:nth-child(2n)~#ufsAdder {
+    max-width: calc(33.333% - 0.7em);
 }
 
 #ufsAdder input,
@@ -690,7 +706,7 @@ img.for-user:before{
     /* padding: 0.45em 0.65em; */
     /* line-height: 1.5; */
     padding: 0.15em 0.25em;
-    width: 260px;
+    width: 100%;
     font-size: 1em;
     box-sizing: border-box;
     border-radius: 5px;
@@ -719,10 +735,23 @@ img.for-user:before{
     left: 0;
     top: 110%;
     width: 100%;
+    min-width: 240px;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
     z-index: 1;
     max-height: 250px;
     overflow: auto;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+}
+
+#ufsDropdown:empty::before{
+    content: attr(empty);
+    text-align: center;
+    padding: 0 0.8em;
+    font-size: 1.15em;
+    line-height: 40px;
+    color: #ccc;
 }
 
 #ufsAdder input:not(:focus) + #ufsDropdown:not(:hover){
@@ -736,6 +765,7 @@ img.for-user:before{
     background: #fff;
     padding: 0.65em 1.6em;
     font-size: 0.95em;
+    cursor: pointer;
 }
 
 .ufs-item img{
