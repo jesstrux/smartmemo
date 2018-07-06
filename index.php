@@ -66,7 +66,7 @@
                                     <em class="text-light">No</em>
                                     <span>Memos Found</span>
                                 </div>
-                                <span>Further Study Opportunities</span>
+                                <span>Office Announcements</span>
                             </div>
                         </div>
                     

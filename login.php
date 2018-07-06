@@ -19,7 +19,10 @@
     <div id="authBox">
         <h1>Login to <em class="text-light">Smart Memo</em></h1>
 
-        <form action="process_login.php" method="POST">
+        <form action="process_login.php" method="POST" autocomplete="off">
+            <input type="text" style="position: absolute; opacity: 0; pointer-events: none">
+            <input type="password" style="position: absolute; opacity: 0; pointer-events: none">
+
             <div class="input-box">
                 <input type="text" required id="email" name="email">
                 <label for="email">Email</label>

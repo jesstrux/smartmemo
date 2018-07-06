@@ -1,22 +1,12 @@
 <?php
     include("includes/send_notification.php");
     include ("includes/connection.php");
-    include("includes/getMemo.php");
 
-    $result = getMemo::byId($con, 26, 11);
+    $token = 'fGiAaCBL7Io:APA91bFi-eDhKDiE9imlYH67wUsjAy2ky7ti_GkCO06zfZehDUoen490XRZX9y1kAJ4w3jTODcxQvZJ96Nsq1UTK34qH0OwzolfGaQgy4OW5TcJXRtdvH_5rj_o7PnMknbU0V8wtxj3iODltVU4Vv69R61Nvn_l_TA';
 
-    if(!$result)
-        echo mysqli_error($con);
-
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-    print_r($row);
-
-    // $token = 'dIe3ttm4244:APA91bFqmPNRXvGVilB_Cyd0Rrar34TJc_CJr_vVR1sSL_s2u31LgK8WQgIQ7l25Jv266MIRFhqjY957yZTjXyvHy3_CCIfkFbqhYCxC8bC0xLaQackFpSyRQTsRxBpNU5PGERKRfklz';
-
-    // $title = "Hey user!";
-    // $message = "One Two, Mike Testing...";
-    // notify_user($token, $title, $message);
+    $title = "System Maintainance!";
+    $message = "Hey Walter, we'll be doing some minor system maintaince later this evening. Please make sure you've got your affairs in order by then.";
+    notify_user($token, $title, $message);
 
     // $topic = "Departmentofcomputing";
     // $title = "Yo Departmentants!";

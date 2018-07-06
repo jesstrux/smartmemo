@@ -96,7 +96,7 @@
 
 
             <div class="layout end-justified">
-                <button class="btn btn-primary" tupe="submit" id="register" name="register" disabled>
+                <button class="rounded-btn" tupe="submit" id="register" name="register" disabled>
                     REGISTER
                 </button>
             </div>
