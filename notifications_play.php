@@ -2,13 +2,16 @@
     include("includes/send_notification.php");
     include ("includes/connection.php");
 
-    $token = 'fGiAaCBL7Io:APA91bFi-eDhKDiE9imlYH67wUsjAy2ky7ti_GkCO06zfZehDUoen490XRZX9y1kAJ4w3jTODcxQvZJ96Nsq1UTK34qH0OwzolfGaQgy4OW5TcJXRtdvH_5rj_o7PnMknbU0V8wtxj3iODltVU4Vv69R61Nvn_l_TA';
+    $token = 'e2LPsDW--ig:APA91bE5OEvjc8BQdnb4bmbufuexzFeWoapIez7l1diwDsX2yhj0X3Faz6GK5SMwrlRU7Iy8faHkw7_ALJRZQxlIJr5YgxoDmZpGPtJmnepMgzX44rAex6wyAvSuZ8erUQ2KZEDvwTd6rUKh1sGqSOUbdBGHa44E1w';
 
-    $title = "System Maintainance!";
-    $message = "Hey Walter, we'll be doing some minor system maintaince later this evening. Please make sure you've got your affairs in order by then.";
-    notify_user($token, $title, $message);
+    $title = "Walter sent you a memo: Where you at!";
+    $message = "Yo, you wasn't at the game, what's up with your behind son?";
 
-    // $topic = "Departmentofcomputing";
+    notify_user($token, $title, $message, "MEMO_RECEIVED");
+
+    // notify_user($token, $title, $message);
+
+    // $topic = "DepartmentofComputing";
     // $title = "Yo Departmentants!";
     // $message = "This is a departmentwide memo...";
     // notify_topic($topic, $title, $message);
