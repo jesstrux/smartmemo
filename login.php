@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/flex.css">
+
     <link rel="icon" href="logo.png">
 </head>
 <body>
@@ -45,7 +48,11 @@
     </div>
 </main>
 
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
+<?php
+    include ("includes/notify.php"); 
+    include ("partials/js.php"); 
+?>
 
 </body>
 </html>

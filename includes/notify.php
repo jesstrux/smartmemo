@@ -14,6 +14,22 @@
             session_start();
 
     class Notify{
+        public static function set_crucial_message($message, $type="error"){
+            $_SESSION['sm_crucial_message'] = [
+                "content" => $message,
+                "type" => $type
+            ];
+        }
+
+        public static function get_crucial_message(){
+            if(isset($_SESSION['sm_crucial_message']))
+                return $_SESSION['sm_crucial_message'];
+        }
+
+        public static function has_crucial_message(){
+            return isset($_SESSION['sm_crucial_message']);
+        }
+
         public static function set_error($message){
             $_SESSION['sm_error'] = $message;
         }
@@ -33,6 +49,7 @@
         public static function restore(){
             unset($_SESSION['sm_error']);
             unset($_SESSION['sm_success']);
+            unset($_SESSION['sm_crucial_message']);
         }
 
         public static function has_error(){

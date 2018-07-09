@@ -1,13 +1,16 @@
 <?php
     include("includes/send_notification.php");
     include ("includes/connection.php");
+    include ("includes/notify.php");
 
-    $token = 'e2LPsDW--ig:APA91bE5OEvjc8BQdnb4bmbufuexzFeWoapIez7l1diwDsX2yhj0X3Faz6GK5SMwrlRU7Iy8faHkw7_ALJRZQxlIJr5YgxoDmZpGPtJmnepMgzX44rAex6wyAvSuZ8erUQ2KZEDvwTd6rUKh1sGqSOUbdBGHa44E1w';
+    Notify::set_crucial_message("Hey, something went wrong there!");
 
-    $title = "Walter sent you a memo: Where you at!";
-    $message = "Yo, you wasn't at the game, what's up with your behind son?";
+    // $token = 'e2LPsDW--ig:APA91bE5OEvjc8BQdnb4bmbufuexzFeWoapIez7l1diwDsX2yhj0X3Faz6GK5SMwrlRU7Iy8faHkw7_ALJRZQxlIJr5YgxoDmZpGPtJmnepMgzX44rAex6wyAvSuZ8erUQ2KZEDvwTd6rUKh1sGqSOUbdBGHa44E1w';
 
-    notify_user($token, $title, $message, "MEMO_RECEIVED");
+    // $title = "Walter sent you a memo: Where you at!";
+    // $message = "Yo, you wasn't at the game, what's up with your behind son?";
+
+    // notify_user($token, $title, $message, "MEMO_RECEIVED");
 
     // notify_user($token, $title, $message);
 

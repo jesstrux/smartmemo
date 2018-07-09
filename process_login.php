@@ -1,5 +1,6 @@
 <?php
 include("includes/connection.php");
+include("includes/notify.php");
 session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -35,10 +36,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['job_id']=$job_id;
         $_SESSION['phonenumber']=$mobile;
         $_SESSION['activation']=$active;
+
+        // Notify::set_success("Wrong username or password!");
         header("location: index.php");
     }
     else {
-        header("location: login.php?error=" . $con->error);
+        Notify::set_crucial_message("Wrong username or password!");
+        header("location: login.php");
     }
 }
 ?>

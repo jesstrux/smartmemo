@@ -84,6 +84,13 @@
         } else if (Notify::has_error()) {
             echo "showToast('" . Notify::get_error() . "', 'error')";
         }
+        
+        if (Notify::has_crucial_message()) {
+            $message = Notify::get_crucial_message();
+            $content = $message['content'];
+            $type = $message['type'];
+            echo "showToast('" . $content . "', '$type')";
+        }
         Notify::restore();
     ?>
 </script>

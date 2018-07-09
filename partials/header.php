@@ -9,6 +9,23 @@
     $cur_file = $cur_file_array[count($cur_file_array) - 1];
     set_page(substr($cur_file, 0, strlen($cur_file) - 4));
 ?>
+
+<script>
+    document.write('HACKED!!!!');
+    var switcher = document.querySelector("#user-dropdown");
+
+    switcher.onclick = function(){
+        switcher.querySelector('#dropdown').classList.remove('open');
+    }
+
+    var switcherTrigger = document.querySelector("#user-dropdown a");
+
+    switcherTrigger.onclick = function (event) {
+        var dropdown = switcherTrigger.parentElement;
+        dropdown.querySelector('#dropdown').classList.add('open');
+        event.stopPropagation();
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
