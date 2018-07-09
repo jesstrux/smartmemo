@@ -11,19 +11,20 @@
 ?>
 
 <script>
-    document.write('HACKED!!!!');
     var switcher = document.querySelector("#user-dropdown");
 
-    switcher.onclick = function(){
-        switcher.querySelector('#dropdown').classList.remove('open');
-    }
+    if(switcher){
+        switcher.onclick = function(){
+            switcher.querySelector('#dropdown').classList.remove('open');
+        }
 
-    var switcherTrigger = document.querySelector("#user-dropdown a");
+        var switcherTrigger = document.querySelector("#user-dropdown a");
 
-    switcherTrigger.onclick = function (event) {
-        var dropdown = switcherTrigger.parentElement;
-        dropdown.querySelector('#dropdown').classList.add('open');
-        event.stopPropagation();
+        switcherTrigger.onclick = function (event) {
+            var dropdown = switcherTrigger.parentElement;
+            dropdown.querySelector('#dropdown').classList.add('open');
+            event.stopPropagation();
+        }
     }
 </script>
 <!DOCTYPE html>
