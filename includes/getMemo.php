@@ -17,7 +17,7 @@ class getMemo
  }
 
     public static function receivedMemos($con,$user_id, $limit = null){
-        $query = "SELECT * FROM memo where to_userid=$user_id";
+        $query = "SELECT *, 'false' AS ufs_complete FROM memo where to_userid=$user_id";
         $query .= " ORDER BY updated_at DESC";
         if(isset($limit))
             $query .= " LIMIT $limit";
@@ -30,11 +30,14 @@ class getMemo
 
     public static function allReceivedMemos($con, $user_id)
     {
-        $sql = "SELECT *, 'false' as is_ufs, 'Inbox' as type";
+        $sql = "SELECT *, 'false' as is_ufs, 'Inbox' as type,";
+        $sql .= " IF((SELECT count(id) FROM memo_ufs ufs WHERE memo_id = m.id AND status > 0) > 0 , 'true', 'false') AS ufs_complete";
         $sql .= " FROM memo m";
         $sql .= " WHERE to_userid = $user_id";
         $sql .= " HAVING 1 > (SELECT count(id) FROM memo_ufs ufs WHERE memo_id = m.id AND status < 1)";
         $sql .= " ORDER BY m.updated_at DESC";
+
+        echo $sql . "<br>";
 
         $result = mysqli_query($con, $sql); //execute the query
 
