@@ -17,7 +17,7 @@ class getUsers
 
     public static function byId($con, $user_id)
     {
-        $query = "SELECT *, CONCAT(fname, mname, surname) AS fullname FROM users WHERE id=$user_id";
+        $query = "SELECT *, CONCAT(fname, ' ', mname, ' ', surname) AS fullname FROM users WHERE id=$user_id";
 
         $result = mysqli_query($con, $query); //execute the query
 

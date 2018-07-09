@@ -27,4 +27,23 @@ class getUfs
 
         return $ufs;
     }
+
+    public static function forUser($con, $user_id)
+    {
+        $query = "SELECT m.*, 'Inbox' as type, 'true' AS is_ufs";
+        $query .= " FROM memo_ufs ufs";
+        $query .= " JOIN memo m ON ufs.memo_id = m.id";
+        $query .= " where ufs.user_id=$user_id AND ufs.status < 1";
+        $query .= " ORDER BY m.updated_at DESC";
+
+        $result = mysqli_query($con, $query);
+        echo mysqli_error($con); //execute the query
+        $ufs = [];
+
+        if (mysqli_num_rows($result) > 0)
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            $ufs[] = $row;
+
+        return $ufs;
+    }
 }
