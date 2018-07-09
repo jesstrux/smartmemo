@@ -33,33 +33,20 @@
                         <?php
                             $user_id= $_SESSION['user_id'];
                             $result=getMemo::myMemo($con,$user_id);
+
                             while($data	= mysqli_fetch_assoc($result)){ ?>
                                 <a href="memo-read.php?memo_id=<?php echo $data['id']; ?>" class="memo-item">
                                     <span class="date">
-                                        <?php echo date("d  M \'y", mktime($data['created_at'])); ?>
+                                        <?php echo date("d  M \'y", strtotime($data['created_at'])); ?>
                                     </span>
 
                                     <h4><?php echo $data['title']?> &nbsp;<i class="zmdi zmdi-chevron-right"></i> &nbsp; <?php echo getUsers::getFullname($con,$data['to_userid'])?></h4>
                                     <p class="trim-text"><?php echo $data['body']?> </p>
 
-                                    <?php $attachments_result = getAttachment::fromMemo($con, $data['id']);
-                                        if(mysqli_num_rows($attachments_result) > 0){
-                                            echo '<div class="attachments">';
-                                                while ($attachment = mysqli_fetch_array($attachments_result)) {
-                                                    $ext = end(explode(".",$attachment['document']));
-                                                    $type = $ext;
-                                                    if(in_array($ext, ["jpg", "png", "gif", "jpeg"]))
-                                                        $type = "image";
-
-                                                    echo '
-                                                        <div class="attachment ' . $type . '" title="' . $attachment['document'] . '">
-                                                            <i class="zmdi"></i>
-                                                            <span class="trim-text">' . $attachment['document'] .'</span>
-                                                        </div>
-                                                    ';
-                                                }
-                                            echo '</div>';
-                                        };
+                                    <?php
+                                        $attachments_result = getAttachment::fromMemo($con, $data['id']);
+                                        if(mysqli_num_rows($attachments_result) > 0)
+                                            include 'includes/tpl/memo_attachments.php';
                                     ?>
                                 </a>
                         <?php } ?>

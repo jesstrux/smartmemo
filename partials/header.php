@@ -1,5 +1,6 @@
 <?php
     include("includes/session.php");
+    include("includes/auth.php");
     include("includes/notify.php");
     include("includes/connection.php");
     include("includes/functions.php");

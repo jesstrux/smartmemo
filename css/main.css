@@ -141,6 +141,7 @@ aside{
     left: 0;
     background: #eee;
     height: 100vh;
+    overflow-y: auto !important;
 }
 
 aside #logo {
@@ -151,7 +152,7 @@ aside #logo {
 #logoImage{
     width: 80px;
     height: 80px;
-    margin-bottom: 1.3em;
+    /*margin-bottom: 1.3em;*/
     /*
     padding: 1.1em;
     border-radius: 50%;
