@@ -37,8 +37,6 @@ class getMemo
         $sql .= " HAVING 1 > (SELECT count(id) FROM memo_ufs ufs WHERE memo_id = m.id AND status < 1)";
         $sql .= " ORDER BY m.updated_at DESC";
 
-        echo $sql . "<br>";
-
         $result = mysqli_query($con, $sql); //execute the query
 
         mysqli_error($con);
