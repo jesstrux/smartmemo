@@ -46,12 +46,12 @@ if(isset($_POST['save']) || isset($_POST['draft'])){
     if ($con->query($sql) === TRUE) {
         $memo_id = $con->insert_id;
 
-        if(isset($attachments)){
+        if(isset($attachments) && strlen($attachments) > 0){
             $attachment_values = getAttachmentValues($memo_id, explode(",", $attachments));
             $save_attachments = $con->query("INSERT INTO memo_attachment (memo_id,document) VALUES " . $attachment_values);
         }
 
-        if(isset($ufs)){
+        if(isset($ufs) && strlen($ufs) > 0){
             $ufs_values = getUfsValues($memo_id, explode(",", $ufs));
             $save_ufs = $con->query("INSERT INTO memo_ufs (memo_id,user_id,level) VALUES " . $ufs_values);
         }

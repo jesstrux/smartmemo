@@ -1,3 +1,20 @@
+var switcher = document.querySelector("#user-dropdown");
+// console.log(switcher);
+
+if (switcher) {
+    switcher.onclick = function () {
+        switcher.querySelector('#dropdown').classList.remove('open');
+    }
+
+    var switcherTrigger = document.querySelector("#user-dropdown a");
+
+    switcherTrigger.onclick = function (event) {
+        var dropdown = switcherTrigger.parentElement;
+        dropdown.querySelector('#dropdown').classList.add('open');
+        event.stopPropagation();
+    }
+}
+
 var dropdownTriggers = document.querySelectorAll("aside .dropdown a");
 
 for (let i = 0; i < dropdownTriggers.length; i++) {

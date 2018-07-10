@@ -20,6 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email	    	=	$row['email'];
     $confirm    	=	$row['confirm'];
     $mobile 	    =	$row['phoneNumber'];
+    $user_role_id 	    =	$row['user_role_id'];
     $user_id 	    =	$row['id'];
 
     $count = mysqli_num_rows($result);
@@ -36,6 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['job_id']=$job_id;
         $_SESSION['phonenumber']=$mobile;
         $_SESSION['activation']=$active;
+        $_SESSION['user_role_id']=$user_role_id;
 
         // Notify::set_success("Wrong username or password!");
         header("location: index.php");
