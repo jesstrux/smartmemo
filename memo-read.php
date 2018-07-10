@@ -6,7 +6,6 @@
 	include("includes/getMemo.php");
 	include("includes/getUsers.php"); 
 	include("includes/getAttachment.php"); 
-	include("includes/getUfs.php"); 
 ?>
 <link rel="stylesheet" href="css/staff_home.css">
 
@@ -61,7 +60,7 @@
 				 <div class="section-wrapper">
 					<section>
 						<div id="memoContent">
-							<div id="memoBody">
+							<div id="memoBody" style="padding-bottom: 2em">
 								<?php echo nl2br($memo['body']); ?>
 							</div>
 

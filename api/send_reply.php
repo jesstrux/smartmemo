@@ -17,11 +17,5 @@
     if ($con->query($sql) === TRUE) {
         echo "success";
     }else{
-        // echo "null";
-        // echo $sql;
-        if ($mysqli->error) {
-            echo $mysqli->error;
-        }else{
-            echo "Unknown Error";
-        }
+        echo "null";
     }

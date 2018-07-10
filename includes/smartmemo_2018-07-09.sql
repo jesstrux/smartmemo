@@ -177,16 +177,16 @@ CREATE TABLE `memo_cc` (
 DROP TABLE IF EXISTS `memo_response`;
 
 CREATE TABLE `memo_response` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `memo_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` varchar(100) NOT NULL,
+  `comment` TEXT NOT NULL,
   `action` int(11) NOT NULL COMMENT '0 declined 1 approved',
   PRIMARY KEY (`id`),
   KEY `memo_id` (`memo_id`),
   KEY `ups_id` (`user_id`),
   CONSTRAINT `memo_response_ibfk_1` FOREIGN KEY (`memo_id`) REFERENCES `memo` (`id`),
-  CONSTRAINT `memo_response_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `memo_response` (`id`)
+  CONSTRAINT `memo_response_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
