@@ -16,7 +16,7 @@
     $mypassword = md5(mysqli_real_escape_string($con, $post_password));
     // $mypassword = "2774282e834ffc9b651c4ef31272ffe1";
 
-    $sql = "SELECT u.id, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', false) AS activated, d.name AS department, j.name AS job, r.name AS role";
+    $sql = "SELECT u.id, u.activation, u.status, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', false) AS activated, d.name AS department, j.name AS job, r.name AS role";
     $sql .= " FROM users u";
     $sql .= " JOIN department d ON u.dept_id = d.id";
     $sql .= " JOIN job j ON u.job_id = j.id";
