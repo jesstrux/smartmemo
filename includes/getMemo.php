@@ -94,6 +94,7 @@ class getMemo
             $row["date"] = date("F jS Y", mktime($row['created_at']));
             $row["attachments"] = getAttachment::forMemo($con, $row["id"]);
             $row["ufs"] = getUfs::forMemo($con, $row["id"]);
+            $row["responses"] = getResponses::forMemo($con, $row["id"]);
 
             $memos[] = $row;
         }

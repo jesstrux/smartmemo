@@ -4,6 +4,7 @@
     include("../includes/getMemo.php");
     include("../includes/getAttachment.php");
     include("../includes/getUfs.php");
+    include("../includes/getResponses.php");
     include("../includes/functions.php");
 
     $get_id = $_GET['user_id'];

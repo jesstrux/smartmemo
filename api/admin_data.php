@@ -1,5 +1,6 @@
 <?php
     include("../includes/connection.php");
+    include("../includes/getUsers.php");
 
     // $rest_json = file_get_contents("php://input");
     // $_POST = json_decode($rest_json, true);
@@ -14,6 +15,11 @@
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            if($row['type'] == "Staff")
+                $row['user'] = getUsers::byId($con, $row['id']);
+            else
+                $row['user'] = null;
+
             $items[] = $row;
         }
 
