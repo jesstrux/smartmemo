@@ -16,9 +16,9 @@ class getMemo
      return $result;
  }
 
-    public static function inboxMemos($con,$user_id, $limit = null){
-        $inbox_memos = self::allReceivedMemos($con, $get_id);
-        $ufs_memos = getUfs::forUser($con, $get_id);
+    public static function inboxMemos($con, $user_id, $limit = null){
+        $inbox_memos = self::allReceivedMemos($con, $user_id);
+        $ufs_memos = getUfs::forUser($con, $user_id);
 
         $merged_memos = array_merge($inbox_memos, $ufs_memos);
         $memos = [];
@@ -36,6 +36,8 @@ class getMemo
         }
 
         array_sort_by_column($memos, 'updated_at', SORT_DESC);
+
+        return $memos;
     }
     
     public static function receivedMemos($con,$user_id, $limit = null){

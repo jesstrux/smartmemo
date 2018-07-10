@@ -29,9 +29,10 @@
                     <div>
                         <?php
                         $user_id= $_SESSION['user_id'];
-                        $result=getMemo::inboxMemos($con,$user_id);
-
+                        $memos=getMemo::inboxMemos($con,$user_id);
                         // while($data	=	mysqli_fetch_assoc($result)){
+
+                        if(count($memos) > 0){
                         foreach ($memos as $data) {?>
                             <a href="memo-read.php?memo_id=<?php echo $data['id'];?>" class="memo-item">
                                 <span class="date">
@@ -52,7 +53,11 @@
                                         include 'includes/tpl/memo_attachments.php';
                                 ?>
                             </a>
-                        <?php } ?>
+                        <?php }
+                            }
+                            else
+                                echo '<center style="font-size: 20px; color: #999">No inbox memos found.</center>';
+                        ?>
                     </div>
                 </section>
 

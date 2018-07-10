@@ -37,7 +37,12 @@ class getUfs
         $query .= " ORDER BY m.updated_at DESC";
 
         $result = mysqli_query($con, $query);
-        echo mysqli_error($con); //execute the query
+
+        if(mysqli_error($con) != null){
+            echo mysqli_error($con); //execute the query
+            echo $query;
+        }
+
         $ufs = [];
 
         if (mysqli_num_rows($result) > 0)
