@@ -20,7 +20,7 @@ class getUsers
         if(!$for_api)
             $query = "SELECT *, CONCAT(fname, ' ', mname, ' ', surname) AS fullname FROM users WHERE id=$user_id";
         else {
-            $query = "SELECT u.id, u.activation, u.status, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', false) AS activated, d.name AS department, j.name AS job, r.name AS role";
+            $query = "SELECT u.id, u.activation, u.status, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', 'false') AS activated, d.name AS department, j.name AS job, r.name AS role";
             $query .= " FROM users u";
             $query .= " JOIN department d ON u.dept_id = d.id";
             $query .= " JOIN job j ON u.job_id = j.id";
