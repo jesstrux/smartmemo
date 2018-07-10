@@ -1314,7 +1314,7 @@ body:not(.show-nav) #mobNav #mainNavLinks{
 
 #memoContent #attachments:before,
 #memoForm #attachments:before{
-    content: 'Attachments';
+    content: attr(label);
     position: absolute;
     top: 1.3em;
     left: 0.5em;

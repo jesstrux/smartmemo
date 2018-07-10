@@ -40,7 +40,7 @@
 								$ufs_result = getUfs::fromMemo($con, $memo['id']);
 								$row_count = mysqli_num_rows($ufs_result);
 								if($row_count > 0){
-									echo "</br> Ufs:";
+									echo "<div style='margin-top: 5px'></div> Ufs:";
 								}
 								$ufs_count = 1;
 								while ($ufs = mysqli_fetch_array($ufs_result)) {
@@ -53,7 +53,7 @@
 									$ufs_count++;
 								};
 							?>
-						<br>
+						<div style='margin-top: 5px'></div>
 						<?php echo $memo['sent'] ? 'Sent' : 'Received' ?> On:
 							<?php echo date("F jS Y", mktime($memo['created_at'])); ?>
 					</small>
@@ -67,8 +67,8 @@
 
 							<?php
 								$attachments_result = getAttachment::fromMemo($con, $memo['id']);
-								
-								echo '<div id="attachments">';
+								$extra_s = mysqli_num_rows($attachments_result) != 1 ? 'S' : '';
+								echo '<div id="attachments" label="'. mysqli_num_rows($attachments_result) . ' Attachment' . $extra_s . '">';
 								while ($attachment = mysqli_fetch_array($attachments_result)) {
 									$ext = end(explode(".",$attachment['document']));
 									$type = $ext;
@@ -85,6 +85,15 @@
 
 								echo '</div>';
 							?>
+
+							<div style="padding-left: 0.7em; padding-top: 1.5em; border-top: 1px solid #ddd">
+								<?php
+									if(!$memo['sent'])
+										echo '<button type="submit" class="rounded-btn imperfect" name="draft">Reply to memo</button>';
+									else
+										echo '<button type="submit" class="rounded-btn imperfect" name="draft">View memo replies</button>';
+								?>
+							</div>
 						</div>
 					</section>
 				 </div>

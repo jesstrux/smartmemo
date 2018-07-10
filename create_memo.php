@@ -239,7 +239,7 @@
 
                                 <div class="flex">
                                     <input id="savedAttachments" type="text" name="attachments" style="display: none;">
-                                    <div id="attachments"></div>
+                                    <div id="attachments" label="ATTACHMENTS"></div>
 
                                     <script>
                                         function removeAttachment(e, file_name){

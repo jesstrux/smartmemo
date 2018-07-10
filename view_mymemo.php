@@ -29,9 +29,10 @@
                     <div>
                         <?php
                         $user_id= $_SESSION['user_id'];
-                        $result=getMemo::receivedMemos($con,$user_id);
+                        $result=getMemo::inboxMemos($con,$user_id);
 
-                        while($data	=	mysqli_fetch_assoc($result)){ ?>
+                        // while($data	=	mysqli_fetch_assoc($result)){
+                        foreach ($memos as $data) {?>
                             <a href="memo-read.php?memo_id=<?php echo $data['id'];?>" class="memo-item">
                                 <span class="date">
                                     <?php echo date("d  M \'y", strtotime($data['created_at'])); ?>
@@ -51,7 +52,7 @@
                                         include 'includes/tpl/memo_attachments.php';
                                 ?>
                             </a>
-                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </section>
 

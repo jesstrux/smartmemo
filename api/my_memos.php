@@ -4,6 +4,7 @@
     include("../includes/getMemo.php");
     include("../includes/getAttachment.php");
     include("../includes/getUfs.php");
+    include("../includes/functions.php");
 
     $get_id = $_GET['user_id'];
 
@@ -25,17 +26,6 @@
 
         $memos[] = $memo;
     }
-
-    function array_sort_by_column(&$arr, $col, $dir = SORT_ASC)
-    {
-        $sort_col = array();
-        foreach ($arr as $key => $row) {
-            $sort_col[$key] = $row[$col];
-        }
-
-        array_multisort($sort_col, $dir, $arr);
-    }
-
 
     array_sort_by_column($memos, 'updated_at', SORT_DESC);
 

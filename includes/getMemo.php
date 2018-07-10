@@ -16,6 +16,28 @@ class getMemo
      return $result;
  }
 
+    public static function inboxMemos($con,$user_id, $limit = null){
+        $inbox_memos = self::allReceivedMemos($con, $get_id);
+        $ufs_memos = getUfs::forUser($con, $get_id);
+
+        $merged_memos = array_merge($inbox_memos, $ufs_memos);
+        $memos = [];
+
+        foreach ($merged_memos as $memo) {
+            $recepient = getUsers::byId($con, $memo['to_userid']);
+            $memo["recepientName"] = $recepient["fullname"];
+            $memo["recepientId"] = $recepient["id"];
+
+            $sender = getUsers::byId($con, $memo['from_userid']);
+            $memo["senderId"] = $sender["id"];
+            $memo["senderName"] = $sender["fullname"];
+
+            $memos[] = $memo;
+        }
+
+        array_sort_by_column($memos, 'updated_at', SORT_DESC);
+    }
+    
     public static function receivedMemos($con,$user_id, $limit = null){
         $query = "SELECT *, 'false' AS ufs_complete FROM memo where to_userid=$user_id";
         $query .= " ORDER BY updated_at DESC";

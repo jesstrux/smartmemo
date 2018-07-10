@@ -4,7 +4,7 @@
     include("includes/connection.php");
     include("includes/functions.php");
     include("includes/auth.php");
-    // include("includes/getUsers.php");
+    include("includes/getUfs.php");
     
     $cur_file_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
     $cur_file = $cur_file_array[count($cur_file_array) - 1];

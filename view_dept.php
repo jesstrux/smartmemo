@@ -29,18 +29,6 @@
 
             <div class="section-wrapper">
                 <section>
-                    <?php if($squery_status==1){?>
-                        <div class="alert alert-success">
-                            <a class="close" data-dismiss="alert">×</a>
-                            <strong>Success!</strong> Department is Successfully Saved.
-                        </div>
-                    <?php }?>
-                    <?php if($squery_status==2){?>
-                        <div class="alert alert-success">
-                            <a class="close" data-dismiss="alert">×</a>
-                            <strong>Error!</strong> Department is not Successfully Saved.
-                        </div>
-                    <?php }?>
                     <div class="layout start justified">
                         <div class="add-box flex">
                             <h2 class="text-light">Add Department</h2>
@@ -70,7 +58,8 @@
                                             <td class="text-center"><?php echo $i; ?></td>
                                             <td style="padding-left: 2em"><?php echo $data['name']; ?></td>
                                             <td class="text-center">
-                                                <button class="rounded-btn btn-sm imperfect btn-danger">REMOVE</button>
+                                                <button class="rounded-btn btn-sm imperfect btn-danger"
+                                                    onclick="removeAdminItem(<?php echo $data['id']; ?>, 'Department')">REMOVE</button>
                                             </td>
                                         </tr>
                                         <?php $i++;
@@ -90,4 +79,11 @@
     </div>
 </main>
 <?php include ("partials/js.php"); ?></body>
+
+<script>
+    <?php 
+        if ($squery_status == 1)
+            echo 'showToast("Department is Successfully Saved.", "success");'
+    ?>
+</script>
 </html>
