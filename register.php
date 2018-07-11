@@ -81,10 +81,10 @@
                 <input type="password" required id="password" name="password">
                 <label for="password">Password</label>
             </div>
-            <div>
+            <!-- <div>
                 <meter max="4" id="password-strength-meter" style="width: 100%;max-width: 390px;"></meter>
                 <p id="password-strength-text" style="max-width: 348px;color: #f44336;font-size: 11px;margin: 5px;"></p>
-            </div>
+            </div> -->
 
             <div class="input-box">
                 <input type="password" required id="confirm" name="confirm">
@@ -96,7 +96,7 @@
 
 
             <div class="layout end-justified">
-                <button class="rounded-btn" tupe="submit" id="register" name="register" disabled>
+                <button class="rounded-btn" tupe="submit" id="register" name="register">
                     REGISTER
                 </button>
             </div>
@@ -136,18 +136,18 @@
 
     }
 
-    $(document).ready(function(){
-        //check password strength
-        $('#password').on('keyup',function () {
-            var checker =$('#password-strength-meter').val();
-            if(checker < 3){
-                disable_register();
-            }else{
-                enable_register();
-            }
-        });
-        $("#password, #confirm").keyup(checkPasswordMatch);
-    });
+    // $(document).ready(function(){
+    //     //check password strength
+    //     $('#password').on('keyup',function () {
+    //         var checker =$('#password-strength-meter').val();
+    //         if(checker < 3){
+    //             disable_register();
+    //         }else{
+    //             enable_register();
+    //         }
+    //     });
+    //     $("#password, #confirm").keyup(checkPasswordMatch);
+    // });
 
 </script>
 
