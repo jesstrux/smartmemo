@@ -75,6 +75,12 @@
 									include 'partials/memo-read-attachments.php';
 								}
 
+								$ufs = getUfs::forMemo($con, $memo['id']);
+								if(count($ufs) > 0){
+									echo count($ufs) . " ufs";
+									// include 'partials/memo-read-attachments.php';
+								}
+
 								$responses = getResponses::forMemo($con, $memo['id']);
 
 								if(count($responses) > 0){
@@ -87,7 +93,7 @@
 									if(!$memo['sent'])
 										echo '<button type="submit" class="rounded-btn imperfect" onclick="openModal(\'replyOptions\');">Reply to memo</button>';
 									else
-										echo '<button type="submit" class="rounded-btn imperfect" name="draft">View memo replies</button>';
+										echo '<button type="submit" class="rounded-btn imperfect" name="draft" onclick="openModal(\'writeReply\');">Add Comment</button>';
 								?>
 							</div>
 						</div>

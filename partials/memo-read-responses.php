@@ -1,5 +1,5 @@
 <div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
-    <h5 class="text-regular" style="margin-bottom: 2em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO REPLIES</h5>
+    <h5 class="text-regular" style="margin-bottom: 2em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO COMMENTS</h5>
 
     <?php
         foreach ($responses as $response) {
