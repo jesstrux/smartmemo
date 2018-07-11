@@ -8,19 +8,27 @@
     $action = (int)$_POST['action'];
     $content = $_POST['content'];
 
+    echo "is ufs: " . $_POST['for_ufs'];
+    
     if(!isset($content)){ //for 
-        if(isset($_POST['for_ufs']))
+        echo "in content";
+        if(isset($_POST['for_ufs'])){
+            echo "as ufs";
             $sql = "UPDATE memo_ufs SET status = $action WHERE memo_id = $memo_id AND user_id = $user_id";
+        }
         else{
+            echo "not as ufs";
             $action = $action + 1;
             $sql = "UPDATE memo SET status = $action WHERE id = $memo_id";
         }
     }else{
+        echo "not really in content";
         $sql = "INSERT INTO memo_response(memo_id, user_id, action, comment) VALUES($memo_id, $user_id, $action,'$content')";
     }
 
     if ($con->query($sql) === TRUE) {
         echo "success";
     }else{
+        echo $sql;
         echo "null";
     }

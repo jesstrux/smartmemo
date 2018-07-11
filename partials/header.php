@@ -39,6 +39,10 @@
         }
     ?>
 
+    <script>
+        user_id = "<?php echo $_SESSION['user_id']; ?>";
+    </script>
+
     <link rel="stylesheet" href="css/staff_home.css">
     <link rel="stylesheet" href="css/main.css">
 

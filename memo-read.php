@@ -85,10 +85,27 @@
 								echo '</div>';
 							?>
 
+							<div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
+								<h5 class="text-regular" style="margin-bottom: 1.3em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO REPLIES</h5>
+								
+								<div class="memo-reply layout start">
+									<div style="position: relative; background: #ddd; margin-right: 12px; width: 40px; height: 40px; border-radius: 50px;">
+										<img class="dp" src>
+									</div>
+
+									<div class="text flex">
+										<h3 class="text-bold">Walter Kimaro</h3>
+										<p class="text-light" style="font-size: 1.1em; line-height: 1.4em; margin-top: 0.3em">
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem possimus magnam eum! Blanditiis eum obcaecati maiores ea saepe nobis sapiente? Blanditiis repudiandae dignissimos nihil voluptas, error at deserunt velit nam!
+										</p>
+									</div>
+								</div>
+							</div>
+
 							<div style="padding-left: 0.7em; padding-top: 1.5em; border-top: 1px solid #ddd">
 								<?php
 									if(!$memo['sent'])
-										echo '<button type="submit" class="rounded-btn imperfect" name="draft">Reply to memo</button>';
+										echo '<button type="submit" class="rounded-btn imperfect" onclick="openModal(\'replyOptions\');">Reply to memo</button>';
 									else
 										echo '<button type="submit" class="rounded-btn imperfect" name="draft">View memo replies</button>';
 								?>
@@ -103,6 +120,11 @@
 			</div>
 		</div>
 	</main>
+
+	<?php
+		include 'partials/reply-options-modal.php';
+		include 'partials/write-reply-modal.php';
+	?>
 	
 	<?php include("partials/js.php"); ?>
 </body>
