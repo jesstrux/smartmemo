@@ -647,7 +647,7 @@ img.for-user {
     height: 35px;
     width: 35px;
     min-width: 35px;
-    /* line-height: 35px; */
+    line-height: 35px;
     border-radius: 50%;
     overflow: hidden;
     text-align: center;

@@ -6,6 +6,7 @@
 	include("includes/getMemo.php");
 	include("includes/getUsers.php"); 
 	include("includes/getAttachment.php");
+	include("includes/getResponses.php");
 
 	$memo;
 ?>
@@ -87,22 +88,30 @@
 								echo '</div>';
 							?>
 
-							<div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
-								<h5 class="text-regular" style="margin-bottom: 1.3em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO REPLIES</h5>
-								
-								<div class="memo-reply layout start">
-									<div style="position: relative; background: #ddd; margin-right: 12px; width: 40px; height: 40px; border-radius: 50px;">
-										<img class="dp" src>
-									</div>
+							<?php
+								$responses = getResponses::forMemo($con, $memo['id']);
 
-									<div class="text flex">
-										<h3 class="text-bold">Walter Kimaro</h3>
-										<p class="text-light" style="font-size: 1.1em; line-height: 1.4em; margin-top: 0.3em">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem possimus magnam eum! Blanditiis eum obcaecati maiores ea saepe nobis sapiente? Blanditiis repudiandae dignissimos nihil voluptas, error at deserunt velit nam!
-										</p>
-									</div>
-								</div>
-							</div>
+								if(count($responses) > 0){
+									echo '
+										<div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
+											<h5 class="text-regular" style="margin-bottom: 2em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO REPLIES</h5>';
+									
+											foreach ($responses as $response) {
+												echo '
+												<div class="memo-reply layout start" style="margin-bottom: 22px;">
+														<img class="for-user" src>
+
+														<div class="text flex">
+															<h3 class="text-bold">'.$response["name"]. '</h3>
+															<p class="text-light" style="font-size: 1.1em; line-height: 1.4em; margin-top: 0.3em">
+																' . $response["comment"] . '
+															</p>
+														</div>
+												</div>';
+											}
+									};
+									echo '</div>';
+								?>
 
 							<div style="padding-left: 0.7em; padding-top: 1.5em; border-top: 1px solid #ddd">
 								<?php
@@ -133,9 +142,15 @@
 	<script>
 		var memo_id = "<?php echo $_GET['memo_id']; ?>";
 		var is_ufs = <?php echo $user_id != $memo['to_userid'] ? 'true' : 'false' ?>;
-		openModal('writeReply');
+		// openModal('writeReply');
 
-		function sendReply(action){
+		function sendResponse(){
+			var content = document.getElementById("replyBody").value;
+			closeModal('writeReply');
+			sendReply(2, content);
+		}
+
+		function sendReply(action, content){
 			var data = {
 				memo_id: memo_id,
                 action: action,
@@ -146,12 +161,20 @@
 				data['for_ufs'] = is_ufs;
 			}
 
+			if(content){
+				data['content'] = content;
+			}
+
 			// return console.log(data);
 
 			ajax("api/send_reply.php", data)
 			.then(function(res){
 				console.log("Success: " + res);
 				showToast("Memo reply was sent.", "success");
+
+				setTimeout(() => {
+					window.location.reload();
+				}, 500);
 			})
 			.catch(function (err) {
 				if(err)

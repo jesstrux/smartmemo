@@ -7,7 +7,7 @@
     $memo_id = $_POST['memo_id'];
     $user_id = $_POST['user_id'];
     $action = (int)$_POST['action'];
-    $content = $_POST['content'];
+    $content = addslashes($_POST['content']);
 
     // echo "is ufs: " . $_POST['for_ufs'];
     
