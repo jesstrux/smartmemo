@@ -8,8 +8,13 @@
     $action = (int)$_POST['action'];
     $content = $_POST['content'];
 
-    if(isset($_POST['for_ufs'])){
-        $sql = "UPDATE memo_ufs SET status = $action WHERE memo_id = $memo_id AND user_id = $user_id";
+    if(!isset($content)){ //for 
+        if(isset($_POST['for_ufs']))
+            $sql = "UPDATE memo_ufs SET status = $action WHERE memo_id = $memo_id AND user_id = $user_id";
+        else{
+            $action = $action + 1;
+            $sql = "UPDATE memo SET status = $action WHERE id = $memo_id";
+        }
     }else{
         $sql = "INSERT INTO memo_response(memo_id, user_id, action, comment) VALUES($memo_id, $user_id, $action,'$content')";
     }
