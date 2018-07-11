@@ -1002,6 +1002,49 @@ tr:last-child td {
     margin-right: 0.8em;
 }
 
+/* ALERT MODAL */
+.modal.alert .modal-content {
+    min-width: 260px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.modal.modal.alert .modal-title {
+    padding: 1em 0;
+    font-size: 1.2em;
+}
+
+.modal.modal.alert .modal-body {
+    padding: 0;
+}
+
+.modal.alert .option-item {
+    padding: 0.5em 1em;
+    margin: 0.25em 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal.alert .option-item.full {
+    background: #1f4770;
+    color: #fff;
+    padding: 1em;
+    justify-content: center;
+    margin: 0;
+}
+
+.modal.alert .option-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50px;
+}
+
 footer{
     padding: 2em 0;
     padding-top: 5em;
