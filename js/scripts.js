@@ -77,32 +77,27 @@ function oldShowToast(msg, pos){
     }, 2000);
 }
 
-function ajax($path, data){
-    var promise = new Promise(resolve, reject);
-    var xhr = new XMLHttpRequest();
-    // && file.size <= $id("MAX_FILE_SIZE").value
-    // if (xhr.upload && file.type == "image/jpeg") {
-    xhr.upload.addEventListener("progress", function (e) {
-        var pc = parseInt(100 - (e.loaded / e.total * 100));
-        el.setAttribute("progress", pc);
-        console.log("Progress: " + (pc - 100));
-        el.style.setProperty("--progress", (100 - pc) + "%");
-    }, false);
+function ajax(path, data){
+    var promise = new Promise(function(resolve, reject){
+        var xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function (e) {
-        // console.log("Ready state changed to: " + xhr.readyState);
-        if (xhr.readyState == 4) {
-            console.log(xhr.responseText);
-            // progress.className = (xhr.status == 200 ? "success" : "failure");
-            el.classList.remove("loading");
-            var attachments_value = $id("savedAttachments").value;
-            var savedAttachments = attachments_value.length ? attachments_value.split(",") : [];
-            savedAttachments.push(file.name.replace(/ /g, "_"));
-            $id("savedAttachments").value = savedAttachments.join(",");
-        }
-    };
+        xhr.onreadystatechange = function (e) {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200)
+                    resolve(xhr.responseText);
+                else
+                    reject(xhr.responseText);
+            }
+        };
 
-    var method = data ? "POST" : "GET";
-    xhr.open(method, "upload.php", true);
-    xhr.send(data);
+        var method = data ? "POST" : "GET";
+        xhr.open(method, path, true);
+
+        if (data)
+            xhr.send(JSON.stringify(data));
+        else
+            xhr.send();
+    });
+    
+    return promise;
 }

@@ -5,7 +5,9 @@
 
 	include("includes/getMemo.php");
 	include("includes/getUsers.php"); 
-	include("includes/getAttachment.php"); 
+	include("includes/getAttachment.php");
+
+	$memo;
 ?>
 <link rel="stylesheet" href="css/staff_home.css">
 
@@ -127,5 +129,36 @@
 	?>
 	
 	<?php include("partials/js.php"); ?>
+
+	<script>
+		var memo_id = "<?php echo $_GET['memo_id']; ?>";
+		var is_ufs = <?php echo $user_id != $memo['to_userid'] ? 'true' : 'false' ?>;
+		openModal('writeReply');
+
+		function sendReply(action){
+			var data = {
+				memo_id: memo_id,
+                action: action,
+				user_id : user_id
+			};
+
+			if(is_ufs){
+				data['for_ufs'] = is_ufs;
+			}
+
+			// return console.log(data);
+
+			ajax("api/send_reply.php", data)
+			.then(function(res){
+				console.log("Success: " + res);
+				showToast("Memo reply was sent.", "success");
+			})
+			.catch(function (err) {
+				if(err)
+					console.log("Error: " + err);
+				showToast("Failed to send reply.", "error");
+			})
+		}
+	</script>
 </body>
 </html>

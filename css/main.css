@@ -1045,6 +1045,23 @@ tr:last-child td {
     border-radius: 50px;
 }
 
+.modal.alert .closer{
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    z-index: 1;
+    outline: none;
+    cursor: pointer;
+}
+
 footer{
     padding: 2em 0;
     padding-top: 5em;
