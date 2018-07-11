@@ -67,51 +67,20 @@
 								<?php echo nl2br($memo['body']); ?>
 							</div>
 
-							<?php
-								$attachments_result = getAttachment::fromMemo($con, $memo['id']);
-								$extra_s = mysqli_num_rows($attachments_result) != 1 ? 'S' : '';
-								echo '<div id="attachments" label="'. mysqli_num_rows($attachments_result) . ' Attachment' . $extra_s . '">';
-								while ($attachment = mysqli_fetch_array($attachments_result)) {
-									$ext = end(explode(".",$attachment['document']));
-									$type = $ext;
-									if(in_array($ext, ["jpg", "png", "gif", "jpeg"]))
-										$type = "image";
+							<?php 
+								$attachments = getAttachment::forMemo($con, $memo['id']); 
 
-									echo '
-										<a href="uploads/'. $attachment['document'] .'" class="attachment '.$type.'" target="blank">
-											<i class="zmdi"></i>
-											<span class="trim-text">'. $attachment['document'] .'</span>
-										</a>
-									';
-								};
+								if(count($attachments) > 0){
+									// echo count($attachments) . " attachments";
+									include 'partials/memo-read-attachments.php';
+								}
 
-								echo '</div>';
-							?>
-
-							<?php
 								$responses = getResponses::forMemo($con, $memo['id']);
 
 								if(count($responses) > 0){
-									echo '
-										<div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
-											<h5 class="text-regular" style="margin-bottom: 2em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO REPLIES</h5>';
-									
-											foreach ($responses as $response) {
-												echo '
-												<div class="memo-reply layout start" style="margin-bottom: 22px;">
-														<img class="for-user" src>
-
-														<div class="text flex">
-															<h3 class="text-bold">'.$response["name"]. '</h3>
-															<p class="text-light" style="font-size: 1.1em; line-height: 1.4em; margin-top: 0.3em">
-																' . $response["comment"] . '
-															</p>
-														</div>
-												</div>';
-											}
-									};
-									echo '</div>';
-								?>
+									include 'partials/memo-read-responses.php';
+								}
+							?>
 
 							<div style="padding-left: 0.7em; padding-top: 1.5em; border-top: 1px solid #ddd">
 								<?php
