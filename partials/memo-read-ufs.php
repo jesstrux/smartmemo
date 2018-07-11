@@ -1,4 +1,4 @@
-<div id="memoReplies" style="padding: 1.5em 0.7em; border-top: 1px solid #ddd">
+<div id="memoReplies" style="padding: 1.5em 0.7em; padding-bottom: 0.1em; border-top: 1px solid #ddd">
     <h5 class="text-regular" style="margin-bottom: 2em;letter-spacing: 1px; color: #999; font-size: 0.9em;">MEMO RESPONSES</h5>
 
     <?php
@@ -18,7 +18,7 @@
 
             echo '
             <div class="memo-reply layout" style="margin-bottom: 22px;">
-                    <div style="width: 2px; margin-right: 16px; border-radius: 3px; background: ' . $bg_status . '"></div>
+                    <div style="width: 3px; margin-right: 16px; border-radius: 5px; background: ' . $bg_status . '"></div>
 
                     <div class="text flex">
                         <h3 class="text-bold">'.$ufs["name"]. '</h3>
