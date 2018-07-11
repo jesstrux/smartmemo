@@ -53,13 +53,13 @@
                                         $query = "SELECT * FROM department";
                                         $i = 1;
                                         $result = mysqli_query($con, $query); //execute the query
-                                        while ($data = mysqli_fetch_assoc($result)) { ?>
+                                        while ($data = mysqli_fetch_assoc($result)) {
+                                            if ($data['status'] == 0) continue; ?>
                                         <tr>
                                             <td class="text-center"><?php echo $i; ?></td>
                                             <td style="padding-left: 2em"><?php echo $data['name']; ?></td>
                                             <td class="text-center">
-                                                <button class="rounded-btn btn-sm imperfect btn-danger"
-                                                    onclick="removeAdminItem(<?php echo $data['id']; ?>, 'Department')">REMOVE</button>
+                                                <button class="rounded-btn btn-sm imperfect btn-danger" onclick="deleteItem('<?php echo $data['id']; ?>')">Remove</button>
                                             </td>
                                         </tr>
                                         <?php $i++;
@@ -83,7 +83,28 @@
 <script>
     <?php 
         if ($squery_status == 1)
-            echo 'showToast("Department is Successfully Saved.", "success");'
+            echo 'showToast("Department was Successfully Saved.", "success");'
     ?>
+
+    function deleteItem(id){
+        var data = {
+            id: id,
+            table: 'Department'
+        };
+
+        ajax("api/delete_admin_data.php", data)
+			.then(function(res){
+				showToast("Department Successfully Removed.", "success");
+
+				setTimeout(() => {
+					window.location.reload();
+				}, 500);
+			})
+			.catch(function (err) {
+				if(err)
+					console.log("Error: " + err);
+				showToast("Failed to delete department.", "error");
+			})
+    }
 </script>
 </html>

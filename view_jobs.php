@@ -33,18 +33,6 @@
                 <!-- Page content goes here-->
 
                 <section style="margin-top: -1em">
-                    <?php if($squery_status==1){?>
-                        <div class="alert alert-success">
-                            <a class="close" data-dismiss="alert">×</a>
-                            <strong>Success!</strong> Job title is Successfully Saved.
-                        </div>
-                    <?php }?>
-                    <?php if($squery_status==2){?>
-                        <div class="alert alert-success">
-                            <a class="close" data-dismiss="alert">×</a>
-                            <strong>Error!</strong> Job title is not Successfully Saved.
-                        </div>
-                    <?php }?>
                     <div class="layout justified start">
                         <div class="flex add-box">
                             <h2 class="text-light">Add Job Title</h2>
@@ -73,12 +61,13 @@
                                     $i = 1;
                                     $result = mysqli_query($con, $query);
 
-                                    while ($data = mysqli_fetch_assoc($result)) { ?>
+                                    while ($data = mysqli_fetch_assoc($result)) { 
+                                        if($data['status'] == 0) continue;?>
                                         <tr>
                                             <td class="text-center"><?php echo $i; ?>.</td>
                                             <td style="padding-left: 2em"><?php echo $data['name']; ?></td>
                                             <td class="text-center">
-                                                <button class="rounded-btn btn-sm imperfect btn-danger">Remove</button>
+                                                <button class="rounded-btn btn-sm imperfect btn-danger" onclick="deleteItem('<?php echo $data['id'];?>')">Remove</button>
                                             </td>
                                         </tr>
                                         <?php $i++;
@@ -98,4 +87,31 @@
     </div>
 </main>
 <?php include ("partials/js.php"); ?></body>
+
+<script>
+    <?php 
+        if ($squery_status == 1)
+            echo 'showToast("Job was Successfully Saved.", "success");'
+    ?>
+    function deleteItem(id){
+        var data = {
+            id: id,
+            table: 'Job'
+        };
+
+        ajax("api/delete_admin_data.php", data)
+			.then(function(res){
+				showToast("Job Successfully Removed.", "success");
+
+				setTimeout(() => {
+					window.location.reload();
+				}, 500);
+			})
+			.catch(function (err) {
+				if(err)
+					console.log("Error: " + err);
+				showToast("Failed to delete department.", "error");
+			})
+    }
+</script>
 </html>
