@@ -77,8 +77,8 @@
 
 								$ufs = getUfs::forMemo($con, $memo['id']);
 								if(count($ufs) > 0){
-									echo count($ufs) . " ufs";
-									// include 'partials/memo-read-attachments.php';
+									// echo count($ufs) . " ufs";
+									include 'partials/memo-read-ufs.php';
 								}
 
 								$responses = getResponses::forMemo($con, $memo['id']);

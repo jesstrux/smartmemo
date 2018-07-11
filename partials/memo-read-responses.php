@@ -4,7 +4,7 @@
     <?php
         foreach ($responses as $response) {
             echo '
-            <div class="memo-reply layout start" style="margin-bottom: 22px;">
+            <div class="memo-reply layout start" style="margin-bottom: 22px; margin-left: 12px;">
                     <img class="for-user" src>
 
                     <div class="text flex">

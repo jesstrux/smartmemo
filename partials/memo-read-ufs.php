@@ -7,6 +7,7 @@
             $status_text = "UNKNOWN";
 
             $status = $ufs['status'];
+
             if($status == 1){
                 $bg_status = "green";
                 $status_text = "APPROVED";
@@ -21,8 +22,8 @@
 
                     <div class="text flex">
                         <h3 class="text-bold">'.$ufs["name"]. '</h3>
-                        <p class="text-light" style="font-size: 1.1em; line-height: 1.4em; margin-top: 0.3em">
-                            ' . $status . '
+                        <p class="text-regular" style="font-size: 0.9em; color: #555; line-height: 1.4em; margin-top: 0.3em">
+                            ' . $status_text . '
                         </p>
                     </div>
             </div>';
