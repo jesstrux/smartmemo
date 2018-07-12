@@ -1,12 +1,12 @@
 <?php
     include("includes/send_notification.php");
     include ("includes/connection.php");
-    include("../includes/getUsers.php");
-    include("../includes/getMemo.php");
-    include("../includes/getAttachment.php");
-    include("../includes/getUfs.php");
-    include("../includes/getResponses.php");
-    include("../includes/functions.php");
+    include ("includes/getUsers.php");
+    include ("includes/getMemo.php");
+    include ("includes/getAttachment.php");
+    include ("includes/getUfs.php");
+    include ("includes/getResponses.php");
+    include ("includes/functions.php");
 
     $token = 'cIlmLu9YdLg:APA91bH3hSCHZ41UZMF7N9a8s7cvLBo65iy47AVNNXhWnN6KR-JdneNI-nPJEsNbc8XNmoyXIXoCtozx7-a21F0pamxSvgBTpA1_b_CPuFV1JHLaYfSP44kKp8nv1aZH4OBulh1yynVz69nK9BKBUyydcAsilqIwgw';
 
