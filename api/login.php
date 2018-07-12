@@ -16,12 +16,12 @@
     $mypassword = md5(mysqli_real_escape_string($con, $post_password));
     // $mypassword = "2774282e834ffc9b651c4ef31272ffe1";
 
-    $sql = "SELECT u.id, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', false) AS activated, d.name AS department, j.name AS job, r.name AS role";
+    $sql = "SELECT u.id, u.activation, u.status, CONCAT(u.fname, ' ', u.mname, ' ', u.surname) AS name, u.email, u.phoneNumber AS phone, IF(u.activation != 0, 'true', 'false') AS activated, d.name AS department, j.name AS job, r.name AS role";
     $sql .= " FROM users u";
     $sql .= " JOIN department d ON u.dept_id = d.id";
     $sql .= " JOIN job j ON u.job_id = j.id";
     $sql .= " LEFT JOIN user_role r ON u.user_role_id = r.id";
-    $sql .= " WHERE email = '$myusername' and password = '$mypassword' and status=0";
+    $sql .= " WHERE email = '$myusername' and password = '$mypassword' and u.status=0";
 
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -30,10 +30,10 @@
         $id = $row['id'];
         mysqli_query($con, "UPDATE users SET device_token = '$post_token' WHERE id = $id");
         
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
         echo json_encode($row);
     } else {
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
         // echo json_encode(["email" => $myusername, "password" => $post_password]);
         echo "null";
         // @ttss;86%
