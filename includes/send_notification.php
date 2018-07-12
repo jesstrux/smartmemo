@@ -30,11 +30,12 @@
         send_notification($fields);
     }
 
-    function notify_topic($topic, $title, $message, $type = "GENERAL_NOTIFICATION"){
+    function notify_topic($topic, $title, $message, $type = "GENERAL_NOTIFICATION", $data = ""){
         $msg = array(
             'title' => $title,
             'message' => $message,
-            'action_type' => $type
+            'action_type' => $type,
+            'embeded_data' => $data,
         );
 
         $fields = array(

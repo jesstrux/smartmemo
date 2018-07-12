@@ -1,6 +1,7 @@
 <?php
 include ("includes/connection.php");
 include("includes/send_notification.php");
+include("includes/getUsers.php");
 
 session_start();
 
@@ -47,7 +48,10 @@ if(isset($_POST['register'])){
         $topic = "Admin";
         $title = "New User Registered!";
         $message = "$full_name has registered to Smart Memo, please confirm them.";
-        notify_topic($topic, $title, $message);
+
+        $data = json_decode(getUsers::byId($con, $user_id, true));
+
+        notify_topic($topic, $title, $message, "USER_TO_ACTIVATE", $data);
 
         header("location: index.php");
     } else {
