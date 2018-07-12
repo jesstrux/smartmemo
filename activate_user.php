@@ -8,6 +8,7 @@
 
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
 
     if (mysqli_num_rows($result) == 1) {
         $token = $row['device_token'];

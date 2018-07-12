@@ -10,4 +10,4 @@
     $dept_count = str_pad(5, 2, 0, STR_PAD_LEFT);
     $draft_count = str_pad(3, 2, 0, STR_PAD_LEFT);
 
-    echo json_decode([$inbox_count, $dept_count, $draft_count]);
+    echo json_encode([$inbox_count, $dept_count, $draft_count]);
