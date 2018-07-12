@@ -1,5 +1,6 @@
 <?php
     include("includes/connection.php");
+    include("includes/getUsers.php");
     include("includes/send_notification.php");
 
     // $get_id = $_GET['user_id'];
@@ -25,8 +26,11 @@
         if(isset($_GET['id']))
             echo json_encode($row);
 
+        $user = json_encode(getUsers::byId($con, $user_id, true));
+
         $msg = array(
-            'action_type' => 'ACTIVATE_USER'
+            'action_type' => 'ACTIVATE_USER',
+            'embeded_data' => $user,
         );
 
         $fields = array(

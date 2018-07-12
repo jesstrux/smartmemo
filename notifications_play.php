@@ -2,20 +2,21 @@
     include("includes/send_notification.php");
     include ("includes/connection.php");
 
-    $token = 'fGiAaCBL7Io:APA91bFi-eDhKDiE9imlYH67wUsjAy2ky7ti_GkCO06zfZehDUoen490XRZX9y1kAJ4w3jTODcxQvZJ96Nsq1UTK34qH0OwzolfGaQgy4OW5TcJXRtdvH_5rj_o7PnMknbU0V8wtxj3iODltVU4Vv69R61Nvn_l_TA';
+    // $token = 'cIlmLu9YdLg:APA91bH3hSCHZ41UZMF7N9a8s7cvLBo65iy47AVNNXhWnN6KR-JdneNI-nPJEsNbc8XNmoyXIXoCtozx7-a21F0pamxSvgBTpA1_b_CPuFV1JHLaYfSP44kKp8nv1aZH4OBulh1yynVz69nK9BKBUyydcAsilqIwgw';
 
-    $title = "System Maintainance!";
-    $message = "Hey Walter, we'll be doing some minor system maintaince later this evening. Please make sure you've got your affairs in order by then.";
-    notify_user($token, $title, $message);
+    // $title = "System Maintainance!";
+    // $message = "Hey Walter, we'll be doing some minor system maintaince later this evening. Please make sure you've got your affairs in order by then.";
+    // notify_user($token, $title, $message);
 
     // $topic = "Departmentofcomputing";
     // $title = "Yo Departmentants!";
     // $message = "This is a departmentwide memo...";
     // notify_topic($topic, $title, $message);
 
-    // $topic = "Admin";
-    // $title = "To All Admins!";
-    // $message = "A new user has registered, please confirm them...";
+    $topic = "Admin";
+    $title = "To All Admins!";
+    $message = "A new user has registered, please confirm them...";
+    notify_topic($topic, $title, $message, "OH_MY");
     // notify_topic($topic, $title, $message, "USER_REGISTERED");
 
     // $from = 8;

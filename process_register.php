@@ -49,7 +49,7 @@ if(isset($_POST['register'])){
         $title = "New User Registered!";
         $message = "$full_name has registered to Smart Memo, please confirm them.";
 
-        $data = json_decode(getUsers::byId($con, $user_id, true));
+        $data = json_encode(getUsers::byId($con, $user_id, true));
 
         notify_topic($topic, $title, $message, "USER_TO_ACTIVATE", $data);
 

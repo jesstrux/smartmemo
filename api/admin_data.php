@@ -6,8 +6,8 @@
     // $_POST = json_decode($rest_json, true);
     // $user_id = $_POST['user_id'];
 
-    $sql = "SELECT id, name AS title, 'Department' AS type FROM department WHERE status != 0 ";
-    $sql .= "UNION SELECT id, name AS title, 'Job' AS type FROM job WHERE status != 0 ";
+    $sql = "SELECT id, name AS title, 'Department' AS type FROM department ";
+    $sql .= "UNION SELECT id, name AS title, 'Job' AS type FROM job ";
     $sql .= "UNION SELECT id, CONCAT(fname, ' ', mname, ' ', surname) AS title, 'Staff' as type FROM users";
 
     $result = mysqli_query($con, $sql);
