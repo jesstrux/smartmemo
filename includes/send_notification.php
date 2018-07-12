@@ -1,11 +1,12 @@
 <?php
     define('API_ACCESS_KEY', 'AAAAJQSrNVE:APA91bHUK3v__uh4W9pUcHB4hYhIJsSOfHEMrHKveoSe7wO2PgH_l-X8mdR1S2aAfsn-BMgo45vjUlGNl2WJhwsRZXN8b9yosoDGBO92T5SYgi3LC4ir1iJr-MMzgUQF_wmT8YbbRat3');
 
-    function notify_user($token, $title, $message, $type = "GENERAL_NOTIFICATION"){
+    function notify_user($token, $title, $message, $type = "GENERAL_NOTIFICATION", $data = ""){
         $msg = array(
             'title' => $title,
             'message' => $message,
-            'action_type' => $type
+            'action_type' => $type,
+            'embeded_data' => $data
         );
 
         $fields = array(
@@ -35,7 +36,7 @@
             'title' => $title,
             'message' => $message,
             'action_type' => $type,
-            'embeded_data' => $data,
+            'embeded_data' => $data
         );
 
         $fields = array(
