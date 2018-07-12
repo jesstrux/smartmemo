@@ -1,0 +1,128 @@
+aside ul li:nth-child(n+3){
+	display: block;
+}
+
+#mainContent > .section-wrapper:first-child{
+	padding-top: 1em;
+}
+
+section:first-child{
+	margin-bottom: 4em;
+}
+
+.memo-department{
+	text-align: center;
+}
+
+.memo-department .memo-count{
+	font-size: 2.7em;
+	border-radius: 10px;
+	height: 160px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: orange;
+	box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
+	margin-bottom: 24px;
+}
+
+#departmentsRow .col-md-4:nth-child(2) .memo-count {
+	background: #4b9035;
+	color: #fff;
+}
+
+#departmentsRow .col-md-4:nth-child(3) .memo-count {
+	background: #012242;
+	color: #fff;
+}
+
+.memo-department > span{
+	letter-spacing: 0.3px;
+}
+
+.memo-department .memo-count span{
+	display: block;
+	margin-top: 0.4em;
+	font-size: 0.4em;
+}
+
+.memo-item{
+	position: relative;
+	padding: 1em;
+	padding-right: 3em;
+	border: 1px solid #f0f0f0;
+	border-width: 1px 0 1px 0;
+	min-height: 70px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.memo-item p{
+	margin-top: 0.6em;
+	font-size: 0.9em;
+	opacity: 0.8;
+	max-width: 550px;
+	color: #333;
+}
+
+.memo-item .date {
+	height: 14px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 1em;
+	margin: auto;
+	font-size: 0.8em;
+	color: #555;
+}
+
+.memo-item .attachments{
+	display: flex;
+	padding: 0.6em 0;
+}
+
+.memo-item .attachment{
+	padding: 0.85em 1.3em;
+	margin-right: 0.5em;
+	display: flex;
+	align-items: center;
+	font-size: 0.8em;
+	background: #eee;
+	border-radius: 20px;
+	margin-bottom: -1.2em;
+}
+
+.memo-item .attachment span{
+	width: auto !important;
+}
+
+.memo-item .attachment i{
+	margin-right: 0.5em;
+	font-family: Material-Design-Iconic-Font;
+}
+
+.memo-item .attachment.pdf i:before {
+	content: '\f223';
+	color: #f55;
+}
+
+.memo-item .attachment.docx i:before {
+	content: '\f222';
+	color: #55f;
+}
+
+.memo-item .attachment.xls i:before {
+	content: '\f222';
+	color: #383;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 521px){
+    
+}
+
+@media screen and (max-width: 520px){
+    
+}
