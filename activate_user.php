@@ -2,18 +2,28 @@
     include("includes/connection.php");
     include("includes/send_notification.php");
 
-    $get_id = $_GET['user_id'];
+    // $get_id = $_GET['user_id'];
 
-    $sql = "SELECT device_token FROM users WHERE id = $get_id";
+    $rest_json = file_get_contents("php://input");
+    $_POST = json_decode($rest_json, true);
 
-    $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $user_id = $_POST['user_id'];
+    $role = $_POST['role'];
+
+    mysqli_query($con, "UPDATE users SET activation = 1, status = 0, user_role_id = $role WHERE id = $user_id");
     
 
     if (mysqli_num_rows($result) == 1) {
+        $sql = "SELECT device_token FROM users WHERE id = $user_id";
+
+        $result = mysqli_query($con, $sql);
+
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
         $token = $row['device_token'];
-        mysqli_query($con, "UPDATE users SET activation = 1 WHERE id = $get_id");
-        echo json_encode($row);
+        
+        if(isset($_GET['id']))
+            echo json_encode($row);
 
         $msg = array(
             'action_type' => 'ACTIVATE_USER'
